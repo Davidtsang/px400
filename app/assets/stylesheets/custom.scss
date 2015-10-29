@@ -1,0 +1,61 @@
+$font-size-base : 13px;
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+* {
+  font-family: "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft Yahei UI", "Microsoft Yahei", Arial, sans-serif;
+}
+
+$siteGrey: lighten(black,95%);
+$siteGreyMiddle:lighten(black,65%);
+$siteGreyLight:lighten(black,85%);
+body{
+  padding-top: 51px;
+  background-color: $siteGrey;
+}
+.navbar-brand{
+  padding-top: 5px;
+}
+#nav-user-name
+{
+  padding-top: 12px ;
+  padding-bottom: 10px;
+}
+.avatar{
+  border-radius: 50px;
+}
+.profile{
+  margin-top: 30px;
+  span{
+    font-size: 12px;
+  }
+  input{
+    font-size: 18px;
+    //font-weight: bold;
+  }
+}
+.avatar-box{
+  input{
+    font-size: 12px;
+  }
+  h4{
+    margin-top: 0px;
+  }
+  img{
+    margin-bottom: 15px;
+    border-radius: 50px;
+  }
+  p{
+    margin: 10px 0px;
+    font-size: 12px;
+  }
+}
+//------footer
+footer{
+  border-top: solid 1px $siteGreyLight;
+  color: $siteGreyMiddle;
+  height: 240px;
+  background-color: white;
+  padding: 30px 0px;
+}

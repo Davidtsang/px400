@@ -1,11 +1,23 @@
 Rails.application.routes.draw do
+  resources :works
   get 'static_pages/home'
 
   get 'static_pages/about'
 
-  devise_for :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  devise_for :users, controllers: {
+                       registrations: 'users/registrations'
+                   }
+
+  get "designers" =>"designers#all"
+  devise_scope :user do
+    get "profile" => "users/registrations#profile"
+    put "update_profile" => "users/registrations#update_profile"
+    put "update_avatar" => "users/registrations#update_avatar"
+
+  end
 
   # You can have the root of your site routed with "root"
   root 'static_pages#home'

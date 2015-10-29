@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @work.title %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @work.image %>
+</p>
+
+<p>
+  <strong>Desciption:</strong>
+  <%= @work.desciption %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @work.user_id %>
+</p>
+
+<p>
+  <strong>Views count:</strong>
+  <%= @work.views_count %>
+</p>
+
+<p>
+  <strong>Likes count:</strong>
+  <%= @work.likes_count %>
+</p>
+
+<p>
+  <strong>Favorites count:</strong>
+  <%= @work.favorites_count %>
+</p>
+
+<p>
+  <strong>Shares count:</strong>
+  <%= @work.shares_count %>
+</p>
+
+<%= link_to 'Edit', edit_work_path(@work) %> |
+<%= link_to 'Back', works_path %>

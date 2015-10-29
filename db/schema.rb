@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028084911) do
+ActiveRecord::Schema.define(version: 20151029011558) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -26,9 +26,36 @@ ActiveRecord::Schema.define(version: 20151028084911) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "location"
+    t.string   "title"
+    t.string   "company"
+    t.integer  "sex"
+    t.string   "avatar"
+    t.integer  "fans_count"
+    t.string   "bio"
+    t.string   "website"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "works", force: :cascade do |t|
+    t.string   "title"
+    t.string   "image"
+    t.text     "desciption"
+    t.integer  "user_id"
+    t.integer  "views_count"
+    t.integer  "likes_count"
+    t.integer  "favorites_count"
+    t.integer  "shares_count"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end
