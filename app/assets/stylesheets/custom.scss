@@ -1,4 +1,4 @@
-$font-size-base : 13px;
+$font-size-base: 13px;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
@@ -7,52 +7,69 @@ $font-size-base : 13px;
   font-family: "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft Yahei UI", "Microsoft Yahei", Arial, sans-serif;
 }
 
-$siteGrey: lighten(black,95%);
-$siteGreyMiddle:lighten(black,65%);
-$siteGreyLight:lighten(black,85%);
-body{
+$siteGrey: lighten(black, 95%);
+$siteGreyMiddle: lighten(black, 65%);
+$siteGreyLight: lighten(black, 85%);
+$siteGreyDark: lighten(black, 35%);
+body {
   padding-top: 51px;
   background-color: $siteGrey;
 }
-.navbar-brand{
+
+.navbar-brand {
   padding-top: 5px;
 }
-#nav-user-name
-{
-  padding-top: 12px ;
+
+#nav-user-name {
+  padding-top: 12px;
   padding-bottom: 10px;
 }
-.avatar{
+
+.dropdown-menu {
+
+  background-color: black;
+  .divider{
+    background-color: $siteGreyDark;
+  }
+  li > a {
+    color: $siteGreyMiddle;
+  }
+}
+
+.avatar {
   border-radius: 50px;
 }
-.profile{
+
+.profile {
   margin-top: 30px;
-  span{
+  span {
     font-size: 12px;
   }
-  input{
+  input {
     font-size: 18px;
     //font-weight: bold;
   }
 }
-.avatar-box{
-  input{
+
+.avatar-box {
+  input {
     font-size: 12px;
   }
-  h4{
+  h4 {
     margin-top: 0px;
   }
-  img{
+  img {
     margin-bottom: 15px;
     border-radius: 50px;
   }
-  p{
+  p {
     margin: 10px 0px;
     font-size: 12px;
   }
 }
+
 //------footer
-footer{
+footer {
   border-top: solid 1px $siteGreyLight;
   color: $siteGreyMiddle;
   height: 240px;

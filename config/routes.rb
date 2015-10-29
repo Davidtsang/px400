@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'designers/all'
+
   resources :works
   get 'static_pages/home'
 

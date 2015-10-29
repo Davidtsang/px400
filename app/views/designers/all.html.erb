@@ -1,0 +1,15 @@
+<h1>Designers#all</h1>
+<% @users.each do |user| %>
+    <div class="row">
+      <div class="col-md-8">
+        <%= image_tag user.avatar.url(:normal), :class => "avatar pull-left" %>
+        <ul>
+          <li><h4><%= user.name %></h4></li>
+          <li><%= user.location %></li>
+          <li><%= user.fans_count %>位粉丝</li>
+
+
+        </ul>
+      </div>
+    </div>
+<% end %>

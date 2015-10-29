@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029011558) do
+ActiveRecord::Schema.define(version: 20151029034204) do
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -33,9 +44,11 @@ ActiveRecord::Schema.define(version: 20151029011558) do
     t.string   "company"
     t.integer  "sex"
     t.string   "avatar"
-    t.integer  "fans_count"
+    t.integer  "fans_count",             default: 0
     t.string   "bio"
     t.string   "website"
+    t.integer  "likes_count",            default: 0
+    t.integer  "thanks_count",           default: 0
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -50,12 +63,12 @@ ActiveRecord::Schema.define(version: 20151029011558) do
     t.string   "image"
     t.text     "desciption"
     t.integer  "user_id"
-    t.integer  "views_count"
-    t.integer  "likes_count"
-    t.integer  "favorites_count"
-    t.integer  "shares_count"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "views_count",     default: 0
+    t.integer  "likes_count",     default: 0
+    t.integer  "favorites_count", default: 0
+    t.integer  "shares_count",    default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end

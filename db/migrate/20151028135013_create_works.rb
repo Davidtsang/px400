@@ -5,10 +5,10 @@ class CreateWorks < ActiveRecord::Migration
       t.string :image
       t.text :desciption
       t.integer :user_id
-      t.integer :views_count
-      t.integer :likes_count
-      t.integer :favorites_count
-      t.integer :shares_count
+      t.integer :views_count, default: 0
+      t.integer :likes_count, default: 0
+      t.integer :favorites_count, default: 0
+      t.integer :shares_count, default: 0
 
       t.timestamps null: false
     end
