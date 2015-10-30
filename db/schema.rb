@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029034204) do
+ActiveRecord::Schema.define(version: 20151029081441) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -63,12 +63,18 @@ ActiveRecord::Schema.define(version: 20151029034204) do
     t.string   "image"
     t.text     "desciption"
     t.integer  "user_id"
-    t.integer  "views_count",     default: 0
-    t.integer  "likes_count",     default: 0
-    t.integer  "favorites_count", default: 0
-    t.integer  "shares_count",    default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "views_count",        default: 0
+    t.integer  "likes_count",        default: 0
+    t.integer  "favorites_count",    default: 0
+    t.integer  "shares_count",       default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
+
+  add_index "works", ["user_id", "created_at"], name: "index_works_on_user_id_and_created_at"
 
 end

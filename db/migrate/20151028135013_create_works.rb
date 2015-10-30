@@ -12,5 +12,6 @@ class CreateWorks < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+      add_index :works, [:user_id, :created_at]
   end
 end

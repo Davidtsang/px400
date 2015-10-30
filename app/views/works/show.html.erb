@@ -1,44 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @work.title %>
-</p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @work.image %>
-</p>
+<div class="row">
+  <div class="col-md-5 col-md-offset-2 work-box">
+    <div class="work-header">
+      <div class="pull-left user-avatar"><%= image_tag @work.user.avatar.url(:medium), :class => 'avatar' %></div>
+      <div>
+        <div class="title"><h4><%= @work.title %></h4></div>
+        <div class="pub-info">
+          <ul class="list-inline">
+            <li><%= link_to @work.user.name, "#" %> 发表</li>
+            <li><%= @work.updated_at.localtime.to_date %> 更新</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Desciption:</strong>
-  <%= @work.desciption %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @work.user_id %>
-</p>
+    <div class="work-image">
+      <%= image_tag @work.image.url(:sd) %>
+    </div>
 
-<p>
-  <strong>Views count:</strong>
-  <%= @work.views_count %>
-</p>
+    <p class="desc">
 
-<p>
-  <strong>Likes count:</strong>
-  <%= @work.likes_count %>
-</p>
+      <%= @work.desciption %>
+    </p>
 
-<p>
-  <strong>Favorites count:</strong>
-  <%= @work.favorites_count %>
-</p>
-
-<p>
-  <strong>Shares count:</strong>
-  <%= @work.shares_count %>
-</p>
-
-<%= link_to 'Edit', edit_work_path(@work) %> |
-<%= link_to 'Back', works_path %>
+  </div>
+  <div class="col-md-3">
+    <div class="act-box">
+      <div class="act-item">
+        <i class="fa fa-thumbs-up fa-2x-s"></i>赞?<span class="pull-right"><%= @work.likes_count %></span></div>
+      <div class="act-item"><i class="fa fa-heart fa-2x-s"></i><%= @work.likes_count %> 个感谢</div>
+      <div class="act-item"><i class="fa fa-eye fa-2x-s"></i><%= @work.views_count %> 次查看（仅限会员）</div>
+      <div class="act-item"><i class="fa fa-star fa-2x-s"></i><%= @work.favorites_count %> 人收藏</div>
+      <div class="act-item"><i class="fa fa-refresh fa-2x-s"></i><%= @work.likes_count %> 次转发</div>
+    </div>
+    <div>
+      <%= link_to 'Edit', edit_work_path(@work), :class => "btn  btn-link" %>
+    </div>
+  </div>
+</div>

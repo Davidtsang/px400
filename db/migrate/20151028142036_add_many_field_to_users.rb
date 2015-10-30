@@ -12,5 +12,6 @@ class AddManyFieldToUsers < ActiveRecord::Migration
     add_column :users, :website, :string
     add_column :users, :likes_count, :integer, default: 0
     add_column :users, :thanks_count, :integer, default: 0
+
   end
 end

@@ -1,0 +1,29 @@
+<div class="work-item">
+  <div id="work-<%= work.id %>" class="work-item-frame">
+
+    <a class="work-item-image" href="<%= work_path(work) %>">
+      <%= image_tag work.image.url(:small) %>
+    </a>
+    <ul class="list-inline">
+      <li><i class="fa fa-thumbs-up"></i> <%= work.likes_count %></li>
+      <li><i class="fa fa-commenting"></i> <%= work.likes_count %></li>
+
+      <li><i class="fa fa-eye"></i> <%= work.likes_count %></li>
+    </ul>
+    <div class="work-item-frame-info">
+      <a href="<%= work_path(work) %>" class="fill-div">
+
+      <h5 class="title"><%= work.title %></h5>
+      <span class="description"><%= work.desciption %></span><br>
+<span class="timestamp">
+<%= time_ago_in_words(work.created_at) %>前
+</span>
+      </a>
+    </div>
+
+  </div>
+  <div class="user-info">
+    <%= image_tag work.user.avatar.url(:mini), :class => 'avatar-mini' %>
+    <span > <%= link_to work.user.name, "#" %></span>
+  </div>
+</div>

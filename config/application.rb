@@ -22,5 +22,9 @@ module DesignerSNS
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    #AJAX ROMTE CHECK
+    config.action_view.embed_authenticity_token_in_remote_forms = true
+    config.i18n.default_locale = :"zh-CN"
   end
 end

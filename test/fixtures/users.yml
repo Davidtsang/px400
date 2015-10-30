@@ -11,3 +11,12 @@ one:
 two:
 #  column: value
   email: test2@test.com
+
+michael:
+  name: Michael Example
+  email: michael@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+archer:
+  name: Sterling Archer
+  email: duchess@example.gov
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>

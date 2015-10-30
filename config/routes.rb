@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'designers/all'
+  get "designers/show/:id" =>"designers#show"
 
   resources :works
   get 'static_pages/home'
@@ -11,7 +12,13 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   devise_for :users, controllers: {
                        registrations: 'users/registrations'
-                   }
+
+                   } do
+
+  end
+
+  get "users/:id/following" =>"designers#following", as:"following_user"
+  get "users/:id/followers" =>"designers#followers", as: "followers_user"
 
   get "designers" =>"designers#all"
   devise_scope :user do
@@ -20,6 +27,9 @@ Rails.application.routes.draw do
     put "update_avatar" => "users/registrations#update_avatar"
 
   end
+
+
+  resources :relationships, only: [:create, :destroy]
 
   # You can have the root of your site routed with "root"
   root 'static_pages#home'

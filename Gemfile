@@ -30,7 +30,9 @@ gem 'rest-client', '~> 1.8'
 #file upload
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'faker'
-
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+gem "rails-i18n"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

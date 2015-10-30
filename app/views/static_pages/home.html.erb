@@ -1,2 +1,16 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="row-fluid">
+  <div class="col-md-12 topbar">
+    <a class="btn btn-success" href="<%= new_work_path %>">添加你的新作</a>
+  </div>
+</div>
+<% if user_signed_in? %>
+
+
+    <div class="row-fluid">
+<div class="col-md-12">
+      <%= render 'shared/feed' %></div>
+</div>
+
+
+<% end %>
+
