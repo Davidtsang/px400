@@ -9,4 +9,6 @@ class Work < ActiveRecord::Base
   validates_attachment :image,
                        :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] },size: { in: 0..3000.kilobytes }
 
+  has_many :works_likes
+
 end

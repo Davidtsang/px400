@@ -5,10 +5,10 @@
       <%= image_tag work.image.url(:small) %>
     </a>
     <ul class="list-inline">
-      <li><i class="fa fa-thumbs-up"></i> <%= work.likes_count %></li>
-      <li><i class="fa fa-commenting"></i> <%= work.likes_count %></li>
+      <li><i class="fa fa-thumbs-up"></i> <%= work.works_likes_count %></li>
+      <li><i class="fa fa-commenting"></i> <%= work.works_likes_count %></li>
 
-      <li><i class="fa fa-eye"></i> <%= work.likes_count %></li>
+      <li><i class="fa fa-eye"></i> <%= work.works_likes_count %></li>
     </ul>
     <div class="work-item-frame-info">
       <a href="<%= work_path(work) %>" class="fill-div">

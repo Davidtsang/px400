@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029081441) do
+ActiveRecord::Schema.define(version: 20151030225429) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20151029081441) do
     t.text     "desciption"
     t.integer  "user_id"
     t.integer  "views_count",        default: 0
-    t.integer  "likes_count",        default: 0
+    t.integer  "works_likes_count",  default: 0
     t.integer  "favorites_count",    default: 0
     t.integer  "shares_count",       default: 0
     t.datetime "created_at",                     null: false
@@ -76,5 +76,14 @@ ActiveRecord::Schema.define(version: 20151029081441) do
   end
 
   add_index "works", ["user_id", "created_at"], name: "index_works_on_user_id_and_created_at"
+
+  create_table "works_likes", force: :cascade do |t|
+    t.integer  "work_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "works_likes", ["work_id", "user_id"], name: "index_works_likes_on_work_id_and_user_id", unique: true
 
 end

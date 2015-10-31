@@ -108,7 +108,7 @@ body {
 }
 .act-box{
   color: lighten(black, 60%);
-  margin-top: 80px;
+  //margin-top: 80px;
   padding: 15px;
   .act-item {
     font-size: 13px;
@@ -117,32 +117,41 @@ body {
       width: 23px;
     }
     padding: 15px 0px;
+    .ext-info{
+      font-size: 12px;
+    }
   }
 }
-.work-box {
-  .work-header{
-    .user-avatar{
-      padding-right: 15px;
+.work-header{
+  .user-avatar{
+    padding-right: 15px;
 
-    }
-    .title{
-      //background-color: greenyellow;
-    }
-    .pub-info{
-      font-size: 12px;
-      //background-color: gold;
-      li{
-        padding-left: 0px;
-      }
-    }
-    margin-top: 30px;
-    //background-color: gold;
   }
+  .title{
+    //background-color: greenyellow;
+  }
+  .pub-info{
+    font-size: 12px;
+    //background-color: gold;
+    li{
+      padding-left: 0px;
+    }
+  }
+  margin-top: 30px;
+  //background-color: gold;
+}
+.work-box {
+  width: 490px !important;
+  //background-color: yellow;
+
   .desc{
     font-size: 16px;
   }
 }
-
+.work-sider{
+  width: 300px !important;
+  //background-color: yellow;
+}
 .work-image {
   margin: 30px 0px;
   width: 460px;

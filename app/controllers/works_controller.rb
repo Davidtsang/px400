@@ -1,6 +1,31 @@
 class WorksController < ApplicationController
   before_action :set_work, only: [:show, :edit, :update, :destroy]
-  before_action :current_member ,only: :destroy
+  before_action :current_member, only: :destroy
+
+  before_filter :authenticate_user!, only: [:like, :unlike, :edit, :create, :update]
+
+  def like
+
+    current_user.works_likes.create(work_id: params[:id])
+
+
+    respond_to do |format|
+      #format.html { redirect_to designers_all_path }
+      format.json { render :json => {success: true} }
+    end
+
+  end
+
+  def unlike
+    like = current_user.works_likes.where(work_id: params[:id]).first
+    like.destroy
+
+    respond_to do |format|
+      #format.html { redirect_to designers_all_path }
+      format.json { render :json => {success: true} }
+    end
+
+  end
 
   # GET /works
   # GET /works.json
@@ -11,7 +36,19 @@ class WorksController < ApplicationController
   # GET /works/1
   # GET /works/1.json
   def show
+    @is_liked = false
+    @works_like = nil
+
+    if current_user
+      @works_like = WorksLike.where(user_id: current_user.id, work_id: params[:id]).first
+
+      if @works_like
+        @is_liked = true
+      end
+
+    end
   end
+
 
   # GET /works/new
   def new
@@ -63,13 +100,14 @@ class WorksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_work
-      @work = Work.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_work
+    @work = Work.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def work_params
-      params.require(:work).permit(:title, :image, :desciption, :user_id, :views_count, :likes_count, :favorites_count, :shares_count)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def work_params
+    params.require(:work).permit(:title, :image, :desciption, :user_id, :views_count, :likes_count, :favorites_count, :shares_count)
+  end
+
 end

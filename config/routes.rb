@@ -2,7 +2,18 @@ Rails.application.routes.draw do
   get 'designers/all'
   get "designers/show/:id" =>"designers#show"
 
-  resources :works
+
+
+
+  resources :works do
+    member do
+      #ajax like
+      post "works_like" =>"works#like"
+      #ajax unlike
+      post "works_unlike" =>"works#unlike"
+    end
+  end
+
   get 'static_pages/home'
 
   get 'static_pages/about'
@@ -19,6 +30,7 @@ Rails.application.routes.draw do
 
   get "users/:id/following" =>"designers#following", as:"following_user"
   get "users/:id/followers" =>"designers#followers", as: "followers_user"
+
 
   get "designers" =>"designers#all"
   devise_scope :user do

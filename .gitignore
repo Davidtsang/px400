@@ -25,4 +25,7 @@ doc/
 .DS_Store
 .idea
 .secret
+
+#skip same test file
 /public/system
+/public/fake-image

@@ -1,0 +1,8 @@
+<% if @is_liked %>
+    <%= render 'works/unlike_form' %>
+<% else %>
+    <i class="fa fa-thumbs-up fa-2x-s "></i>
+    <span id="submit-link-span"><a  id="likes-submit-link" href="<%= works_like_work_path %>">赞？</a></span>
+    <span class="pull-right" ><span id="work-likes-count"><%= @work.works_likes_count %></span> 人已赞</span>
+
+<% end %>
