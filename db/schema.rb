@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030225429) do
+ActiveRecord::Schema.define(version: 20151101225506) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20151030225429) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "thanks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "thanks", ["work_id", "user_id"], name: "index_thanks_on_work_id_and_user_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -58,6 +67,19 @@ ActiveRecord::Schema.define(version: 20151030225429) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
+  create_table "visit_tracks", force: :cascade do |t|
+    t.string   "visit_path"
+    t.datetime "visit_time"
+    t.string   "ip"
+    t.integer  "user_id"
+    t.integer  "visit_count", default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "visit_tracks", ["ip"], name: "index_visit_tracks_on_ip"
+  add_index "visit_tracks", ["visit_path"], name: "index_visit_tracks_on_visit_path"
+
   create_table "works", force: :cascade do |t|
     t.string   "title"
     t.string   "image"
@@ -73,6 +95,7 @@ ActiveRecord::Schema.define(version: 20151030225429) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "thanks_count",       default: 0
   end
 
   add_index "works", ["user_id", "created_at"], name: "index_works_on_user_id_and_created_at"

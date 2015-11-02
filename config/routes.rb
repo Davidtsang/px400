@@ -11,6 +11,12 @@ Rails.application.routes.draw do
       post "works_like" =>"works#like"
       #ajax unlike
       post "works_unlike" =>"works#unlike"
+
+      #ajax like
+      post "thank" =>"works#thank"
+      #ajax unlike
+      post "unthank" =>"works#unthank"
+
     end
   end
 

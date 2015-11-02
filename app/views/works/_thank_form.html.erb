@@ -1,0 +1,9 @@
+<span id="thanks-link-span">
+<% if @is_thanked %>
+    <a id="unthanks_sumbit_link" href="<%= unthank_work_path %>">取消感谢</a>
+<% else %>
+
+    <a  id="thanks-submit-link" href="<%= thank_work_path %>">感谢</a>
+
+<% end %>
+</span>

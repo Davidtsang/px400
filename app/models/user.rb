@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
                        :content_type => {:content_type => ["image/jpeg", "image/gif", "image/png"]}, size: {in: 0..800.kilobytes}
 
   has_many :works_likes
+  has_many :thanks
 
   has_many :works, dependent: :destroy
 
