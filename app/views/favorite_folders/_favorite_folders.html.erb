@@ -1,0 +1,25 @@
+<ul class="nav nav-pills nav-stacked">
+
+  <% if @favorite_folders.any? %>
+
+      </li>
+      <% @favorite_folders.each do |f| %>
+          <% if @favorites[f.id]  %>
+              <% fid =@favorites[f.id].id %>
+              <li role="presentation" class="active">
+
+                <a data-remote="true" data-method="post" href="<%=  delete_favorite_path(fid, work_id: @work_id)%>">
+                  <%= f.name %>
+                  <i class="fa fa-minus-square  pull-right"></i> </a>
+
+              </li>
+          <% else %>
+              <li role="presentation">
+                <%= link_to f.name, favorite_folder_create_favorite_path(f, work_id: @work_id), method: :post, remote: true %>
+          <% end %>
+
+      <% end %>
+  <% else %>
+      <p>你还没有创建任何收藏夹。</p>
+  <% end %>
+</ul>

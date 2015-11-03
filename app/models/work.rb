@@ -11,5 +11,6 @@ class Work < ActiveRecord::Base
 
   has_many :works_likes
   has_many :thanks
+  has_many :favorites
 
 end

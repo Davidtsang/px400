@@ -35,6 +35,10 @@ $(document).on "page:change", ->
 
   #get path
   #pathname = window.location.pathname
+  $("#favorite-act").click ->
+    #alert('ok')
+    $('#favoriteModel').modal('show')
+    #load user favorite folder
 
 
 

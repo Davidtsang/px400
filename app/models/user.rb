@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 
   has_many :works_likes
   has_many :thanks
+  has_many :favorite_folders
 
   has_many :works, dependent: :destroy
 

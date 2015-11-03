@@ -38,7 +38,30 @@
       <div class="act-item"><i class="fa fa-heart fa-2x-s"></i>
         <%= render "works/thank_form" %> <span class="pull-right" ><span id="thanks-count"><%= @work.thanks_count %></span> 人已感谢</span></div>
       <div class="act-item"><i class="fa fa-dot-circle-o  fa-2x-s"></i><%= @work.views_count %> 次查看</div>
-      <div class="act-item"><i class="fa fa-star fa-2x-s"></i><%= @work.favorites_count %> 人收藏</div>
+      <div class="act-item"><i class="fa fa-star fa-2x-s"></i>
+        <a id="favorite-act" href="<%=  favorite_folders_path(work_id: @work.id ) %>" data-remote="true">收藏</a>  <%= @work.favorites_count %></div>
+
+      <!--//favorite dialog-->
+      <!-- Modal -->
+      <div class="modal fade" id="favoriteModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">添加到收藏夹</h4>
+            </div>
+            <div class="modal-body" id="favoriteListBox">
+
+            </div>
+            <div class="modal-footer">
+              <a href="<%= new_favorite_folder_path(work_id: @work.id ) %>" class="pull-left" data-remote="true" > + 创建一个新收藏夹</a>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--//end favorite -->
       <div class="act-item"><i class="fa fa-refresh fa-2x-s"></i><%= @work.works_likes_count %> 次转发</div>
     </div>
     <div>

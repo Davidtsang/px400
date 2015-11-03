@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101225506) do
+ActiveRecord::Schema.define(version: 20151102030851) do
+
+  create_table "favorite_folders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.integer  "favorites_count"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "work_id"
+    t.integer  "favorite_folder_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"

@@ -22,4 +22,5 @@ class DesignersController < ApplicationController
     render 'show_follow'
   end
 
+
 end

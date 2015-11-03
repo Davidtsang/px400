@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   get 'designers/all'
   get "designers/show/:id" =>"designers#show"
+  #get "designers/current_user_favorite_folders"
 
+  resources :favorite_folders do
+    post "create_favorite"
 
+  end
 
+  post "delete_favorite/:id" =>"favorite_folders#delete_favorite" , as: "delete_favorite"
 
   resources :works do
     member do
