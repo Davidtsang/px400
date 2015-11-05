@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
+
+  resources :comments do
+    member do
+      post "like"
+      post "unlike"
+    end
+
+  end
+
   get 'designers/all'
-  get "designers/show/:id" =>"designers#show"
+  get "designers/show/:id" => "designers#show"
   #get "designers/current_user_favorite_folders"
 
   resources :favorite_folders do
@@ -8,19 +17,22 @@ Rails.application.routes.draw do
 
   end
 
-  post "delete_favorite/:id" =>"favorite_folders#delete_favorite" , as: "delete_favorite"
+  post "delete_favorite/:id" => "favorite_folders#delete_favorite", as: "delete_favorite"
 
   resources :works do
     member do
       #ajax like
-      post "works_like" =>"works#like"
+      post "works_like" => "works#like"
       #ajax unlike
-      post "works_unlike" =>"works#unlike"
+      post "works_unlike" => "works#unlike"
 
       #ajax like
-      post "thank" =>"works#thank"
+      post "thank" => "works#thank"
       #ajax unlike
-      post "unthank" =>"works#unthank"
+      post "unthank" => "works#unthank"
+
+      #ajax repost
+      post "repost"
 
     end
   end
@@ -39,11 +51,11 @@ Rails.application.routes.draw do
 
   end
 
-  get "users/:id/following" =>"designers#following", as:"following_user"
-  get "users/:id/followers" =>"designers#followers", as: "followers_user"
+  get "users/:id/following" => "designers#following", as: "following_user"
+  get "users/:id/followers" => "designers#followers", as: "followers_user"
 
 
-  get "designers" =>"designers#all"
+  get "designers" => "designers#all"
   devise_scope :user do
     get "profile" => "users/registrations#profile"
     put "update_profile" => "users/registrations#update_profile"

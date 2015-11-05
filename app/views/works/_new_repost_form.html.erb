@@ -1,0 +1,32 @@
+<%= form_for(@work, url: repost_work_path(@work),html: {:id => "repost_work_#{@work.id}", method: :post }) do |f| %>
+
+    <div class="form-group">
+      <%= f.label :title, "标题" %><em>（必填项）</em>
+      <%= f.text_field :title, value:"" ,:autofocus=>true, class: "form-control" %>
+
+
+    </div>
+
+
+
+    <div class="form-group">
+      <label>描述</label><em>（可选，最长不超过1000字）</em>
+      <%= f.text_area :desciption,value:"",class: "form-control"  , rows: 4 %>
+
+
+    </div>
+
+
+    <div class="ref-info" >
+      <h4>原作品信息</h4>
+      <ul>
+        <li> <%= image_tag @work.image.url(:small) %></li>
+        <li> <%= image_tag @work.user.avatar.url(:mini) %></li>
+        <li> <%= @work.user.name %></li>
+        <li> <%= @work.updated_at %></li>
+        <li> <%= @work.title %></li>
+        <li> <%= @work.desciption %></li>
+      </ul>
+    </div>
+    </div>
+<% end %>

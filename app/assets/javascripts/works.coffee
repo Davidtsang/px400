@@ -29,8 +29,9 @@ $(document).on "page:change", ->
 
   $(".work-item-frame-info").mouseleave ->
     #alert("ok")
-    #info = $(this).parent().children('.work-item-frame-info')
-    #alert(info)4
+    info = $(this).parent().children('.work-item-frame-info')
+    info.hide()
+
 
 
   #get path
@@ -41,6 +42,9 @@ $(document).on "page:change", ->
     #load user favorite folder
 
 
+  #repost
+  $("#repost-act").click ->
+    $('#repostModel').modal('show')
 
 
   #likes +1

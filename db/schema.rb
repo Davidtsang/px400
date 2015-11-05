@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102030851) do
+ActiveRecord::Schema.define(version: 20151105033000) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "work_id"
+    t.integer  "likes_count", default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "comments_likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments_likes", ["user_id", "comment_id"], name: "index_comments_likes_on_user_id_and_comment_id", unique: true
 
   create_table "favorite_folders", force: :cascade do |t|
     t.integer  "user_id"
@@ -104,13 +122,16 @@ ActiveRecord::Schema.define(version: 20151102030851) do
     t.integer  "works_likes_count",  default: 0
     t.integer  "favorites_count",    default: 0
     t.integer  "shares_count",       default: 0
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "thanks_count",       default: 0
+    t.boolean  "is_original",        default: false
+    t.string   "work_type",          default: "new"
+    t.integer  "parent_work_id"
   end
 
   add_index "works", ["user_id", "created_at"], name: "index_works_on_user_id_and_created_at"

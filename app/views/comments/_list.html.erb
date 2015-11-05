@@ -1,0 +1,29 @@
+<% current_user_liked_comments =  current_user.comments_likes.where(comment_id: @comments.map(&:id) ) if current_user %>
+<% current_user_liked_comments =current_user_liked_comments.index_by(&:comment_id) if current_user_liked_comments %>
+
+
+<% @comments.each do |comment| %>
+    <div>
+
+
+        <ul>
+          <li> <%= image_tag comment.user.avatar.url(:mini) %></li>
+          <li><%= comment.user.name %></li>
+          <li><%= comment.content %> </li>
+          <li><%= comment.created_at %> </li>
+          <li>
+            <div id="commentsLike_<%= comment.id %>">
+            <!--// if current_user already liked, show unlike-->
+         <% if  current_user_liked_comments &&  current_user_liked_comments[comment.id] %>
+                <%= render 'comments/unlike_form', comment: comment %>
+       <% else %>
+          <%= render 'comments/like_form', comment: comment %>
+<% end  %>
+                </div>
+          </li>
+        </ul>
+
+
+
+    </div>
+<% end %>

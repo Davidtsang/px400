@@ -20,7 +20,10 @@ body {
   padding-top: 51px;
   background-color: $siteGrey;
 }
+.main{
+  margin-bottom: 30px;
 
+}
 .topbar {
   padding: 15px 15px;
   border-bottom: solid 1px $siteGreyLight;
@@ -182,14 +185,20 @@ body {
   bottom: 0px;
   left: 0px;
 }
+em{
 
+  font-size: 12px;
+}
 a.fill-div {
   display: block;
   height: 100%;
   width: 100%;
   text-decoration: none;
 }
-
+.ref-info{
+  overflow-y: scroll;
+  max-height: 400px;
+}
 .work-item-frame-info {
   display: none;
   color: $siteGreyDark;
@@ -206,7 +215,9 @@ a.fill-div {
     font-size: 11px;
   }
 }
-
+.comments_header{
+  border-bottom: solid 1px $siteGreyLight;
+}
 //------footer
 footer {
   border-top: solid 1px $siteGreyLight;

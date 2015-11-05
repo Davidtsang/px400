@@ -1,0 +1,1 @@
+$("#commentsLike_<%= @comment.id %>").html("<%= escape_javascript( render'comments/like_form', comment: @comment) %>")
