@@ -1,9 +1,20 @@
-<%= form_for(@work, url: repost_work_path(@work),html: {:id => "repost_work_#{@work.id}", method: :post }) do |f| %>
+<%= form_for(work, url: repost_work_path(work_id),html: {:id => "repost_work_#{work_id}", method: :post }, remote: :true) do |f| %>
+    <% if work.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(work.errors.count, "error") %> prohibited this work from being saved:</h2>
 
+          <ul>
+            <% work.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
     <div class="form-group">
       <%= f.label :title, "标题" %><em>（必填项）</em>
-      <%= f.text_field :title, value:"" ,:autofocus=>true, class: "form-control" %>
+      <%= f.text_field :title, :autofocus=>true, class: "form-control" %>
 
+      <%= f.hidden_field :parent_work_id , value: work_id %>
 
     </div>
 
@@ -11,22 +22,11 @@
 
     <div class="form-group">
       <label>描述</label><em>（可选，最长不超过1000字）</em>
-      <%= f.text_area :desciption,value:"",class: "form-control"  , rows: 4 %>
+      <%= f.text_area :desciption,class: "form-control"  , rows: 4 %>
 
 
     </div>
 
 
-    <div class="ref-info" >
-      <h4>原作品信息</h4>
-      <ul>
-        <li> <%= image_tag @work.image.url(:small) %></li>
-        <li> <%= image_tag @work.user.avatar.url(:mini) %></li>
-        <li> <%= @work.user.name %></li>
-        <li> <%= @work.updated_at %></li>
-        <li> <%= @work.title %></li>
-        <li> <%= @work.desciption %></li>
-      </ul>
-    </div>
-    </div>
+
 <% end %>

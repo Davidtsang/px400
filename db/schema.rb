@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105033000) do
+ActiveRecord::Schema.define(version: 20151106022617) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 20151105033000) do
   end
 
   add_index "thanks", ["work_id", "user_id"], name: "index_thanks_on_work_id_and_user_id", unique: true
+
+  create_table "timelines", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "act"
+    t.integer  "work_id"
+    t.string   "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -132,6 +141,7 @@ ActiveRecord::Schema.define(version: 20151105033000) do
     t.boolean  "is_original",        default: false
     t.string   "work_type",          default: "new"
     t.integer  "parent_work_id"
+    t.integer  "repost_count",       default: 0
   end
 
   add_index "works", ["user_id", "created_at"], name: "index_works_on_user_id_and_created_at"

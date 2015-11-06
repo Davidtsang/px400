@@ -44,6 +44,12 @@ class WorksController < ApplicationController
     #view count
     #set cookie
     pv_count(params[:id], ip, current_user_id)
+
+    #
+    @parent_work = nil
+    if @work.parent_work_id != nil
+      @parent_work = Work.find(@work.parent_work_id)
+    end
   end
 
 
@@ -104,17 +110,24 @@ class WorksController < ApplicationController
 
 
   def repost
-    work = current_user.works.new(work_params)
+    @work_id = params[:id]
+    @work = Work.find(@work_id)
 
-    work.work_type = "re"
-    work.parent_work_id = params[:id]
+    @repost = current_user.works.build(work_params)
 
+    @repost.work_type = "re"
+
+    #@work.parent_work_id = params[:id]
+    @repost.image = @work.image
+
+    #+1 repost count
+    Work.increment_counter(:repost_count, @work_id)
 
     respond_to do |format|
-      if work.save?
+      if @repost.save
         format.js
       else
-        format.js { render 'works/new_repost'}
+        format.js { render 'works/new_repost'  }
       end
     end
 
@@ -175,7 +188,7 @@ class WorksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def work_params
-    params.require(:work).permit(:title, :image, :desciption, :user_id, :views_count, :likes_count, :favorites_count, :shares_count, :is_original)
+    params.require(:work).permit(:title, :image, :desciption, :user_id, :views_count, :likes_count, :favorites_count, :shares_count, :is_original,:parent_work_id )
 
 
   end

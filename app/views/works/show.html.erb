@@ -8,7 +8,13 @@
         <div class="title"><h4><%= @work.title %></h4></div>
         <div class="pub-info">
           <ul class="list-inline">
-            <li><%= link_to @work.user.name, "#" %> 发表</li>
+            <li><%= link_to @work.user.name, "#" %>
+            <% if @work.work_type=="re" %>
+              转发自 <%= link_to @parent_work.title, work_path(@work.parent_work_id) %>
+                  <% else %>
+              发表
+              <% end %>
+            </li>
             <li><%= @work.updated_at.localtime.to_date %> 更新</li>
           </ul>
         </div>
@@ -24,11 +30,20 @@
       <%= image_tag @work.image.url(:sd) %>
     </div>
 
-    <p class="desc">
 
       <%= @work.desciption %>
     </p>
-
+    <% if @work.work_type=="re" %>
+        <hr>
+        <h4>原作信息</h4>
+        <ul>
+          <li><%= image_tag @parent_work.user.avatar.url(:mini), class: "avatar"  %></li>
+          <li><%= @parent_work.user.name  %></li>
+          <li><%= @parent_work.title  %></li>
+          <li><%= @parent_work.desciption  %></li>
+        </ul>
+    <% end %>
+    <p class="desc">
     <div class="comments">
 
       <!--//COMENTLIST-->
@@ -96,7 +111,8 @@
       <div class="act-item">
 
 
-        <i class="fa fa-refresh fa-2x-s"></i><a id="repost-act" href="#">转发</a><%= @work.works_likes_count %> 次转发
+        <i class="fa fa-refresh fa-2x-s"></i><a id="repost-act" href="#">转发</a>
+        <span class="pull-right"><%= @work.repost_count  %> 次转发</span>
       </div>
     </div>
 
@@ -110,11 +126,24 @@
               <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">转发</h4>
           </div>
-          <div class="modal-body">
-            <%= render "works/new_repost_form" %>
+          <div class="modal-body" >
+            <div  id="repostFormBody">
+            <%= render "works/new_repost_form" , work: current_user.works.new, work_id: @work.id %>
+            </div>
+            <div class="ref-info" >
+              <h4>原作品信息</h4>
+              <ul>
+                <li> <%= image_tag @work.image.url(:small) %></li>
+                <li> <%= image_tag @work.user.avatar.url(:mini) %></li>
+                <li> <%= @work.user.name %></li>
+                <li> <%= @work.updated_at %></li>
+                <li> <%= @work.title %></li>
+                <li> <%= @work.desciption %></li>
+              </ul>
+            </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary">Submit it!</button>
+            <button form="repost_work_<%=@work.id%>" type="submit" class="btn btn-primary" id="repostSubimt">转发</button>
           </div>
         </div>
       </div>
