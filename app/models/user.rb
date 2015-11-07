@@ -20,7 +20,11 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :comments_likes
 
+  has_many :timelines, dependent: :destroy
+
   has_many :works, dependent: :destroy
+  has_many :recent_works, -> { order('created_at DESC').limit(3) }, class_name: "Work"
+
 
   has_many :active_relationships, class_name: "Relationship",
            foreign_key: "follower_id",
@@ -49,6 +53,6 @@ class User < ActiveRecord::Base
   def feed
     following_ids = "SELECT followed_id FROM relationships
 WHERE follower_id = :user_id"
-    Work.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+    Timeline.includes(:work).where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).order('created_at DESC')
   end
 end

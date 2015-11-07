@@ -32,7 +32,9 @@ users = User.order(:created_at).take(7)
     image  = File.open(Dir.glob(File.join(Rails.root, 'public/fake-image/', '*')).sample)
     desciption = Faker::Lorem.sentence(7)
     title = Faker::Lorem.sentence(4)
-    user.works.create!(desciption: desciption, image: image, title: title)
+    work =user.works.create!(desciption: desciption, image: image, title: title)
+    #timeline
+    Timeline.create(user_id:user.id , work_id:work.id, act:"new")
   end
 end
 

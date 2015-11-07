@@ -1,8 +1,15 @@
-<p id="notice"><%= notice %></p>
+
 
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="work-header">
+
+        <% if @timeline_flash %>
+          <div class="timeline-flash">
+        <%= @timeline_user.name %> <%= @timeline_flash %>
+          </div>
+        <% end %>
+
       <div class="pull-left user-avatar"><%= image_tag @work.user.avatar.url(:medium), :class => 'avatar' %></div>
       <div>
         <div class="title"><h4><%= @work.title %></h4></div>

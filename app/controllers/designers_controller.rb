@@ -2,11 +2,13 @@ class DesignersController < ApplicationController
   def all
     @designers = User.paginate(page: params[:page])
 
+    @designers
   end
 
   def show
     @user = User.find(params[:id])
-    @works = @user.works.paginate(page: params[:page])
+    #@works = @user.works.paginate(page: params[:page])
+    @feed_items = @user.feed.paginate(page: params[:page])
   end
 
   def following

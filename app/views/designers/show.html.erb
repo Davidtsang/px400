@@ -1,26 +1,28 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= image_tag @user.avatar.url(:normal) %>
-        <%= @user.name %>
-      </h1>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
+  <div class="col-md-12">
+    <div class="user-header">
+      <%= render 'shared/stats' %><%= render 'follow_form', user: @user if user_signed_in? %>
+    </div>
 
-  </aside>
-  <div class="col-md-8">
-    <%= render 'follow_form' if user_signed_in? %>
-
-    <% if @user.works.any? %>
-        <h3>Works (<%= @user.works.count %>)</h3>
-        <ol class="works">
-          <%= render @works %>
-        </ol>
-        <%= will_paginate @works %>
-    <% end %>
   </div>
 </div>
+
+<div class="row">
+
+  <div class="col-md-6 col-md-offset-4 user_info">
+<ul>
+  <li><%= image_tag @user.avatar.url(:normal), class: "avatar" %></li>
+  <li> <%= @user.name %></li>
+  <li><%= @user.location %> </li>
+</ul>
+  </div>
+
+</div>
+
+
+<div class="row">
+  <%= render 'shared/feed' %>
+
+</div>
+

@@ -15,5 +15,6 @@ class Work < ActiveRecord::Base
   has_many :thanks
   has_many :favorites
   has_many :comments
+  has_many :timelines
 
 end

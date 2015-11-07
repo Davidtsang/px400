@@ -13,6 +13,11 @@ class WorksController < ApplicationController
 
 
   def show
+    if params[:flash]=="like" && params[:timeline_user_id]
+      @timeline_user = User.find(params[:timeline_user_id])
+      @timeline_flash = "赞了这个帖子."
+    end
+
     @work = Work.includes(:comments, :user).find(params[:id])
     @is_liked = false
     @is_thanked = false
@@ -57,6 +62,7 @@ class WorksController < ApplicationController
   def new
     @work = current_user.works.new
 
+
     respond_to do |format|
       format.html
       format.js
@@ -75,6 +81,8 @@ class WorksController < ApplicationController
 
     respond_to do |format|
       if @work.save
+        current_user.timelines.create(work_id: @work.id, act: "new")
+
         format.html { redirect_to @work, notice: 'Work was successfully created.' }
         format.json { render :show, status: :created, location: @work }
       else
@@ -120,11 +128,18 @@ class WorksController < ApplicationController
     #@work.parent_work_id = params[:id]
     @repost.image = @work.image
 
-    #+1 repost count
-    Work.increment_counter(:repost_count, @work_id)
+
+
+
+
 
     respond_to do |format|
       if @repost.save
+        #+1 repost count
+        Work.increment_counter(:repost_count, @work_id)
+        #timeline evetn
+        current_user.timelines.create(work_id: @repost.id, act: "re")
+
         format.js
       else
         format.js { render 'works/new_repost'  }
@@ -138,7 +153,8 @@ class WorksController < ApplicationController
 
     current_user.works_likes.create(work_id: params[:id])
 
-
+    #create time line
+    current_user.timelines.create(work_id: params[:id], act: "like")
     respond_to do |format|
       #format.html { redirect_to designers_all_path }
       format.json { render :json => {success: true} }
