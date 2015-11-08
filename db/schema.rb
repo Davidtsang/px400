@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106022617) do
+ActiveRecord::Schema.define(version: 20151107074455) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -56,6 +56,20 @@ ActiveRecord::Schema.define(version: 20151106022617) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.string   "desciption"
+    t.string   "type"
+    t.integer  "parent_id"
+    t.integer  "status",      default: 0
+    t.string   "icon"
+    t.integer  "items_count"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name"
 
   create_table "thanks", force: :cascade do |t|
     t.integer  "user_id"
@@ -108,6 +122,13 @@ ActiveRecord::Schema.define(version: 20151106022617) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "users_tags", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "visit_tracks", force: :cascade do |t|
     t.string   "visit_path"

@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :works, dependent: :destroy
   has_many :recent_works, -> { order('created_at DESC').limit(3) }, class_name: "Work"
 
+  has_many :users_tags
 
   has_many :active_relationships, class_name: "Relationship",
            foreign_key: "follower_id",

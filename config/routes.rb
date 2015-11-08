@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   get "designers/show/:id" => "designers#show"
   #get "designers/current_user_favorite_folders"
 
+  resources :tags do
+    collection do
+      get "suggest"
+      post "remove_skill_tag/:id"=>"tags#remove_skill_tag"
+    end
+  end
   resources :favorite_folders do
     post "create_favorite"
 

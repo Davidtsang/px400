@@ -1,3 +1,12 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).on 'page:change', ->
+
+  $("#submitTagForm").on 'click', ->
+
+    $("#new_tag").submit
+
+  $('#autoUserTag').autocomplete
+    serviceUrl: '/tags/suggest'
+
+
+    onSelect: (suggestion) ->
+      #alert 'You selected: ' + suggestion.value + ', ' + suggestion.data

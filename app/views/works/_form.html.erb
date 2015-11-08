@@ -17,7 +17,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :image, "图片" %> <em>(4:3比例最佳。不符合这个比例的图片将自动以中心为基准裁切成4:3比例，分辨率将自动转换为400*300px。最大尺寸不可超过8MB)</em><br>
+      <i class="fa fa-image"></i> <%= f.label :image, "图片" %> <em>(4:3比例最佳。不符合这个比例的图片将自动以中心为基准裁切成4:3比例，分辨率将自动转换为400*300px。最大尺寸不可超过8MB)</em><br>
       <%= f.file_field :image %>
     </div>
 
@@ -26,7 +26,15 @@
       <%= f.text_area :desciption, class: "form-control" %>
     </div>
 
+    <div class="form-group">
+      <label><i class="fa fa-tags "> </i> 标签</label> <em>（恰当的标签可以让你的作品更容易被他人检索到）</em>
+      <%= render 'tags/users_tags' %>
 
+      <p>你常用的标签（直接点击可选用）：
+
+      </p>
+
+    </div>
     <div class="checkbox">
       <label></label>
 

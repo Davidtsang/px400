@@ -24,6 +24,9 @@ body {
   margin-bottom: 30px;
 
 }
+.show-i{
+  display: inline;
+}
 hr{
   border-color: $siteGreyLight;
 }
@@ -222,6 +225,21 @@ a.fill-div {
 .comments_header{
   border-bottom: solid 1px $siteGreyLight;
 }
+//-------------tags
+.tag{
+  font-size: 12px;
+  border: solid 1px $siteGreyMiddle;
+  padding: 5px ;
+  border-radius: 20px;
+  margin-right: 5px;
+  a{
+    color: $siteGreyDark;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+
 //------footer
 footer {
   border-top: solid 1px $siteGreyLight;
