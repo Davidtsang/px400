@@ -1,0 +1,12 @@
+$("#workTagsList").html("<%= escape_javascript(render('tags/works_tags', tags: @tags)) %>");
+
+$(".skill_tag").on("mouseover", function() {
+    var linkid;
+    linkid = $(this).data("linkid");
+    $("#" + linkid).attr("class", "show-i tag_del_link");
+});
+$(".skill_tag").on("mouseleave", function() {
+    var linkid;
+    linkid = $(this).data("linkid");
+    $("#" + linkid).attr("class", "hide tag_del_link");
+});

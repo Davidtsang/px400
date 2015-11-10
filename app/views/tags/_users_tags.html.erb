@@ -1,6 +1,6 @@
 <% current_user.users_tags.each do |user_tag| %>
-    <span class="tag skill_tag" id="skill_tag_<%= user_tag.id %>" data-linkid="tag_del_link_<%= user_tag.id %>">
+    <label class="tag skill_tag" id="skill_tag_<%= user_tag.id %>" data-linkid="tag_del_link_<%= user_tag.id %>">
                  <%= user_tag.tag.name %>
-      <a data-remote="true" data-method="post" id="tag_del_link_<%= user_tag.id %>" class="hide" href="/tags/remove_skill_tag/<%= user_tag.id %>"><i class="fa fa-times"></i> </a>
-               </span>
+      <a data-remote="true" data-method="post" id="tag_del_link_<%= user_tag.id %>" class="hide tag_del_link" href="/tags/remove_skill_tag/<%= user_tag.id %>" ><i class="fa fa-times"></i> </a>
+               </label>
 <% end %>

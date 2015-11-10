@@ -12,10 +12,13 @@ Rails.application.routes.draw do
   get "designers/show/:id" => "designers#show"
   #get "designers/current_user_favorite_folders"
 
+  post "labels"=>"tags#create_label"
+
   resources :tags do
     collection do
       get "suggest"
       post "remove_skill_tag/:id"=>"tags#remove_skill_tag"
+      post "remove_work_tag/:id"=>"tags#remove_work_tag"
     end
   end
   resources :favorite_folders do
@@ -26,6 +29,7 @@ Rails.application.routes.draw do
   post "delete_favorite/:id" => "favorite_folders#delete_favorite", as: "delete_favorite"
 
   resources :works do
+
     member do
       #ajax like
       post "works_like" => "works#like"
@@ -39,6 +43,7 @@ Rails.application.routes.draw do
 
       #ajax repost
       post "repost"
+
 
     end
   end

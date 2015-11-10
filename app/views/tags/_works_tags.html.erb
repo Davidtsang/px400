@@ -1,3 +1,11 @@
-<ul>
+<ul class="list-inline">
+  <% tags.each do |lb| %>
+      <li>
+       <label class="tag skill_tag" id="skill_tag_<%= lb.id %>" data-linkid="tag_del_link_<%= lb.id %>">
+         <%= lb.tag.name %>
+          <a data-remote="true" data-method="post" id="tag_del_link_<%= lb.id %>" class="hide" href="/tags/remove_work_tag/<%= lb.id %>"><i class="fa fa-times"></i>
+          </a></label>
+      </li>
+  <% end %>
 
 </ul>

@@ -1,0 +1,25 @@
+<h1>为作品添加标签</h1>
+<div class="col-md-4">
+
+  <div class="form-group">
+    <label><i class="fa fa-tags "> </i> 标签</label> <em>（恰当的标签可以让你的作品更容易被他人检索到）</em>
+    <div id="workTagsList">
+    <%= render 'tags/works_tags', tags:@work.works_tags %>
+    </div>
+    <!--//seach tag form -->
+    <%= form_for(Tag.new,url:labels_path, remote: true) do |f| %>
+        <%= f.text_field :name, id: "autoWorkTag", class: "form-control" %>
+        <%= f.hidden_field :type, value: "Label" %>
+        <%= hidden_field_tag "work_id",  @work.id  %>
+        <%= f.submit "添加" %>
+    <% end %>
+    <!--//end search tags form-->
+
+
+    <p>你常用的标签（直接点击可选用）：
+
+    </p>
+
+  </div>
+<a href="<%= work_path(@work) %>" class="btn btn-success"> 完成 </a>
+</div>

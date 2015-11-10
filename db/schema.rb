@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107074455) do
+ActiveRecord::Schema.define(version: 20151108081705) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -175,5 +175,14 @@ ActiveRecord::Schema.define(version: 20151107074455) do
   end
 
   add_index "works_likes", ["work_id", "user_id"], name: "index_works_likes_on_work_id_and_user_id", unique: true
+
+  create_table "works_tags", force: :cascade do |t|
+    t.integer  "work_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "works_tags", ["work_id", "tag_id"], name: "index_works_tags_on_work_id_and_tag_id", unique: true
 
 end

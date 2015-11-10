@@ -17,6 +17,11 @@
 
 $(document).on "page:change", ->
 
+  #work label
+  $('#autoWorkTag').autocomplete
+    serviceUrl: '/tags/suggest?type=Label'
+    onSelect: (suggestion) ->
+
 
 
   #send ajax to pv count

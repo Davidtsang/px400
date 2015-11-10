@@ -74,6 +74,9 @@ class WorksController < ApplicationController
   def edit
   end
 
+  def add_tag
+
+  end
   # POST /works
   # POST /works.json
   def create
@@ -83,7 +86,7 @@ class WorksController < ApplicationController
       if @work.save
         current_user.timelines.create(work_id: @work.id, act: "new")
 
-        format.html { redirect_to @work, notice: 'Work was successfully created.' }
+        format.html { render :add_tag, notice: 'Work was successfully created.' }
         format.json { render :show, status: :created, location: @work }
       else
         format.html { render :new }

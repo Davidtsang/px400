@@ -1,0 +1,3 @@
+class Domain < Tag
+
+end
