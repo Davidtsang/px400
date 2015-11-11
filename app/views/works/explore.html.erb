@@ -1,0 +1,52 @@
+<h1>发现</h1>
+<div class="row">
+  <div class="col-md-2">
+    <ul class="nav nav-pills nav-stacked">
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <small>查看更多领域</small> <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <% Domain.other_domains.each do |d| %>
+              <li role="presentation"><a href="<%= explore_path(domain_id: d.id) %>"><%= d.name %></a></li>
+          <% end %>
+        </ul>
+      </li>
+      <% if @domain_id %>
+      <li role="presentation" ><a href="<%= explore_path %>">所有领域</a></li>
+      <% else %>
+          <li role="presentation" class="active"><a href="<%= explore_path %>">所有领域</a></li>
+          <% end %>
+
+      <% Domain.hot_domains.each do |d| %>
+          <% if @domain_id.to_i == d.id  %>
+              <li role="presentation" class="active"><a href="<%= explore_path(domain_id: d.id) %>"><%= d.name %></a></li>
+              <% else %>
+          <li role="presentation"><a href="<%= explore_path(domain_id: d.id) %>"><%= d.name %></a></li>
+              <% end %>
+
+      <% end %>
+
+
+
+    </ul>
+
+    <h4>作品标签</h4>
+   <% @tags.each_with_index  do |lb, i | %>
+
+    <label class="tag"> <a href="<%= explore_path(domain_id: @domain_id, tag_id: lb.id)  %>"> <%= lb.name%></a></label>
+
+    <% end %>
+  </div>
+
+  <div class="col-md-10">
+    <% if @works.any? %>
+        <div class="row">
+          <%= render @works %>
+        </div>
+        <div class="row">
+          <%= will_paginate @works %>
+        </div>
+    <% end %>
+  </div>
+</div>

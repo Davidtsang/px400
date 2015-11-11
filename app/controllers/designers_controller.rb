@@ -1,6 +1,11 @@
 class DesignersController < ApplicationController
   def all
-    @designers = User.paginate(page: params[:page])
+    if params[:domain_id]
+      @designers =User.where("(domain_1_id  =? ) OR ( domain_2_id =?) ",params[:domain_id],params[:domain_id]).paginate(page: params[:page])
+    else
+      @designers = User.paginate(page: params[:page])
+    end
+
 
     @designers
   end

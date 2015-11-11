@@ -11,6 +11,33 @@ class WorksController < ApplicationController
     @works = Work.includes(:comments).all
   end
 
+  def explore
+
+    @domain_id = params[:domain_id]
+    @tag_id = params[:tag_id]
+
+    #1.have domain have tag
+    if @domain_id && @tag_id
+      @works =Work.joins(:works_tags).where("works.domain_id = ? AND works_tags.tag_id = ?", params[:domain_id], params[:tag_id]).paginate(page: params[:page])
+      @tags = []
+
+      #2.have domain no tag
+    elsif @domain_id && !@tag_id
+      @works =Work.where(domain_id: params[:domain_id]).paginate(page: params[:page])
+      @tags = Label.joins(:works_tags).where("works_tags.work_id IN (?)", @works.map(&:id)).order("items_count DESC")
+
+      #3.no domain have tag
+    elsif !@domain_id && @tag_id
+      @works = Work.joins(:works_tags).where("works_tags.tag_id = ?", @tag_id).paginate(page: params[:page])
+      @tags = []
+
+      #4.no domain no tag
+    else
+      @works = Work.paginate(page: params[:page])
+      @tags = Label.all.order("items_count DESC")
+    end
+
+  end
 
   def show
     if params[:flash]=="like" && params[:timeline_user_id]
@@ -77,6 +104,7 @@ class WorksController < ApplicationController
   def add_tag
 
   end
+
   # POST /works
   # POST /works.json
   def create
@@ -132,10 +160,6 @@ class WorksController < ApplicationController
     @repost.image = @work.image
 
 
-
-
-
-
     respond_to do |format|
       if @repost.save
         #+1 repost count
@@ -145,7 +169,7 @@ class WorksController < ApplicationController
 
         format.js
       else
-        format.js { render 'works/new_repost'  }
+        format.js { render 'works/new_repost' }
       end
     end
 
@@ -207,7 +231,7 @@ class WorksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def work_params
-    params.require(:work).permit(:title, :image, :desciption, :user_id, :views_count, :likes_count, :favorites_count, :shares_count, :is_original,:parent_work_id )
+    params.require(:work).permit(:title, :image, :desciption, :user_id, :views_count, :likes_count, :favorites_count, :shares_count, :is_original, :parent_work_id, :domain_id)
 
 
   end

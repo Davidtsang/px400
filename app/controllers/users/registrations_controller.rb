@@ -81,6 +81,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   def users_params
-    params.require(:user).permit([:title, :bio, :company, :sex, :location ,:website,:avatar])
+    params.require(:user).permit([:title, :bio, :company, :sex, :location ,:website,:avatar,:domain_1_id, :domain_2_id])
   end
 end

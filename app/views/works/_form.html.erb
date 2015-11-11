@@ -22,9 +22,15 @@
     </div>
 
     <div class="form-group">
+      <%= f.label :domain_id, '领域' %> <em>(准确添加到相关领域可增加你作品的曝光率)</em><br>
+      <%= f.select  :domain_id,options_for_select(Domain.all_to_options,@work.domain_id ||= current_user.domain_1_id ),{}, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
       <%= f.label :desciption, '描述' %> <em>(可省略)</em><br>
       <%= f.text_area :desciption, class: "form-control" %>
     </div>
+
 
 
     <div class="checkbox">

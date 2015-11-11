@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108081705) do
+ActiveRecord::Schema.define(version: 20151110060231) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(version: 20151108081705) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "domain_1_id"
+    t.integer  "domain_2_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -163,6 +165,7 @@ ActiveRecord::Schema.define(version: 20151108081705) do
     t.string   "work_type",          default: "new"
     t.integer  "parent_work_id"
     t.integer  "repost_count",       default: 0
+    t.integer  "domain_id"
   end
 
   add_index "works", ["user_id", "created_at"], name: "index_works_on_user_id_and_created_at"
