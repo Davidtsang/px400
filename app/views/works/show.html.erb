@@ -15,7 +15,7 @@
         <div class="title"><h4><%= @work.title %></h4></div>
         <div class="pub-info">
           <ul class="list-inline">
-            <li><%= link_to @work.user.name, "#" %>
+            <li><%= link_to @work.user.name, "/designers/show/#{@work.user.id}" %>
             <% if @work.work_type=="re" %>
               转发自 <%= link_to @parent_work.title, work_path(@work.parent_work_id) %>
                   <% else %>

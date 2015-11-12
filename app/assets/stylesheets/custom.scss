@@ -27,6 +27,10 @@ body {
 .show-i{
   display: inline;
 }
+.badge{
+  background-color: darken(red ,10%);
+
+}
 hr{
   border-color: $siteGreyLight;
 }
@@ -240,7 +244,15 @@ a.fill-div {
     }
   }
 }
-
+// notificcations
+.notificcations{
+  li{
+    padding: 10px;
+  }
+  .unchecked{
+    background-color: lightyellow;
+  }
+}
 //------footer
 footer {
   border-top: solid 1px $siteGreyLight;

@@ -1,0 +1,22 @@
+<h1>新私信</h1>
+<%= form_for @message do |f| %>
+    <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this work from being saved:</h2>
+
+          <ul>
+            <% @message.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+From: <%= @message.from_user.name %>
+To: <%= @message.to_user.name %>
+    <div class="form-group">
+  <label>Content:</label>
+  <%= f.text_area :content, rows: 12, class: "form-control" %>
+<%= f.hidden_field :to_user_id %>
+      <%= f.submit %>
+</div>
+<% end %>

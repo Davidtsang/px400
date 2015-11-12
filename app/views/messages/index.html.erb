@@ -1,0 +1,17 @@
+<h1>Messages#index</h1>
+<div class="row">
+  <div class="col-md-8">
+<ul class="list-unstyled">
+    <% @messages.each do |message| %>
+        <li>
+
+    <%= link_to  message.from_user.name , "designers/show/#{message.from_user.id }" %>给你发送了一条私信
+          <%= link_to '查看',  message_path(message) %>
+          <%= message.updated_at %>
+        </li>
+
+    <% end %>
+</ul>
+  </div>
+</div>
+<p>Find me in app/views/messages/index.html.erb</p>

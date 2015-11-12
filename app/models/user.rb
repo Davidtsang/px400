@@ -20,12 +20,18 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :comments_likes
 
+  has_many :notifications
+
   has_many :timelines, dependent: :destroy
 
   has_many :works, dependent: :destroy
   has_many :recent_works, -> { order('created_at DESC').limit(3) }, class_name: "Work"
 
   has_many :users_tags
+
+  has_many :send_messages, class_name: "Message", foreign_key: "from_user_id", dependent: :destroy
+
+  has_many :receive_messages, class_name: "Message", foreign_key: "to_user_id", dependent: :destroy
 
   has_many :active_relationships, class_name: "Relationship",
            foreign_key: "follower_id",

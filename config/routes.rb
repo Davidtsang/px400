@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'messages/index'
+
+  get 'messages/show'
+
   resources :comments do
     member do
       post "like"
@@ -11,6 +15,14 @@ Rails.application.routes.draw do
   get 'designers/all'
   get "designers/show/:id" => "designers#show"
   #get "designers/current_user_favorite_folders"
+
+  resources :messages
+
+  resources :notifications do
+    member do
+       post "mark_checked"
+    end
+  end
 
   post "labels" => "tags#create_label"
 

@@ -182,6 +182,12 @@ class WorksController < ApplicationController
 
     #create time line
     current_user.timelines.create(work_id: params[:id], act: "like")
+
+    #notify author
+    work = Work.find(params[:id])
+
+    LikeWorkNotify.create(subject_id: current_user.id ,obj_id: params[:id], user_id:work.user_id )
+
     respond_to do |format|
       #format.html { redirect_to designers_all_path }
       format.json { render :json => {success: true} }

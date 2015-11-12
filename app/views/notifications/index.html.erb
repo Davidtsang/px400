@@ -1,0 +1,19 @@
+<h1>消息</h1>
+<div class="row">
+  <div class="col-md-9">
+
+    <ul class="notificcations list-unstyled">
+      <% @notifications.each do |notify| %>
+
+          <li <%= notify.is_checked ? "" : "class='unchecked' ".html_safe %>> <%= notify.subject_id_to_s %>  <%= notify.type_to_s %> <%= notify.obj_id_to_s %>
+
+            <% if notify.is_checked == false %>
+          <span class="pull-right"><a data-method="post" data-remote="true" href="<%= mark_checked_notification_path(notify.id) %>"><i class="fa fa-check "></i> 已阅</a> </span></li>
+<% end %>
+
+      <% end %>
+
+    </ul>
+
+  </div>
+</div>

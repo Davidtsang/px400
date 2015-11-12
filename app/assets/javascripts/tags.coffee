@@ -18,7 +18,7 @@ ready = ->
     bindEvent()
 
   $("a").on "ajax:complete", ->
-    alert("ajax")
+
     bindEvent()
 
 $(document).ready ready

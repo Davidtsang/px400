@@ -1,0 +1,7 @@
+<h1>Messages#show</h1>
+<ul>
+<li><%= image_tag @message.from_user.avatar.url(:mini) %></li>
+  <li><%=  @message.from_user.name %></li>
+  <li><%= @message.content %>
+</ul>
+<p>Find me in app/views/messages/show.html.erb</p>
