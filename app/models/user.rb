@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :comments_likes
 
+  has_many :blacklists
+
   has_many :notifications
 
   has_many :timelines, dependent: :destroy
@@ -44,9 +46,16 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+
+  def blocked?(user_id)
+    blacklists.where(block_user_id: user_id).any?
+
+  end
+
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
   end
+
 
   def unfollow(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
@@ -55,6 +64,21 @@ class User < ActiveRecord::Base
   # is folloing some user, return ,true
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def user_feed_by_tag_id(tag_id)
+    #find user feed : 1 feeduser id = user _id , feed's work_id in works_tag work_id ==
+    #and work_tag tag id = tag_id
+    Timeline.joins("JOIN works ON timelines.work_id = works.id").joins("JOIN works_tags   ON works.id = works_tags.work_id").where("timelines.user_id = :user_id AND works_tags.tag_id = :tag_id", {user_id: id , tag_id: tag_id})
+
+  end
+
+  def user_feed_recent(limit = 4)
+    Timeline.includes(:work).where("user_id = :user_id", user_id: id).order('created_at DESC').limit(limit)
+  end
+
+  def user_feed
+    Timeline.includes(:work).where("user_id = :user_id", user_id: id).order('created_at DESC')
   end
 
   def feed

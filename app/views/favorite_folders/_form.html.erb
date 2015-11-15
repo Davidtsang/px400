@@ -1,7 +1,9 @@
 <%= form_for(@favorite_folder,url: favorite_folders_path(work_id: @work_id), html:{ method: :post }, remote: true ) do |f| %>
-
+<div class="form-group form-group-sm">
     <label>收藏夹名字:</label>
-    <%= f.text_field :name  %>
+    <%= f.text_field :name , class:"form-control" %>
 
-    <%= f.submit "创建"  %>
+
+</div>
+    <%= f.submit "创建" , class: "btn btn-default" %>
 <% end %>

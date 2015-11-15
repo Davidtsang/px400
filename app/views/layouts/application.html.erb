@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>DesignerSNS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -24,24 +25,21 @@
         <li><%= link_to "主页", static_pages_home_path %></li>
         <li><%= link_to "设计师", designers_all_path %></li>
         <li><%= link_to "发现", explore_path %></li>
-        <li><%= link_to "消息 #{uncheck_notify_count} ".html_safe , notifications_path %></li>
+        <li><%= link_to "消息 #{uncheck_notify_count} ".html_safe, notifications_path %></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
             <li class="dropdown">
-              <a href="#" id="nav-user-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag current_user.avatar.url(:mini), :class => 'avatar' %></i><%= pm_count %> <%= current_user.email %>
+              <a href="#" id="nav-user-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag current_user.avatar.url(:mini), :class => 'avatar' %></i><%= pm_count %> <%= current_user.name %>
                 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to "我的主页", messages_path %></li>
+                <li><%= link_to "我的主页", "/designers/#{current_user.id}" %></li>
                 <li><%= link_to "私信", messages_path %></li>
 
                 <li role="separator" class="divider"></li>
                 <li><%= link_to '会员设置', edit_user_registration_path %></li>
                 <li><%= link_to '退出', destroy_user_session_path %></li>
-
-
-
 
 
               </ul>
@@ -59,29 +57,40 @@
   </div>
 </nav>
 
-<div class="container-fluid main">
-  <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-  <% end -%>
-  <%= yield %>
-</div>
+
+
+    <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: name %>
+    <% end -%>
+    <%= yield %>
+
+
 
 <footer>
-  <div CLASS="container-fluid">
-    <div class="row">
-      <div class="col-md-3">
-        <h3>中国设计师展示与交流的空间</h3>
-        <p>What are you working on? Dribbble is a community of designers sharing screenshots of their work, process, and projects.
-        </p>
-      </div>
-      <div class="col-md-3"></div>
-      <div class="col-md-3"></div>
-      <div class="col-md-3 "></div>
-    </div>
-    <div class="row">
-      <p>Copyright © 2015 http://www.400px.net </p>
-    </div>
+
+<div class="center">
+<div class="pull-left">
+        <img src="<%= asset_path "logo-40pt-g.png" %>">
+        <h4>中国设计师与艺术家的展示交流空间</h4>
+      <p>Copyright © 400px.net. 所以作品的版权归其作者所有.</p>
+</div>
+  <div class="pull-right">
+    <ul class="list-inline">
+      <li>400px使用指南</li>
+      <li>建议反馈</li>
+      <li>商务合作</li>
+      <li>网站管理员</li>
+      <li>开发者Blog</li>
+    </ul>
+    <ul class="list-unstyled">
+    <li><span>* 建议使用Goolge Chrome、Firefox或IE9.0以上版本浏览器浏览本网站</span></li>
+      <li><span>* 建议安装方正兰亭黑或冬青黑体获得更好的浏览效果</span></li>
+      <li><span>Powered by Ruby on Rais and Bootstrap</span></li>
+      <li><span>Version 0.1 beta</span></li>
+    </ul>
   </div>
+
+</div>
 
 </footer>
 </body>

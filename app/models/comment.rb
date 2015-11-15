@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  belongs_to :work
+  belongs_to :work , :counter_cache => true
   belongs_to :user
 
   validates :content ,presence: true

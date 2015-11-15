@@ -63,7 +63,7 @@ class FavoriteFoldersController < ApplicationController
     @work_id = params[:work_id]
 
     f = Favorite.find(id)
-    f.delete
+    f.destroy
 
 
     respond_to do |format|

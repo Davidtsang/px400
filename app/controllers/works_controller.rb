@@ -71,7 +71,11 @@ class WorksController < ApplicationController
         @is_thanked = true
       end
 
+
     end
+
+    #more work about this user
+    @more_works = @work.user.user_feed_recent
 
     #view count
     #set cookie

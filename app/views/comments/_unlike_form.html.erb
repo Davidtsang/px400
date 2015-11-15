@@ -1,4 +1,6 @@
 
   <span>
-  <a data-remote="true" data-method="post" href="<%= unlike_comment_path(comment) %>"><i class="fa fa-heart"></i>取消赞</a></span>
-  <span id="commentsLikesCount"><%= comment.likes_count %></span>
+  <a data-remote="true" data-method="post" href="<%= unlike_comment_path(comment) %>">取消赞</a></span>
+  <span class="pull-right">
+      <i class="fa fa-heart"></i>
+      <span id="commentsLikesCount_<%= comment.id  %>"><%= comment.likes_count %></span></span>

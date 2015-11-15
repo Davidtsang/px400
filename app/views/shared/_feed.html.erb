@@ -1,8 +1,14 @@
 <% if @feed_items.any? %>
-<div class="row">
-      <%= render @feed_items %>
+    <div class="container-xl">
+    <div class="row">
+
+        <%= render @feed_items %>
+
+    </div>
+
+    <div class="">
+      <%= will_paginate @feed_items, :page_links => false, next_label: "<i class='fa fa-angle-right fa-2x'></i>", previous_label: "<i class='fa fa-angle-left fa-2x'></i>" %>
+    </div>
 </div>
-<div class="row">
-    <%= will_paginate @feed_items %>
-</div>
+
 <% end %>

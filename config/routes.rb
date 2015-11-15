@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'reports/index'
+
+  post 'reports/create'
+
   get 'messages/index'
 
   get 'messages/show'
@@ -8,14 +12,16 @@ Rails.application.routes.draw do
     member do
       post "like"
       post "unlike"
+      post "remove"
     end
 
   end
 
   get 'designers/all'
-  get "designers/show/:id" => "designers#show"
+  get "designers/:id" => "designers#show"
   #get "designers/current_user_favorite_folders"
-
+  post "block_user" => "designers#block_user"
+  post "unblock_user" => "designers#unblock_user"
   resources :messages
 
   resources :notifications do
@@ -79,10 +85,11 @@ Rails.application.routes.draw do
 
   get "users/:id/following" => "designers#following", as: "following_user"
   get "users/:id/followers" => "designers#followers", as: "followers_user"
-
+  get "/designers/:id/tags/:tag_id"=> "designers#show_tag"
 
   get "designers" => "designers#all"
   devise_scope :user do
+    get "block_list" =>"users/registrations#block_list"
     get "profile" => "users/registrations#profile"
     put "update_profile" => "users/registrations#update_profile"
     put "update_avatar" => "users/registrations#update_avatar"

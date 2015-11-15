@@ -18,12 +18,14 @@
 
 <div class="row">
 
-  <div class="col-md-6 col-md-offset-5 user_info">
+  <div class="col-md-6 col-md-offset-3 designer-info">
     <ul class="list-unstyled">
       <li><%= image_tag @user.avatar.url(:normal), class: "avatar" %></li>
       <li> <%= @user.name %></li>
       <li><%= @user.location %> </li>
     </ul>
+
+    <h2><%= "#{@user.name} / 标签 / #{@tag.name} "  %></h2>
   </div>
 
 </div>
@@ -31,7 +33,6 @@
 
 <div class="row">
   <div class="col-md-12">
-  <%= render 'shared/feed' %>
+    <%= render 'shared/feed' %>
   </div>
 </div>
-

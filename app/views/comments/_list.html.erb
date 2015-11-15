@@ -1,29 +1,49 @@
-<% current_user_liked_comments =  current_user.comments_likes.where(comment_id: @comments.map(&:id) ) if current_user %>
+<% current_user_liked_comments = current_user.comments_likes.where(comment_id: @comments.map(&:id)) if current_user %>
 <% current_user_liked_comments =current_user_liked_comments.index_by(&:comment_id) if current_user_liked_comments %>
 
+<ul class="list-unstyled">
+  <% @comments.each do |comment| %>
 
-<% @comments.each do |comment| %>
-    <div>
+
+      <li id="comment_<%= comment.id %>" class="comment">
+        <h4><%= image_tag comment.user.avatar.url(:mini), class: "avatar" %> <%= comment.user.name %></h4>
+
+        <div class="comment-body">
+          <%= comment.content %>
 
 
-        <ul>
-          <li> <%= image_tag comment.user.avatar.url(:mini) %></li>
-          <li><%= comment.user.name %></li>
-          <li><%= comment.content %> </li>
-          <li><%= comment.created_at %> </li>
-          <li>
-            <div id="commentsLike_<%= comment.id %>">
+        </div>
+        <p class="comment-meta">
+          <%= time_ago_in_words comment.created_at %>之前
+          <% if current_user?(comment.user_id) || current_user?(comment.work.user_id) %>
+              <span class="sep">|</span>
+              <a href="<%= remove_comment_path(comment) %>" data-remote="true" data-method="post">删除评论</a>
+          <% end %>
+          <span class="sep">|</span>
+          <span id="comments_report_<%= comment.id %>">
+          <a href="<%= reports_create_path(type:"CommentsReport" ,break_rule: 0 , obj_id: comment.id) %>" data-remote="true" data-method="post" data-confirm="你确定要举报这条评论?">举报</a></span>
+
+
+
+          <span class="sep">|</span>
+         <span id="commentsLike_<%= comment.id %>">
+
             <!--// if current_user already liked, show unlike-->
-         <% if  current_user_liked_comments &&  current_user_liked_comments[comment.id] %>
+           <% if current_user_liked_comments && current_user_liked_comments[comment.id] %>
                 <%= render 'comments/unlike_form', comment: comment %>
-       <% else %>
-          <%= render 'comments/like_form', comment: comment %>
-<% end  %>
-                </div>
-          </li>
-        </ul>
+            <% else %>
+                <%= render 'comments/like_form', comment: comment %>
+            <% end %>
+          </span>
+
+
+        </p>
 
 
 
-    </div>
-<% end %>
+
+      </li>
+
+
+  <% end %>
+</ul>

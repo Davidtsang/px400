@@ -1,4 +1,4 @@
-<ul class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills nav-stacked favorites-list">
 
   <% if @favorite_folders.any? %>
 
@@ -8,14 +8,14 @@
               <% fid =@favorites[f.id].id %>
               <li role="presentation" class="active">
 
-                <a data-remote="true" data-method="post" href="<%=  delete_favorite_path(fid, work_id: @work_id)%>">
+                <a data-remote="true" data-method="post" href="<%=  delete_favorite_path(fid, work_id: @work_id)%>"><i class="fa fa-folder"></i>
                   <%= f.name %>
                   <i class="fa fa-minus-square  pull-right"></i> </a>
 
               </li>
           <% else %>
               <li role="presentation">
-                <%= link_to f.name, favorite_folder_create_favorite_path(f, work_id: @work_id), method: :post, remote: true %>
+                <%= link_to "<i class='fa fa-folder'></i> #{f.name}".html_safe , favorite_folder_create_favorite_path(f, work_id: @work_id), method: :post, remote: true %>
           <% end %>
 
       <% end %>

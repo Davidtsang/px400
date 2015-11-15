@@ -14,7 +14,7 @@
       <a href="<%= work_path(work) %>" class="fill-div">
 
       <h5 class="title"><%= work.title %></h5>
-      <span class="description"><%= work.desciption %></span><br>
+      <span class="description"><%= truncate(work.desciption, length: 100) %></span><br>
 <span class="timestamp">
 <%= time_ago_in_words(work.created_at) %>前
 </span>

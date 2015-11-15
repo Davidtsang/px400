@@ -1,0 +1,22 @@
+<h2>会员设置</h2>
+<ul class="nav nav-tabs">
+
+  <li role="presentation"><%= link_to '一般设置', profile_path %></li>
+  <li role="presentation"><a href="<%= edit_user_registration_path %>">名字/Email/密码</a></li>
+  <li  class="active"><a href="<%=  block_list_path %>">屏蔽列表</a></li>
+
+</ul>
+
+<div class="row">
+  <div class="col-md-7">
+<p>你已经屏蔽的用户：</p>
+    <ul>
+   <% @blacklists.each do |blacklist| %>
+          <li><%= link_to blacklist.block_user.name, "designers/#{blacklist.block_user_id }"  %>
+
+            <%= render 'designers/blacklist_form', user: blacklist.block_user %>
+          </li>
+    <% end %>
+    </ul>
+  </div>
+</div>

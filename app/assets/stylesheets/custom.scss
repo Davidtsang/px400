@@ -1,46 +1,126 @@
 $font-size-base: 13px;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-* {
-  font-family: "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft Yahei UI", "Microsoft Yahei", Arial, sans-serif;
+
+
+.container-xl{
+  @extend .container;
+  //background-color: lightyellow;
+}
+@media (min-width: 1800px) {
+  .container-xl{
+    width: 1750px;
+  }
+}
+@media (min-width: 1550px) and (max-width: 1799px ) {
+  .container-xl{
+    width: 1500px;
+  }
+}
+@media (min-width: 1300px) and (max-width: 1549px ) {
+  .container-xl{
+    width: 1250px;
+  }
+}
+@media (min-width: 1050px) and (max-width: 1299px ) {
+  .container-xl{
+    width: 1000px;
+  }
+}
+@media (min-width: 800px) and (max-width: 1049px ) {
+  .container-xl{
+    width: 750px;
+  }
+}
+@media (min-width: 550px) and (max-width: 799px ) {
+  .container-xl{
+    width: 500px;
+  }
 }
 
-.container-fluid {
-  //margin-left: 60px;
-  max-width: 1600px; /* or 950px */
+* {
+  font-family: "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft Yahei UI", "Microsoft Yahei", Arial, sans-serif;
 }
 
 $siteGrey: lighten(black, 95%);
 $siteGreyMiddle: lighten(black, 65%);
 $siteGreyLight: lighten(black, 85%);
 $siteGreyDark: lighten(black, 35%);
+$purple:  #cd00cd;
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: #fff;
+  background-color:$purple;
+}
+.new-work{
+  //background-color: lightyellow;
+  margin:30px 0px;
+}
+h1{
+  font-weight: bold;
+  font-size: 28px;
+}
+em{
+  font-style: normal;
+}
 body {
   padding-top: 51px;
   background-color: $siteGrey;
 }
-.main{
-  margin-bottom: 30px;
-
+.site-nav{
+  .container-fluid{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
 }
-.show-i{
+.btn-primary{
+  background-color:  $purple ;
+  border-color: darken($purple, 5%);
+}
+.show-i {
   display: inline;
 }
-.badge{
-  background-color: darken(red ,10%);
+
+.badge {
+  background-color: darken(red, 10%);
 
 }
-hr{
+.im-centered { margin: auto; width: 790px;
+}
+hr {
   border-color: $siteGreyLight;
+}
+.work-tags{
+  padding: 0px 15px;
 }
 .topbar {
   padding: 15px 15px;
+  background-color: lighten($siteGrey, 3%);
   border-bottom: solid 1px $siteGreyLight;
 }
-
+.description{
+  word-wrap: break-word;
+}
 .navbar-brand {
-  padding-top: 5px;
+  padding-top: 15px;
+}
+
+.pagination {
+  .disabled {
+    display: none;
+  }
+  li > a, li:last-child > a, li:first-child > a {
+    color: $siteGrey;
+    margin-right: 20px;
+    background-color: $siteGreyMiddle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+  }
 }
 
 #nav-user-name {
@@ -58,7 +138,18 @@ hr{
     color: $siteGreyMiddle;
   }
 }
+.repost-org-list{
+  li{
+    padding: 5px 0px;
+  }
+}
 
+.work-desc{
+  font-size: 14px;
+  line-height: 200%;
+  margin-bottom: 30px;
+
+}
 .avatar {
   border-radius: 50%;
 }
@@ -99,7 +190,9 @@ hr{
 
 //---work item
 .work-item {
-
+  a {
+    color: $siteGreyDark;
+  }
   width: 220px;
   height: 220px;
   @extend .pull-left;
@@ -107,6 +200,7 @@ hr{
   margin-right: 15px;
   margin-left: 15px;
   .user-info {
+
     font-size: 12px;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -117,55 +211,91 @@ hr{
   }
 
 }
-.fa-2x-s{
+.designer-info{
+  text-align: center;
+  //background-color: lightyellow;
+}
+.more-works{
+  margin-top: 15px;
+  padding-top: 15px;
+  padding-left: 15px;
+  border-top: 1px solid $siteGreyLight;
+  img{
+    margin-top:20px;
+    margin-right: 20px;
+
+  }
+}
+.comment-form{
+  //background-color: lightyellow;
+  margin-top: 15px;
+
+}
+.timeline-flash{
+  margin-bottom: 15px;
+}
+.fa-2x-s {
   font-size: 18px;
 }
-.act-box{
+
+.act-box {
   color: lighten(black, 60%);
   //margin-top: 80px;
   padding: 15px;
   .act-item {
     font-size: 13px;
     border-bottom: solid 1px $siteGreyLight;
-    i{
+    i {
       width: 23px;
     }
     padding: 15px 0px;
-    .ext-info{
+    .ext-info {
       font-size: 12px;
     }
   }
 }
-.work-header{
-  .user-avatar{
+
+.work-header-inner {
+  .user-avatar {
     padding-right: 15px;
 
   }
-  .title{
+  .title {
     //background-color: greenyellow;
   }
-  .pub-info{
+  .pub-info {
     font-size: 12px;
     //background-color: gold;
-    li{
+    li {
       padding-left: 0px;
     }
   }
   margin-top: 30px;
   //background-color: gold;
 }
+
 .work-box {
   width: 490px !important;
   //background-color: yellow;
-
-  .desc{
+  margin-bottom: 30px;
+  .desc {
     font-size: 16px;
   }
 }
-.work-sider{
+
+.work-sider {
   width: 300px !important;
   //background-color: yellow;
+  a{
+    color: $siteGreyDark;
+  }
+  a:hover{
+    color: darken($siteGreyDark, 75%);
+    text-decoration: none;
+
+  }
 }
+
 .work-image {
   margin: 30px 0px;
   width: 460px;
@@ -190,26 +320,31 @@ hr{
   }
 
 }
+//comments
 
 .timestamp {
   position: absolute;
   bottom: 0px;
   left: 0px;
 }
-em{
+
+em {
 
   font-size: 12px;
 }
+
 a.fill-div {
   display: block;
   height: 100%;
   width: 100%;
   text-decoration: none;
 }
-.ref-info{
+
+.ref-info {
   overflow-y: scroll;
   max-height: 400px;
 }
+
 .work-item-frame-info {
   display: none;
   color: $siteGreyDark;
@@ -226,38 +361,74 @@ a.fill-div {
     font-size: 11px;
   }
 }
-.comments_header{
-  border-bottom: solid 1px $siteGreyLight;
+//comments
+.sep{
+  padding: 0 5px;
+}
+.comments{
+  li{
+    border-bottom: 1px solid $siteGreyLight;
+  }
+  //background-color: lightyellow;
+  padding-top: 15px;
+}
+.comments_header {
+   border-bottom: solid 1px $siteGreyLight;
+}
+.comment-body, .comment-meta{
+  padding-left: 30px;
+  a{
+    color: $siteGreyDark;
+  }
+}
+.comment-meta{
+  font-size: 12px ;
+}
+.comment-body{
+  //@extend .clearfix;
+  //background-color: lightyellow;
+}
+
+//
+.favorites-list{
+  font-size: 14px;
 }
 //-------------tags
-.tag{
+.tag {
+  background-color: lighten($siteGreyMiddle, 15%);
   font-weight: normal;
   font-size: 12px;
   border: solid 1px $siteGreyMiddle;
-  padding: 5px ;
-  border-radius: 20px;
+  padding: 3px 6px;
+  border-radius: 15px;
   margin-right: 5px;
-  a{
+  a {
     color: $siteGreyDark;
-    &:hover{
+    &:hover {
       text-decoration: none;
     }
   }
 }
+
 // notificcations
-.notificcations{
-  li{
+.notificcations {
+  li {
     padding: 10px;
   }
-  .unchecked{
+  .unchecked {
     background-color: lightyellow;
   }
 }
+
 //------footer
 footer {
+  font-size: 12px;
   border-top: solid 1px $siteGreyLight;
   color: $siteGreyMiddle;
-  height: 240px;
+  height: 160px;
   background-color: white;
-  padding: 30px 0px;
+  padding: 25px ;
+  .pull-right{
+    text-align: right;
+  }
 }

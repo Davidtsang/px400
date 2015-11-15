@@ -1,16 +1,17 @@
-<div class="row-fluid">
-  <div class="col-md-12 topbar">
-    <a class="btn btn-success" href="<%= new_work_path %>">添加你的新作</a>
+
+  <div class="topbar">
+    <div class="container-xl">
+    <a class="btn btn-primary" href="<%= new_work_path %>">添加你的新作
+
+    </a>
+    </div>
   </div>
-</div>
+
 <% if user_signed_in? %>
 
 
-    <div class="row">
-      <div class="col-md-12">
+
         <%= render 'shared/feed' %>
-      </div>
-    </div>
 
 
 <% end %>

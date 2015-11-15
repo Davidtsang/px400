@@ -1,0 +1,9 @@
+<% unless current_user?(user) %>
+    <div id="blacklist_form_<%= user.id  %>">
+      <% if current_user.blocked?(user) %>
+          <%= render 'designers/unblock', user: user  %>
+      <% else %>
+          <%= render 'designers/block', user: user %>
+      <% end %>
+    </div>
+<% end %>

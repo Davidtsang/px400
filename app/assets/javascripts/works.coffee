@@ -73,7 +73,7 @@ $(document).on "page:change", ->
 
           #like to unlike
           $('#submit-link-span').text("已赞")
-          #$('#likes_submit_link').attr('href',"#")
+          $("<i></i>").addClass("fa fa-thumbs-up fa-2x-s").prependTo($('#submit-link-span'))
 
 
     return false
@@ -95,6 +95,7 @@ $(document).on "page:change", ->
           $("#work-likes-count").text(newValue)
 
           $('#submit-link-span').text("已取消")
+          $("<i></i>").addClass("fa fa-thumbs-up fa-2x-s").prependTo($('#submit-link-span'))
     #user name file show ok
     return false
 
@@ -118,7 +119,9 @@ $(document).on "page:change", ->
           $("#thanks-count").text(newValue)
 
           #like to unlike
-          $('#thanks-link-span').text("已感谢")
+          $('#thanks-link-span').text(" 已感谢")
+          $("<i></i>").addClass("fa fa-heart fa-2x-s").prependTo($('#thanks-link-span'))
+          #$('#thanks-link-span').text("已感谢")
     #$('#likes_submit_link').attr('href',"#")
 
 
@@ -142,5 +145,6 @@ $(document).on "page:change", ->
           $("#thanks-count").text(newValue)
 
           $('#thanks-link-span').text("已取消")
+          $("<i></i>").addClass("fa fa-heart fa-2x-s").prependTo($('#thanks-link-span'))
     #user name file show ok
     return false

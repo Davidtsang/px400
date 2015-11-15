@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112044926) do
+ActiveRecord::Schema.define(version: 20151115065821) do
+
+  create_table "blacklists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "block_user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "blacklists", ["user_id", "block_user_id"], name: "index_blacklists_on_user_id_and_block_user_id", unique: true
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -80,6 +89,15 @@ ActiveRecord::Schema.define(version: 20151112044926) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "reports", force: :cascade do |t|
+    t.string   "type"
+    t.integer  "obj_id"
+    t.integer  "break_rule"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"
@@ -190,6 +208,7 @@ ActiveRecord::Schema.define(version: 20151112044926) do
     t.integer  "parent_work_id"
     t.integer  "repost_count",       default: 0
     t.integer  "domain_id"
+    t.integer  "comments_count",     default: 0
   end
 
   add_index "works", ["user_id", "created_at"], name: "index_works_on_user_id_and_created_at"

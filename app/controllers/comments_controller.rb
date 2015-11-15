@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   def index
     work_id = params[:work_id]
 
-    @comments  = Comment.included(:user).where(work_id: work_id)
+    @comments  = Comment.includes(:user).where(work_id: work_id)
 
 
     respond_to do |format|
@@ -40,6 +40,20 @@ class CommentsController < ApplicationController
       format.js
 
     end
+  end
+
+  def remove
+
+    #just current_user or admin or commit suer can del
+    @comment_id = params[:id]
+    comment =Comment.find(@comment_id)
+    comment.destroy
+
+    respond_to do |format|
+      format.js
+
+    end
+
   end
 
   def create

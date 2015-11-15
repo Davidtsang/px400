@@ -1,0 +1,3 @@
+class CommentsReport < Report
+
+end
