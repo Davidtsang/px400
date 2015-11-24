@@ -1,7 +1,49 @@
-<h1>Messages#show</h1>
-<ul>
-<li><%= image_tag @message.from_user.avatar.url(:mini) %></li>
-  <li><%=  @message.from_user.name %></li>
-  <li><%= @message.content %>
-</ul>
-<p>Find me in app/views/messages/show.html.erb</p>
+<div class="container-fix">
+  <h1>来自<%= @message.from_user.name %>的私信</h1>
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <ul class="list-unstyled">
+        <li><h4><%= image_tag @message.from_user.avatar.url(:medium), class: "avatar" %>
+          <a href="/designers/<%= @message.from_user.id %>"><%= @message.from_user.name %></a>
+          <span class="meta"> <%= time_ago_in_words @message.updated_at.localtime %>之前</span>
+        </h4></li>
+        <li>
+          <div class="message-content"><%= simple_format @message.content %></div>
+        </li>
+
+
+      </ul>
+
+      <%= form_for (Message.new) do |f| %>
+          <div class="form-group">
+
+            <%= f.text_area :content, class: "form-control", rows: 4 %>
+            <%= f.hidden_field :to_user_id, value: @message.from_user_id   %>
+
+          </div>
+
+          <button class="btn btn-primary" type="submit"><i class="fa fa-reply"></i> 回复</a> </button>
+      <% end %>
+
+    </div>
+
+    <div class="col-md-4 msg-show-sidebar">
+      <ul class="list-unstyled ">
+
+
+        <li>
+          <%= render 'designers/blacklist_form', user: @message.from_user %>
+        </li>
+        <li>
+          <a href="<%= "/messages/disable_show/#{@message.id}" %>" data-method="post"><i class="fa fa-times-circle"></i> 不显示这条私信</a></li>
+
+        <li>
+          <span id="objs_report_<%= @message.id %>">
+          <a href="<%= reports_create_path(type:"MessagesReport" ,break_rule: 0 , obj_id: @message.id) %>" data-remote="true" data-method="post" data-confirm="你确定要举报这条信息?"><i class="fa fa-flag"></i> 举报</a></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

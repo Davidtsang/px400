@@ -1,63 +1,57 @@
-<div class="row">
-  <h1>设计师/艺术家</h1>
-  <div class="col-md-2">
-    <ul class="nav nav-pills nav-stacked">
-      <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <small>查看更多领域</small> <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <% Domain.other_domains.each do |d| %>
-              <li role="presentation"><a href="<%= designers_all_path(domain_id: d.id) %>"><%= d.name %></a></li>
-          <% end %>
-        </ul>
-      </li>
+<div class="container-fix">
+  <h1 class="center">设计师 / 艺术家
+    <span class="domain-name">  <%= @domain_id.to_i != -1 ? "@" + Domain.find(@domain_id).name : "@All" %></span> <span class="tag-name"><%= @skill_id ? "<i class='fa fa-tag'> </i> 标签: #{Skill.find(@skill_id).name}".html_safe : "" %> </span></h1>
 
-      <li role="presentation" class="active"><a href="<%= designers_all_path %>">所有领域</a></li>
-      <% Domain.hot_domains.each do |d| %>
-          <li role="presentation"><a href="<%= designers_all_path(domain_id: d.id) %>"><%= d.name %></a></li>
-      <% end %>
+  <div class="row">
+    <div class="col-md-9">
+
+     <%= render "designers/designers_list", designers: @designers %>
+    </div>
 
 
+    <div class="col-md-3 sidebar">
+      <ul class="list-unstyled pull-right more-domains">
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <small>查看更多领域</small>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <% Domain.other_domains.each do |d| %>
+                <li role="presentation"><a href="<%= designers_all_path(domain_id: d.id) %>"><%= d.name %></a></li>
+            <% end %>
+          </ul>
+        </li>
 
-    </ul>
+      </ul>
 
+      <ul class="nav nav-pills nav-stacked domain-list">
+
+
+
+        <li <%= (@domain_id == nil || @domain_id.to_i == -1)  ? " class=active" : "" %> ><a href="<%= designers_all_path(domain_id: -1) %>">所有领域</a></li>
+        <% Domain.hot_domains.each do |d| %>
+
+            <li <%= @domain_id.to_i != d.id ? "" : " class=active" %>>
+              <a href="<%= designers_all_path(domain_id: d.id) %>"><%= d.name %></a></li>
+
+        <% end %>
+
+
+      </ul>
+
+      <% if @skills.any? %>
+      <h5>技能标签</h5>
+<% end %>
+
+      <ul class="list-inline">
+        <% @skills.each do  |skill| %>
+        <li><label class="tag"><a href="<%= designers_all_path(domain_id: @domain_id, skill_id: skill.id) %>"><%= skill.name %> </a> </label></li>
+            <% end %>
+      </ul>
+
+    </div>
 
 
   </div>
-
-  <div class="col-md-10">
-    <table class="table">
-
-      <% @designers.each do |user| %>
-          <tr>
-            <td width="50px">
-
-              <%= image_tag user.avatar.url(:normal), :class => "avatar" %>
-            </td>
-            <td>
-              <ul>
-                <li><h4><%= link_to user.name, "/designers/#{user.id}" %></h4></li>
-
-                <li><%= user.location %></li>
-                <li><%= user.fans_count %>位粉丝</li>
-                <li> <%= render 'designers/follow_form', user: user %></li>
-              </ul>
-            </td>
-
-            <td>
-              <% user.recent_works.each do |new_work| %>
-                  <%= image_tag new_work.image.url(:small) %>
-
-              <% end %>
-            </td>
-          </tr>
-      <% end %>
-
-    </table>
-    <%= will_paginate %>
-  </div>
-
-
-
 </div>

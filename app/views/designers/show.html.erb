@@ -1,37 +1,28 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <div class="col-md-12">
-    <div class="user-header">
-      <%= render 'shared/stats' %>
-      <% if user_signed_in? %>
-          <%= render 'follow_form', user: @user %>
+<%= render "designers/user_topbar", user: @user%>
 
-          <a class="btn btn-default" href="<%= new_message_path(to_user_id: @user.id) %>">私信</a>
 
-          <%= render 'designers/blacklist_form', user: @user %>
 
-      <% end %>
-    </div>
+<div class="container-fix">
 
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="col-md-6 col-md-offset-5 user_info">
+  <div class="col-md-10 col-md-offset-1 designer-info">
     <ul class="list-unstyled">
-      <li><%= image_tag @user.avatar.url(:normal), class: "avatar" %></li>
-      <li> <%= @user.name %></li>
+      <li><%= image_tag @user.avatar.url(:normal), class: "avatar" ,width: 80, height: 80 %></li>
+      <li> <h1><%= @user.name %></h1></li>
+      <li> <h2><%=@user.title %></h2></li>
       <li><%= @user.location %> </li>
+      <li>
+        <% @user.users_tags.each do |ut| %>
+            <label class="tag"><%= ut.tag.name %></label>
+        <% end %>
+      </li>
     </ul>
   </div>
 
 </div>
 
+<hr>
 
-<div class="row">
-  <div class="col-md-12">
   <%= render 'shared/feed' %>
-  </div>
-</div>
+
 

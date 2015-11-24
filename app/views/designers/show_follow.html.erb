@@ -1,31 +1,15 @@
 <% provide(:title, @title) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <%= image_tag @user.avatar.url(:normal) %>
+<%= render "designers/user_profile_s" , user: @user %>
 
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "view my profile", "#" %></span>
-      <span><b>作品:</b> <%= @user.works.count %></span>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-      <% if @designers.any? %>
-          <div class="user_avatars">
-            <% @designers.each do |user| %>
-                <%= image_tag user.avatar.url(:mini) %>
-            <% end %>
-          </div>
-      <% end %>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <h3><%= @title %></h3>
-    <% if @designers.any? %>
-        <ul class="users follow">
-        .........
-        </ul>
-        <%= will_paginate %>
-    <% end %>
+<div class="page-title-m">
+  <h1><%= @user.name + @title %></h1>
+</div>
+<hr>
+
+<div class="container-fix">
+  <div class="row">
+    <h4>总共<%= @designers.count %>人</h4>
+    <%= render 'designers/designers_list', designers: @designers %>
+
   </div>
 </div>

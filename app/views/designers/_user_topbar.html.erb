@@ -1,0 +1,23 @@
+<div class="container-fluid user-header-wrap">
+
+  <div class="user-header ">
+    <ul class="list-inline pull-left">
+      <li><%= render 'shared/stats' %></li>
+      <li><i class="fa fa-tint"></i> <%= user.timelines.count %> 个动态</li>
+    </ul>
+
+    <ul class="list-inline pull-right">
+      <% if user_signed_in? %>
+          <li><%= render 'designers/follow_form', user: user %></li>
+
+          <li><a class="btn btn-default" href="<%= new_message_path(to_user_id: user.id) %>"><i class="fa fa-envelope"></i> 私信</a></li>
+
+          <li> <%= render 'designers/blacklist_form', user: user %></li>
+
+      <% end %>
+    </ul>
+  </div>
+
+
+</div>
+

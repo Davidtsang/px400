@@ -1,6 +1,6 @@
 class WorksController < ApplicationController
   before_action :set_work, only: [:edit, :update, :destroy]
-  before_action :current_member, only: :destroy
+  before_action :current_user, only: :destroy
 
   before_filter :authenticate_user!, only: [:new, :like, :unlike, :edit, :create, :update, :thank]
 
@@ -9,6 +9,24 @@ class WorksController < ApplicationController
   # GET /works.json
   def index
     @works = Work.includes(:comments).all
+  end
+
+  def likes
+    @work = Work.find(params[:id])
+    @users = User.joins(:works_likes).where("works_likes.work_id =?" ,@work.id).paginate(page: params[:page])
+
+  end
+
+  def favorites
+    @work = Work.find(params[:id])
+    @favorite_folders  = FavoriteFolder.joins(:favorites).where("favorites.work_id =?",@work.id).paginate(page: params[:page])
+
+  end
+
+  def reworks
+    @work = Work.find(params[:id])
+    @reworks = Work.where(:parent_work_id => @work.id).paginate(page: params[:page])
+
   end
 
   def explore
@@ -105,8 +123,8 @@ class WorksController < ApplicationController
   def edit
   end
 
-  def add_tag
-
+  def edit_tags
+    @work = current_user.works.find(params[:id])
   end
 
   # POST /works
@@ -118,7 +136,7 @@ class WorksController < ApplicationController
       if @work.save
         current_user.timelines.create(work_id: @work.id, act: "new")
 
-        format.html { render :add_tag, notice: 'Work was successfully created.' }
+        format.html { render :edit_tags, notice: 'Work was successfully created.' }
         format.json { render :show, status: :created, location: @work }
       else
         format.html { render :new }
@@ -146,7 +164,7 @@ class WorksController < ApplicationController
   def destroy
     @work.destroy
     respond_to do |format|
-      format.html { redirect_to works_url, notice: 'Work was successfully destroyed.' }
+      format.html { redirect_to static_pages_home_path, notice: 'Work was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

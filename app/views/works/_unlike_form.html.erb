@@ -1,5 +1,7 @@
-
 <span id="submit-link-span">
 <a id="unlikes_sumbit_link" href="<%= works_unlike_work_path %>"><i class="fa fa-thumbs-up fa-2x-s "></i> 取消赞</a></span>
-<span class="ext-info pull-right"><span id="work-likes-count"><%= @work.works_likes_count %></span>人已赞</span>
+<span class="ext-info pull-right">
+   <a href="<%= likes_work_path(@work) %>">
+     <span id="work-likes-count"><%= @work.works_likes_count %></span>人已赞</a>
+</span>
 

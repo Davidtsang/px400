@@ -1,0 +1,14 @@
+<table class="notificcations table">
+  <% @messages.each do |message| %>
+      <tr <%= message.is_read ? "" : "class='unchecked' ".html_safe %> >
+        <td><span class="meta"><%= time_ago_in_words message.updated_at.localtime %>之前</span></td>
+        <td>
+          <%= image_tag message.from_user.avatar.url(:mini), class: 'avatar' %>
+          <%= link_to message.from_user.name, "/designers/#{message.from_user.id }" %>给你发送了一条私信</td>
+        <td>
+          <%= link_to '查看', message_path(message) %></td>
+
+      </tr>
+
+  <% end %>
+</table>

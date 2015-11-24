@@ -1,0 +1,23 @@
+<div class="container-fix">
+  <div class="row">
+  <h1 class="edit-title">编辑收藏夹: <%= @favorite_folder.name %></h1>
+
+  <div class="col-md-6">
+    <% recents = @favorite_folder.recent_works(1).to_a %>
+    <% if recents.any? %>
+        <%= render 'works/work', work: recents.shift %>
+    <% else %>
+        <%= image_tag asset_path "lost-image-200pt.png" %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= form_for @favorite_folder do |f| %>
+    <div class="form-group">
+      <label>名称</label> <em>（最多40字符）</em>
+      <%= f.text_field :name , class: "form-control" %>
+    </div>
+
+        <button type="submit" class="btn btn-primary">更新</button>
+    <% end %>
+  </div>
+</div></div>

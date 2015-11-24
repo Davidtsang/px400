@@ -1,0 +1,22 @@
+<%= render "designers/user_profile_s" , user: @favorite_folder.user %>
+<div class="page-title-m">
+  <h1><%= "#{@favorite_folder.user.name} / 收藏夹 / #{@favorite_folder.name }" %></h1>
+
+  <ul class="list-inline page-m-tools">
+    <li><a href="<%= edit_favorite_folder_path(@favorite_folder) %>"><i class="fa fa-cog"></i> 编辑收藏夹</a></li>
+    <li><a href="<%= favorite_folder_path(@favorite_folder) %>" data-method="delete" data-confirm="你确定要删除这个收藏夹?"> <i class="fa fa-times-circle"></i> 删除收藏夹</a></li>
+  </ul>
+
+</div>
+
+<hr>
+
+<div class="container-xl">
+<div class="row">
+  <h4><%= @favorite_folder.favorites.count %>个作品</h4>
+
+  <% @favorite_folder.favorites.each do |f| %>
+    <%= render "works/work", work: f.work %>
+  <% end %>
+</div>
+</div>

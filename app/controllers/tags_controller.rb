@@ -29,7 +29,7 @@ class TagsController < ApplicationController
   #AJAX REMOVE WORK TAG
   def remove_work_tag
     tag = WorksTag.find (params[:id])
-    @tags = WorksTag.where(tag.work_id)
+    @tags = WorksTag.where(work_id: tag.work_id)
     tag.destroy
 
 

@@ -1,0 +1,3 @@
+class MessagesReport < Report
+
+end

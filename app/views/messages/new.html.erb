@@ -1,22 +1,33 @@
-<h1>新私信</h1>
-<%= form_for @message do |f| %>
-    <% if @message.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this work from being saved:</h2>
+<div class="container-fix">
+  <h1>新私信</h1>
+  <div class="row ">
 
-          <ul>
-            <% @message.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
+
+    <div class="col-md-8">
+  <%= form_for @message do |f| %>
+      <% if @message.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@message.errors.count, "error") %> prohibited this work from being saved:</h2>
+
+            <ul>
+              <% @message.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+          <ul class="list-unstyled">
+      <li><b class="span1">From: </b><br><%= image_tag @message.from_user.avatar.url(:mini), class: "avatar" %> <%= @message.from_user.name %></li>
+            <li><b class="span1">To:</b> <br><%= image_tag @message.to_user.avatar.url(:mini), class: "avatar" %> <%= @message.to_user.name %></li>
           </ul>
-        </div>
-    <% end %>
-From: <%= @message.from_user.name %>
-To: <%= @message.to_user.name %>
-    <div class="form-group">
-  <label>Content:</label>
-  <%= f.text_area :content, rows: 12, class: "form-control" %>
-<%= f.hidden_field :to_user_id %>
-      <%= f.submit %>
-</div>
-<% end %>
+      <div class="form-group">
+        <label>内容:</label>
+        <%= f.text_area :content, rows: 12, class: "form-control" %>
+        <%= f.hidden_field :to_user_id %>
+
+      </div>
+
+          <button type="submit" class="btn btn-primary">发送</button>
+  <% end %>
+  </div>
+</div> </div>

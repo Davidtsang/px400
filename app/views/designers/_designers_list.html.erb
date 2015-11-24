@@ -1,0 +1,44 @@
+<ol>
+  <% designers.each do |user| %>
+      <li class="list-unstyled ">
+        <div CLASS="row user-card">
+          <div class="col-sm-5 card-left">
+            <h2 class="vcard">
+              <%= image_tag user.avatar.url(:normal), :class => "avatar", width: 80, height: 80 %>
+
+              <span><%= link_to user.name, "/designers/#{user.id}" %></span>
+              <span class="meta"><%= user.location %></span>
+  <span class="meta">
+    <%= user.users_tags.map { |ut| ut.tag.name }.join(", ") %>
+
+  </span>
+            </h2>
+
+            <div class="member-acts">
+              <%= render 'designers/follow_form', user: user %>
+              <ul class="list-unstyled list-inline">
+
+                <li><span class="meta"><%= user.followers.count %></span><span class="meta-name">粉丝</span>
+                </li>
+                <li><span class="meta"><%= user.works.count %></span>
+                  <span class="meta-name">作品</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-sm-7 works">
+            <% user.recent_works.each do |new_work| %>
+                <a href="<%= work_path new_work %>">
+                  <%= image_tag new_work.image.url(:small), width: 110, height: 85, class: "work-image-mini" %></a>
+
+            <% end %>
+          </div>
+        </div>
+      </li>
+
+  <% end %>
+
+</ol>
+<div class="">
+  <%= will_paginate designers, :page_links => false, next_label: "<i class='fa fa-angle-right fa-2x'></i>", previous_label: "<i class='fa fa-angle-left fa-2x'></i>" %>
+</div>

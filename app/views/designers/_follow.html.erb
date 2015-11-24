@@ -1,6 +1,7 @@
 <%= form_for(current_user.active_relationships.
                      build(followed_id: user.id),
              remote: true) do |f| %>
-    <div><%= hidden_field_tag :followed_id, user.id %></div>
-    <%= f.submit "关注", class: "btn btn-primary" %>
+     <%= hidden_field_tag :followed_id, user.id %>
+    <button class="btn btn-default" type="submit"><i class='fa fa-user-plus'></i> 关注</button>
+
 <% end %>

@@ -3,6 +3,9 @@
 <% else %>
 
     <span id="submit-link-span"><a  id="likes-submit-link" href="<%= works_like_work_path %>"><i class="fa fa-thumbs-up fa-2x-s "></i> 赞？</a></span>
-    <span class="pull-right" ><span id="work-likes-count"><%= @work.works_likes_count %></span> 人已赞</span>
+    <span class="pull-right" >
+
+      <a href="<%= likes_work_path(@work) %>"><span id="work-likes-count"><%= @work.works_likes_count %></span> 人已赞</a>
+    </span>
 
 <% end %>

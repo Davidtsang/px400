@@ -4,9 +4,6 @@ Rails.application.routes.draw do
 
   post 'reports/create'
 
-  get 'messages/index'
-
-  get 'messages/show'
 
   resources :comments do
     member do
@@ -22,11 +19,18 @@ Rails.application.routes.draw do
   #get "designers/current_user_favorite_folders"
   post "block_user" => "designers#block_user"
   post "unblock_user" => "designers#unblock_user"
-  resources :messages
+
+  resources :messages do
+    collection do
+      get 'sent'
+      post 'disable_show/:id' =>"messages#disable_show"
+      get "show_sent/:id" => "messages#show_sent"
+    end
+  end
 
   resources :notifications do
     member do
-       post "mark_checked"
+      post "mark_checked"
     end
   end
 
@@ -65,6 +69,14 @@ Rails.application.routes.draw do
       #ajax repost
       post "repost"
 
+      get "edit_tags"
+
+      get "likes" => "works#likes"
+
+      get "favorites" => "works#favorites"
+
+      get "reworks" => "works#reworks"
+
 
     end
   end
@@ -85,11 +97,11 @@ Rails.application.routes.draw do
 
   get "users/:id/following" => "designers#following", as: "following_user"
   get "users/:id/followers" => "designers#followers", as: "followers_user"
-  get "/designers/:id/tags/:tag_id"=> "designers#show_tag"
+  get "/designers/:id/tags/:tag_id" => "designers#show_tag"
 
   get "designers" => "designers#all"
   devise_scope :user do
-    get "block_list" =>"users/registrations#block_list"
+    get "block_list" => "users/registrations#block_list"
     get "profile" => "users/registrations#profile"
     put "update_profile" => "users/registrations#update_profile"
     put "update_avatar" => "users/registrations#update_avatar"

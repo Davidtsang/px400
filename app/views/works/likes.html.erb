@@ -1,0 +1,19 @@
+<div class="container-fix">
+
+  <div class="row">
+
+    <!--//heaeder-->
+    <!--//render work brief -->
+    <div class="work-brief">
+    <%= image_tag @work.image.url(:small) ,width: 110, height: 85, class: "work-image-mini" %>
+    <h1><a href="<%= work_path(@work) %>">
+      <%= @work.title %></a> / <%= @users.length %> 人赞</h1>
+    <h2>发布人：<a href="/designers/<%= @work.user.id %>"> <%= @work.user.name %></a> </h2>
+    </div>
+
+    <hr>
+
+    <%= render "designers/designers_list" ,designers: @users %>
+  </div>
+
+</div>

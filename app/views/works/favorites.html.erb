@@ -1,0 +1,31 @@
+<div class="container-fix">
+
+  <div class="row">
+
+    <!--//heaeder-->
+    <!--//render work brief -->
+    <div class="work-brief">
+      <%= image_tag @work.image.url(:small), width: 110, height: 85, class: "work-image-mini" %>
+      <h1><a href="<%= work_path(@work) %>">
+        <%= @work.title %></a> / <%= @favorite_folders.length %> 个收藏</h1>
+
+      <h2>发布人：<a href="/designers/<%= @work.user.id %>"> <%= @work.user.name %></a></h2>
+    </div>
+
+    <hr>
+
+  </div>
+</div>
+
+<div class="container-fix folder-list">
+  <div class="row">
+    <ol class="list-inline">
+      <%= render @favorite_folders %>
+    </ol>
+
+    <div class="pagination">
+      <%= will_paginate @favorite_folders, :page_links => false, next_label: "<i class='fa fa-angle-right fa-2x'></i>", previous_label: "<i class='fa fa-angle-left fa-2x'></i>" %>
+    </div>
+    
+  </div>
+</div>

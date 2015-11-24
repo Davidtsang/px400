@@ -1,0 +1,35 @@
+<div class="container-fix">
+  <h1><i class="fa fa-envelope"></i> 私信</h1>
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <ul class="nav nav-tabs mailbox-nav">
+        <li role="presentation"><a href="<%= messages_path %>">收件箱</a></li>
+        <li role="presentation"  class="active"><a href="<%= sent_messages_path %>">发件箱</a></li>
+
+      </ul>
+
+      <% if @messages.any? %>
+      <table class="notificcations table">
+        <% @messages.each do |message| %>
+            <tr <%= message.is_read ? "" : "class='unchecked' ".html_safe %> >
+              <td><span class="meta"><%= time_ago_in_words message.updated_at.localtime %>之前</span></td>
+              <td>
+                你发送了一条私信给
+                <%= image_tag message.to_user.avatar.url(:mini), class: 'avatar' %>
+                <%= link_to message.to_user.name, "/designers/#{message.from_user.id }" %></td>
+              <td>
+                <%= link_to '查看', "/messages/show_sent/#{message.id}"  %></td>
+
+            </tr>
+
+        <% end %>
+      </table>
+    <% else %>
+      <p>还没有发送任何私信。</p>
+      <% end %>
+    </div>
+  </div>
+
+</div>

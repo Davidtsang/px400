@@ -1,52 +1,131 @@
-<h1>发现</h1>
-<div class="row">
-  <div class="col-md-2">
-    <ul class="nav nav-pills nav-stacked">
+<div class="topbar">
+  <div class="container explore-top">
+    <ul class="list-inline">
       <li role="presentation" class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <small>查看更多领域</small> <span class="caret"></span>
+          <%= @domain_id != nil ? "@" + Domain.find(@domain_id).name : "所有领域" %> <i class="fa fa-angle-down"></i>
         </a>
         <ul class="dropdown-menu">
-          <% Domain.other_domains.each do |d| %>
+          <li role="presentation"><a href="<%= explore_path %>">所有领域</a></li>
+          <% Domain.hot_domains.each do |d| %>
+
               <li role="presentation"><a href="<%= explore_path(domain_id: d.id) %>"><%= d.name %></a></li>
+
+
           <% end %>
+
+
         </ul>
       </li>
-      <% if @domain_id %>
-      <li role="presentation" ><a href="<%= explore_path %>">所有领域</a></li>
-      <% else %>
-          <li role="presentation" class="active"><a href="<%= explore_path %>">所有领域</a></li>
-          <% end %>
+      <% unless @tag_id %>
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              标签 <i class="fa fa-angle-down"></i>
+            </a>
+            <% if @tags.count < 20 %>
+            <ul class="dropdown-menu">
 
-      <% Domain.hot_domains.each do |d| %>
-          <% if @domain_id.to_i == d.id  %>
-              <li role="presentation" class="active"><a href="<%= explore_path(domain_id: d.id) %>"><%= d.name %></a></li>
+                  <% @tags.each_with_index do |lb, i| %>
+
+                      <li>
+                        <a href="<%= explore_path(domain_id: @domain_id, tag_id: lb.id) %>"> <%= lb.name %></a></li>
+
+                  <% end %>
+            </ul>
               <% else %>
-          <li role="presentation"><a href="<%= explore_path(domain_id: d.id) %>"><%= d.name %></a></li>
-              <% end %>
 
+
+
+
+            <!--3 col tags begin-->
+            <% tags1, tags2, tags3 = arr_slice_to_3(@tags.to_a) %>
+
+            <ul class="dropdown-menu">
+              <div class="row drop-xl">
+                <ul class="list-unstyled col-md-4">
+                  <% tags1.each do |lb| %>
+                      <li role="presentation"><a href="<%= explore_path(domain_id: @domain_id, tag_id: lb.id) %>"> <%= lb.name %></a></li>
+                  <% end %>
+                </ul>
+                <ul class="list-unstyled col-md-4">
+                  <% tags2.each do |lb| %>
+                      <li role="presentation"><a href="<%= explore_path(domain_id: @domain_id, tag_id: lb.id) %>"> <%= lb.name %></a></li>
+                  <% end %>
+                </ul>
+                <ul class="list-unstyled col-md-4">
+                  <% tags3.each do |lb| %>
+                      <li role="presentation"><a href="<%= explore_path(domain_id: @domain_id, tag_id: lb.id) %>"> <%= lb.name %></a></li>
+                  <% end %>
+                </ul>
+
+              </div>
+
+            </ul>
+            <!--3 col tag end-->
+            <% end %>
+
+          </li>
+      <% else %>
+          <li><i class="fa fa-tag"></i> 标签: <%= Label.find(@tag_id).name %></li>
       <% end %>
 
 
+      <li role="presentation">
+        <ul class="list-inline">
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              查看更多领域
+              <i class="fa fa-angle-down"></i>
+            </a>
 
+            <% other_domains1, other_domains2, other_domains3 = arr_slice_to_3(Domain.other_domains.to_a) %>
+
+            <ul class="dropdown-menu">
+              <div class="row drop-xl">
+                <ul class="list-unstyled col-md-4">
+                  <% other_domains1.each do |d| %>
+                      <li role="presentation"><a href="<%= explore_path(domain_id: d.id) %>"><%= d.name %></a></li>
+                  <% end %>
+                </ul>
+                <ul class="list-unstyled col-md-4">
+                  <% other_domains2.each do |d| %>
+                      <li role="presentation"><a href="<%= explore_path(domain_id: d.id) %>"><%= d.name %></a></li>
+                  <% end %>
+                </ul>
+                <ul class="list-unstyled col-md-4">
+                  <% other_domains3.each do |d| %>
+                      <li role="presentation"><a href="<%= explore_path(domain_id: d.id) %>"><%= d.name %></a></li>
+                  <% end %>
+                </ul>
+
+              </div>
+
+            </ul>
+
+          </li>
+
+
+        </ul>
+      </li>
     </ul>
 
-    <h4>作品标签</h4>
-   <% @tags.each_with_index  do |lb, i | %>
 
-    <label class="tag"> <a href="<%= explore_path(domain_id: @domain_id, tag_id: lb.id)  %>"> <%= lb.name%></a></label>
-
-    <% end %>
   </div>
+</div>
 
-  <div class="col-md-10">
-    <% if @works.any? %>
-        <div class="row">
-          <%= render @works %>
-        </div>
-        <div class="row">
-          <%= will_paginate @works %>
-        </div>
-    <% end %>
+<div class="container-xl">
+  <% if @works.any? %>
+      <div class="row">
+        <%= render @works %>
+      </div>
+      <div class="row">
+        <%= will_paginate @works, :page_links => false, next_label: "<i class='fa fa-angle-right fa-2x'></i>", previous_label: "<i class='fa fa-angle-left fa-2x'></i>" %>
+      </div>
+  <% end %>
+</div>
+<div class="container-fix">
+  <div class="row">
+
+
   </div>
 </div>

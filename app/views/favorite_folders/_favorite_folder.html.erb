@@ -1,0 +1,19 @@
+<li class="folder-box">
+  <a href="<%= favorite_folder_path(favorite_folder) %>">
+  <div class="favorite-image">
+    <% recents = favorite_folder.recent_works(4).to_a %>
+<% if recents.any? %>
+    <%= image_tag recents.shift.image.url(:small) %>
+<% else %>
+        <%= image_tag asset_path "lost-image-200pt.png" %>
+    <% end %>
+
+  </div>
+
+  <div class="favarite-thumbs">
+        <% recents.each do |work| %><%= image_tag work.image.url(:small),height:45, width: 60  %><% end %>
+  </div>
+  <h3><%= favorite_folder.name %>
+    <span class="meta"><%= favorite_folder.favorites_count %>个作品</span></h3>
+  </a>
+</li>

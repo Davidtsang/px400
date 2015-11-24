@@ -5,9 +5,9 @@ class Tag < ActiveRecord::Base
 
   validates :name ,presence: true
 
-  def self.search(search)
+  def self.search(search, limit: 12)
 
-      where( "name LIKE ?", "%#{search}%" )
+      where( "name LIKE ?", "%#{search}%" ).limit(limit)
 
   end
 

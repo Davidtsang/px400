@@ -1,36 +1,8 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <div class="col-md-12">
-    <div class="user-header">
-      <%= render 'shared/stats' %>
-      <% if user_signed_in? %>
-          <%= render 'follow_form', user: @user %>
-
-          <a class="btn btn-default" href="<%= new_message_path(to_user_id: @user.id) %>">私信</a>
-
-          <%= render 'designers/blacklist_form', user: @user %>
-
-      <% end %>
-    </div>
-
-  </div>
+<%= render "designers/user_profile_s", user: @user  %>
+<div class="page-title-m">
+<h1><%= "#{@user.name} / 标签 / #{@tag.name} "  %></h1>
 </div>
-
-<div class="row">
-
-  <div class="col-md-6 col-md-offset-3 designer-info">
-    <ul class="list-unstyled">
-      <li><%= image_tag @user.avatar.url(:normal), class: "avatar" %></li>
-      <li> <%= @user.name %></li>
-      <li><%= @user.location %> </li>
-    </ul>
-
-    <h2><%= "#{@user.name} / 标签 / #{@tag.name} "  %></h2>
-  </div>
-
-</div>
-
-
 <div class="row">
   <div class="col-md-12">
     <%= render 'shared/feed' %>

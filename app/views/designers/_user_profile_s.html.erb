@@ -1,0 +1,13 @@
+<%= render "designers/user_topbar", user: user %>
+
+
+<div class="container-fix">
+
+  <div class="col-md-10 col-md-offset-1 designer-info">
+    <ul class="list-unstyled">
+      <li><%= image_tag user.avatar.url(:normal), class: "avatar" ,width: 80, height: 80 %></li>
+
+    </ul>
+  </div>
+
+</div>

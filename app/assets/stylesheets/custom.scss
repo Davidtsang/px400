@@ -40,7 +40,10 @@ $font-size-base: 13px;
     width: 500px;
   }
 }
-
+.container-fix{
+  @extend .container;
+  width: 960px;
+}
 * {
   font-family: "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft Yahei UI", "Microsoft Yahei", Arial, sans-serif;
 }
@@ -60,8 +63,43 @@ $purple:  #cd00cd;
   margin:30px 0px;
 }
 h1{
-  font-weight: bold;
-  font-size: 28px;
+  //font-weight: normal;
+  font-size: 24px;
+
+}
+h2{
+  font-size: 18px;
+}
+h3{
+  font-size: 16px;
+}
+
+
+ol{
+  padding: 0px;
+
+}
+
+.center{
+  //position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  //font-size: 24px;
+  line-height: 1;
+  text-align: center;
+  border-bottom: 1px solid $siteGreyLight;
+
+}
+.btn{
+  padding: 5px 10px;
+}
+.btn-xs{
+  padding: 3px 6px;
+}
+.btn-default{
+  background-color: lighten(black,75%);
+  border-color:  lighten(black,70%);
 }
 em{
   font-style: normal;
@@ -85,6 +123,9 @@ body {
 }
 
 .badge {
+
+  margin-top: -12px;
+  margin-left: -6px;
   background-color: darken(red, 10%);
 
 }
@@ -159,7 +200,70 @@ hr {
   height: 16px;
   width: 16px;
 }
+.vcard{
+  margin-bottom: 0px;
+}
+.user-card{
+  h2{
+    font-size: 16px;
+    margin-top: 0px;
+    img{
+      float: left;
+      margin-right: 15px;
+    }
+  }
+.meta{
+  font-weight: normal;
+  font-size: 13px;
+  display: block;
+  margin: 4px 0 0 0;
+}
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid $siteGreyLight;
+  .works{
+    width: 388px;
+    //background-color: lightyellow;
+    @extend .pull-right;
 
+    a {
+      margin-right: 10px;
+      &:last-child{
+        margin-right: 0px;
+      }
+    }
+  }
+}
+.work-brief{
+  h1,h2{
+    padding-top: 0px !important;
+    padding-bottom: 10px !important;
+  }
+  img{
+    float: left;
+    margin-right: 15px;
+  }
+}
+.work-image-mini{
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 3px;
+
+
+}
+.more-domains{
+  margin-top: -20px ;
+}
+.domain-list{
+  background-color: $siteGreyLight;
+  border-radius: 3px ;
+  padding: 15px;
+  margin-top: 15px ;
+  margin-bottom: 30px;
+  a{
+    color: $siteGreyDark;
+  }
+}
 .profile {
   margin-top: 30px;
   span {
@@ -170,7 +274,23 @@ hr {
     //font-weight: bold;
   }
 }
+//----designers
+.card-left{
+  width: 330px;
+}
+.member-acts{
 
+  //background-color: lightyellow;
+  .meta-name{
+    font-size: 11px ;
+  }
+  .follow-form{
+    float: left;
+    padding-top:8px ;
+    padding-right:5px ;
+
+  }
+}
 .avatar-box {
   input {
     font-size: 12px;
@@ -187,7 +307,12 @@ hr {
     font-size: 12px;
   }
 }
-
+.tags-search{
+  height: 280px;
+  input[type=text]{
+    width: 300px;
+  }
+}
 //---work item
 .work-item {
   a {
@@ -203,7 +328,7 @@ hr {
 
     font-size: 12px;
     margin-left: 10px;
-    margin-bottom: 10px;
+    margin-top: 10px;
     img {
       margin-top: -4px;
     }
@@ -211,9 +336,73 @@ hr {
   }
 
 }
+//----explore
+.explore-top{
+  font-size: 14px;
+  font-weight: bold;
+  color: $siteGreyDark;
+  ul{
+    margin-bottom: 0px;
+  }
+  li{
+    margin-right: 10px;
+  }
+  .dropdown-menu{
+    margin-top: 15px;
+    border-top: none;
+    //border-radius-topleft: 0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-color: $siteGreyLight;
+    background-color: rgb(250, 250, 250);
+    a {
+      font-weight: bold;
+      font-size: 12px;
+      color: $siteGreyDark;
+    }
+  }
+  text-align: center;
+  a{
+    font-weight: bold;
+    font-size: 14px;
+    color: $siteGreyDark;
+
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+.drop-xl{
+  width: 400px;
+  padding: 0px 0px 10px 15px;
+
+}
+.page-title-m{
+  text-align: center;
+  color: $siteGreyMiddle;
+}
 .designer-info{
+  h2{
+    color: $siteGreyMiddle;
+  }
   text-align: center;
   //background-color: lightyellow;
+  .avatar{
+    margin-top: -30px;
+  }
+
+  li{
+    padding-bottom: 5px;
+  }
+}
+#new-work-link{
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: $siteGreyDark;
+    //font-weight: bold;
+    border-color: darken($siteGreyDark, 5%);
+    padding: 5px 10px !important;
+    color: $siteGreyMiddle;
 }
 .more-works{
   margin-top: 15px;
@@ -381,6 +570,70 @@ a.fill-div {
     color: $siteGreyDark;
   }
 }
+.edit-title
+{
+  margin-top: 30px;
+  margin-left: 30px;
+
+}
+.mailbox-nav{
+  margin-bottom: 30px;
+}
+.msg-show-sidebar{
+  li{
+    padding: 5px 0px;
+  }
+}
+.message-content{
+  p {
+    font-size: 13px;
+    line-height: 2 !important;
+  }
+}
+.folder-list{
+  width: 1000px;
+}
+.page-m-tools{
+  font-size: 12px;
+
+}
+.folder-box{
+  a{
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  margin: 15px;
+  h3{
+    font-size: 14px;
+    margin: 10px 0px 0px 0px ;
+  }
+  background-color: #ffffff;
+  padding: 10px !important;
+  border-radius: 3px;
+  .favorite-image{
+    margin-bottom: 10px;
+  }
+  .favarite-thumbs{
+    height: 45px;
+    img{
+      margin-right : 10px !important;
+      margin-left: 0px !important;
+      padding: 0px !important;
+
+      &:last-child{
+        margin-right: 0px !important;
+      }
+    }
+
+  }
+}
+.meta{
+  margin-top: 5px;
+  display: block;
+  font-size: 12px;
+  color: $siteGreyMiddle;
+}
 .comment-meta{
   font-size: 12px ;
 }
@@ -388,10 +641,22 @@ a.fill-div {
   //@extend .clearfix;
   //background-color: lightyellow;
 }
-
+.domain-name{
+  color: $siteGreyMiddle;
+}
+.tag-name{
+  font-weight: normal;
+  color: $siteGreyMiddle;
+  font-size: 18px;
+}
 //
 .favorites-list{
   font-size: 14px;
+}
+.sidebar{
+  h5,h4{
+    color: $siteGreyMiddle;
+  }
 }
 //-------------tags
 .tag {
@@ -402,6 +667,8 @@ a.fill-div {
   padding: 3px 6px;
   border-radius: 15px;
   margin-right: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   a {
     color: $siteGreyDark;
     &:hover {
@@ -409,10 +676,31 @@ a.fill-div {
     }
   }
 }
-
+.user-header-wrap{
+  color: $siteGreyDark;
+  a{
+    color: $siteGreyDark;
+  }
+  .btn{
+    @extend .btn-xs;
+  }
+  background-color: lighten($siteGreyLight, 5%);
+  border: 1px solid $siteGreyLight;
+}
+.user-header{
+  padding: 15px;
+  li, a {
+    padding-right: 5px;
+  }
+}
+.pubtime{
+  font-size: 12px;
+  color: $siteGreyMiddle;
+}
 // notificcations
 .notificcations {
   li {
+    border-top: 1px solid $siteGreyLight;
     padding: 10px;
   }
   .unchecked {
@@ -422,6 +710,7 @@ a.fill-div {
 
 //------footer
 footer {
+  margin-top: 60px;
   font-size: 12px;
   border-top: solid 1px $siteGreyLight;
   color: $siteGreyMiddle;

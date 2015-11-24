@@ -1,19 +1,32 @@
-<h1>消息</h1>
-<div class="row">
-  <div class="col-md-9">
+<div class="container-fix">
+  <h1><i class="fa fa-bell"></i> 所有通知</h1>
 
-    <ul class="notificcations list-unstyled">
-      <% @notifications.each do |notify| %>
+  <div class="row">
+    <div class="col-md-9">
 
-          <li <%= notify.is_checked ? "" : "class='unchecked' ".html_safe %>> <%= notify.subject_id_to_s %>  <%= notify.type_to_s %> <%= notify.obj_id_to_s %>
+      <% if @notifications.any? %>
+          <ul class="notificcations list-unstyled">
+            <% @notifications.each do |notify| %>
 
-            <% if notify.is_checked == false %>
-          <span class="pull-right"><a data-method="post" data-remote="true" href="<%= mark_checked_notification_path(notify.id) %>"><i class="fa fa-check "></i> 已阅</a> </span></li>
-<% end %>
+                <li <%= notify.is_checked ? "" : "class='unchecked' ".html_safe %>> <span class="pubtime"><%= time_ago_in_words notify.created_at.localtime %>之前</span> <%= notify.subject_id_to_s %>  <%= notify.type_to_s %> <%= notify.obj_id_to_s %>
 
+                  <% if notify.is_checked == false %>
+                  <span class="pull-right"><a data-method="post" data-remote="true" href="<%= mark_checked_notification_path(notify.id) %>"><i class="fa fa-check "></i>
+                    已阅</a> </span></li>
+                  <% end %>
+
+            <% end %>
+
+          </ul>
+      <% else %>
+      <p>还没有任何通知。</p>
       <% end %>
+    </div>
 
-    </ul>
+
+    <div class="row">
+      <%= will_paginate @notifications, :page_links => false, next_label: "<i class='fa fa-angle-right fa-2x'></i>", previous_label: "<i class='fa fa-angle-left fa-2x'></i>" %>
+    </div>
 
   </div>
 </div>

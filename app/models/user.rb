@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
   has_many :send_messages, class_name: "Message", foreign_key: "from_user_id", dependent: :destroy
 
-  has_many :receive_messages, class_name: "Message", foreign_key: "to_user_id", dependent: :destroy
+  has_many :receive_messages, ->{ receive_default},class_name: "Message", foreign_key: "to_user_id", dependent: :destroy
 
   has_many :active_relationships, class_name: "Relationship",
            foreign_key: "follower_id",
@@ -64,6 +64,20 @@ class User < ActiveRecord::Base
   # is folloing some user, return ,true
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def self.all_by_skill_id(skill_id)
+    joins("JOIN users_tags ON users_tags.user_id = users.id").where("users_tags.tag_id = :skill_id  ", skill_id: skill_id)
+  end
+
+  def self.all_by_domain_id_and_skill_id(domain_id ,skill_id=nil)
+
+      unless skill_id
+        where("(domain_1_id = :domain_id OR domain_2_id = :domain_id)",domain_id: domain_id)
+      else
+        joins("JOIN users_tags ON users_tags.user_id = users.id").where("users_tags.tag_id = :skill_id AND (users.domain_1_id = :domain_id OR users.domain_2_id = :domain_id) ", skill_id: skill_id, domain_id: domain_id)
+      end
+
   end
 
   def user_feed_by_tag_id(tag_id)

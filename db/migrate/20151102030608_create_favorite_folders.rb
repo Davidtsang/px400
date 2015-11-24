@@ -3,7 +3,7 @@ class CreateFavoriteFolders < ActiveRecord::Migration
     create_table :favorite_folders do |t|
       t.integer :user_id
       t.string :name
-      t.integer :favorites_count
+      t.integer :favorites_count, default: 0
 
       t.timestamps null: false
     end

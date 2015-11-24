@@ -1,0 +1,32 @@
+<div class="container-fix">
+  <h1>发送给<%= @message.to_user.name %>的私信</h1>
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <ul class="list-unstyled">
+        <li><h4><%= image_tag @message.to_user.avatar.url(:medium), class: "avatar" %>
+          <a href="/designers/<%= @message.to_user.id %>"><%= @message.from_user.name %></a>
+          <span class="meta"> <%= time_ago_in_words @message.updated_at.localtime %>之前</span>
+        </h4></li>
+        <li>
+          <div class="message-content"><%= simple_format @message.content %></div>
+        </li>
+
+
+      </ul>
+
+
+
+    </div>
+
+    <div class="col-md-4">
+      <ul class="list-unstyled">
+
+        <li>
+          <a data-method="delete" href="<%= message_path(@message.id)  %>"><i class="fa fa-times-circle"></i> 撤回这条私信</a></li>
+
+      </ul>
+    </div>
+  </div>
+</div>

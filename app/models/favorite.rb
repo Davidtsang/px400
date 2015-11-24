@@ -1,5 +1,5 @@
 class Favorite < ActiveRecord::Base
-  belongs_to :favorite_folder
+  belongs_to :favorite_folder, counter_cache: true
   belongs_to :work, counter_cache: true
 
 

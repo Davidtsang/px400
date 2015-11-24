@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :desciption, '描述' %> <em>(可省略)</em><br>
+      <%= f.label :desciption, '描述' %> <em>( 可省略, 支持markdown格式. 例如：链接: &lt;http://www.400px.net&gt; / 加粗: *加粗* )</em><br>
       <%= f.text_area :desciption, class: "form-control", rows: 7 %>
     </div>
 
@@ -40,7 +40,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "创建作品", class: "btn btn-primary" %>
+      <%= f.submit "提交", class: "btn btn-primary" %>
     </div>
 <% end %>
 

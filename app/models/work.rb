@@ -15,7 +15,7 @@ class Work < ActiveRecord::Base
   has_many :thanks
   has_many :favorites
   has_many :comments
-  has_many :timelines
+  has_many :timelines , dependent: :destroy
   has_many :works_tags
 
 end

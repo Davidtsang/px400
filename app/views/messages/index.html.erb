@@ -1,17 +1,21 @@
-<h1>Messages#index</h1>
-<div class="row">
-  <div class="col-md-8">
-<ul class="list-unstyled">
-    <% @messages.each do |message| %>
-        <li>
+<div class="container-fix">
+  <h1><i class="fa fa-envelope"></i> 私信</h1>
 
-    <%= link_to  message.from_user.name , "designers/#{message.from_user.id }" %>给你发送了一条私信
-          <%= link_to '查看',  message_path(message) %>
-          <%= message.updated_at %>
-        </li>
+  <div class="row">
+    <div class="col-md-8">
 
-    <% end %>
-</ul>
+      <ul class="nav nav-tabs mailbox-nav">
+        <li role="presentation" class="active"><a href="<%= messages_path %>">收件箱</a></li>
+        <li role="presentation"><a href="<%= sent_messages_path %>">发件箱</a></li>
+
+      </ul>
+
+      <% if @messages.any? %>
+      <%= render 'messages/list' %>
+<% else %>
+      <p>还没有收到任何私信。</p>
+      <% end %>
+    </div>
   </div>
+
 </div>
-<p>Find me in app/views/messages/index.html.erb</p>

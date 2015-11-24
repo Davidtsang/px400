@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115065821) do
+ActiveRecord::Schema.define(version: 20151119080334) do
 
   create_table "blacklists", force: :cascade do |t|
     t.integer  "user_id"
@@ -60,8 +60,9 @@ ActiveRecord::Schema.define(version: 20151115065821) do
     t.integer  "to_user_id"
     t.text     "content"
     t.boolean  "is_read"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "status",       default: 0
   end
 
   add_index "messages", ["from_user_id"], name: "index_messages_on_from_user_id"

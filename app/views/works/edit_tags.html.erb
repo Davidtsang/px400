@@ -1,0 +1,36 @@
+<div class="container">
+
+
+  <div class="row">
+    <div class="col-md-6 new-work">
+
+
+      <h1>为作品添加标签</h1>
+
+
+      <label><i class="fa fa-tags "> </i> 标签</label> <em>（恰当的标签可以让你的作品更容易被他人检索到）</em>
+
+      <div id="workTagsList">
+        <%= render 'tags/works_tags', tags: @work.works_tags %>
+      </div>
+      <!--//seach tag form -->
+      <div class="tags-search">
+        <%= form_for(Tag.new, url: labels_path, remote: true, html: {class: "form-inline"}) do |f| %>
+            <%= f.hidden_field :type, value: "Label" %>
+            <%= hidden_field_tag "work_id", @work.id %>
+
+<div class="form-group">
+              <%= f.text_field :name, id: "autoWorkTag", class: "form-control" %>
+</div>
+
+
+            <%= f.submit "添加", class: "btn btn-default" %>
+        <% end %>
+        <!--//end search tags form-->
+
+
+      </div>
+      <a href="<%= work_path(@work) %>" class="btn btn-success"> 完成 </a>
+    </div>
+  </div>
+</div>

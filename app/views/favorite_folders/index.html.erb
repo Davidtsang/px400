@@ -1,0 +1,13 @@
+<%= render "designers/user_profile_s", user: current_user %>
+<div class="page-title-m">
+<h1><%= "#{current_user.name} / 收藏夹 "  %></h1>
+</div>
+<hr>
+
+<div class="container-fix folder-list">
+  <div class="row">
+    <ol class="list-inline">
+    <%= render @favorite_folders %>
+    </ol>
+  </div>
+</div>

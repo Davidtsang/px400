@@ -1,93 +1,96 @@
-<h2>会员设置</h2>
-<ul class="nav nav-tabs">
+<div class="container-fix">
+  <h2>会员设置</h2>
+  <ul class="nav nav-tabs">
 
-  <li role="presentation"><%= link_to '一般设置', profile_path %></li>
-  <li role="presentation" class="active"><a href="<%= edit_user_registration_path %>">名字/Email/密码</a></li>
-  <li><a href="<%=  block_list_path %>">屏蔽列表</a></li>
+    <li role="presentation"><%= link_to '一般设置', profile_path %></li>
+    <li role="presentation" class="active"><a href="<%= edit_user_registration_path %>">名字/Email/密码</a></li>
+    <li><a href="<%= block_list_path %>">屏蔽列表</a></li>
 
-</ul>
-<div class="row profile">
-  <div class="col-md-7">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, class: "form-horizontal"}) do |f| %>
-        <%= devise_error_messages! %>
+  </ul>
+  <div class="row profile">
+    <div class="col-md-7">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, class: "form-horizontal"}) do |f| %>
+          <%= devise_error_messages! %>
 
-        <div class="form-group">
-          <%= f.label :name, "姓名", :class => "col-sm-2 control-label" %>
+          <div class="form-group">
+            <%= f.label :name, "姓名", :class => "col-sm-2 control-label" %>
 
-          <div class="col-sm-10">
-            <%= f.text_field :name, :class => 'form-control' %>
-            <span>(我们推荐你使用真实姓名，这将更利于增加你声望)</span>
+            <div class="col-sm-10">
+              <%= f.text_field :name, :class => 'form-control' %>
+              <span>(我们推荐你使用真实姓名，这将更利于增加你声望)</span>
+            </div>
+
           </div>
 
-        </div>
+          <div class="form-group">
+            <%= f.label :nickname, "昵称", :class => "col-sm-2 control-label" %>
 
-        <div class="form-group">
-          <%= f.label :nickname, "昵称", :class => "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.text_field :nickname, :class => 'form-control' %>
+              <span>(只允许使用英文和数字，不能含有空格)</span>
+            </div>
 
-          <div class="col-sm-10">
-            <%= f.text_field :nickname, :class => 'form-control' %>
-            <span>(只允许使用英文和数字，不能含有空格)</span>
           </div>
 
-        </div>
+          <div class="form-group">
+            <%= f.label :email, :class => "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.email_field :email, :class => 'form-control' %>
+            </div>
 
-        <div class="form-group">
-          <%= f.label :email, :class => "col-sm-2 control-label" %>
-          <div class="col-sm-10">
-            <%= f.email_field :email, :class => 'form-control' %>
           </div>
 
-        </div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
 
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
+          <div class="form-group">
+            <%= f.label :password, "密码", :class => "col-sm-2 control-label" %>
 
-        <div class="form-group">
-          <%= f.label :password, "密码", :class => "col-sm-2 control-label" %>
-
-          <div class="col-sm-10">
-            <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
-            <span>(如果你不想更改请留空)</span>
+            <div class="col-sm-10">
+              <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+              <span>(如果你不想更改请留空)</span>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <%= f.label :password_confirmation, "确认密码", :class => "col-sm-2 control-label" %>
-          <div class="col-sm-10">
-            <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+          <div class="form-group">
+            <%= f.label :password_confirmation, "确认密码", :class => "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <%= f.label :current_password, "当前密码", :class => "col-sm-2 control-label" %>
+          <div class="form-group">
+            <%= f.label :current_password, "当前密码", :class => "col-sm-2 control-label" %>
 
-          <div class="col-sm-10">
-            <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control' %>
-            <span>(我们需要你的当前密码确认你更改)</span>
+            <div class="col-sm-10">
+              <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control' %>
+              <span>(我们需要你的当前密码确认你更改)</span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-danger">更新</button>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-danger">更新</button>
+            </div>
           </div>
-        </div>
 
-    <% end %>
-
-
-  </div>
-  <div class="col-md-3 avatar-box">
-    <h4>你的头像</h4>
-    <div>
-      <%= image_tag resource.avatar.url(:normal) %>
-      <%= form_for(resource, as: resource_name, url: update_avatar_path, html: {method: :put,id: "edit_avatar"}) do |f| %>
-      <%= f.file_field :avatar %>
-          <p>JPG, GIF 或PNG格式. 尺寸800K以内</p>
-
-          <button type="submit" class="btn btn-warning" name="edit_avatar">立即上传 </button>
       <% end %>
 
+
+    </div>
+    <div class="col-md-3 avatar-box">
+      <h4>你的头像</h4>
+
+      <div>
+        <%= image_tag resource.avatar.url(:normal) %>
+        <%= form_for(resource, as: resource_name, url: update_avatar_path, html: {method: :put, id: "edit_avatar"}) do |f| %>
+            <%= f.file_field :avatar %>
+            <p>JPG, GIF 或PNG格式. 尺寸800K以内</p>
+
+            <button type="submit" class="btn btn-warning" name="edit_avatar">立即上传</button>
+        <% end %>
+
+      </div>
     </div>
   </div>
 </div>
