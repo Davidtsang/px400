@@ -1,9 +1,16 @@
-
-  <div class="topbar">
-    <div class="container-xl">
-
-    </div>
+<% provide(:title ,"首页") %>
+<div class="topbar">
+<div class="container-fix explore-top">
+  <div class="row ">
+  <div class="col-md-4 col-md-offset-4">
+    <ul class="list-inline">
+    <li><a href="<%= static_pages_home_path %>" class="active">所有动态</a> </li>
+    <li><a href="<%= feed_works_path %>">作品</a> </li>
+  </ul>
   </div>
+  </div>
+</div>
+</div>
 
 <% if user_signed_in? %>
      <%= render 'shared/feed' %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :icodes
   get 'reports/index'
 
   post 'reports/create'
@@ -54,6 +55,9 @@ Rails.application.routes.draw do
 
   resources :works do
 
+    collection do
+      get 'feed' => "works#feed"
+    end
 
     member do
       #ajax like
@@ -81,7 +85,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'static_pages/home'
+  get 'home' =>"static_pages#home", as: "static_pages_home"
 
   get 'static_pages/about'
 

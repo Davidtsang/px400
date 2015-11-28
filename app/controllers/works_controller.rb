@@ -13,19 +13,32 @@ class WorksController < ApplicationController
 
   def likes
     @work = Work.find(params[:id])
-    @users = User.joins(:works_likes).where("works_likes.work_id =?" ,@work.id).paginate(page: params[:page])
+    @users = User.joins(:works_likes).where("works_likes.work_id =?", @work.id).paginate(page: params[:page])
 
   end
 
   def favorites
     @work = Work.find(params[:id])
-    @favorite_folders  = FavoriteFolder.joins(:favorites).where("favorites.work_id =?",@work.id).paginate(page: params[:page])
+    @favorite_folders = FavoriteFolder.joins(:favorites).where("favorites.work_id =?", @work.id).paginate(page: params[:page])
 
   end
 
   def reworks
     @work = Work.find(params[:id])
     @reworks = Work.where(:parent_work_id => @work.id).paginate(page: params[:page])
+
+  end
+
+  def feed
+
+    @sort = params[:sort]
+    @timescope = params[:timescope]
+    @is_original = params[:is_original]
+
+
+    @work =current_user.works.build
+    @works = current_user.work_feed_by_fliter(@sort, @timescope, @is_original).paginate(page: params[:page])
+
 
   end
 
@@ -208,7 +221,7 @@ class WorksController < ApplicationController
     #notify author
     work = Work.find(params[:id])
 
-    LikeWorkNotify.create(subject_id: current_user.id ,obj_id: params[:id], user_id:work.user_id )
+    LikeWorkNotify.create(subject_id: current_user.id, obj_id: params[:id], user_id: work.user_id)
 
     respond_to do |format|
       #format.html { redirect_to designers_all_path }

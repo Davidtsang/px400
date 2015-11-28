@@ -1,0 +1,33 @@
+<%= form_for(@icode) do |f| %>
+  <% if @icode.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@icode.errors.count, "error") %> prohibited this icode from being saved:</h2>
+
+      <ul>
+      <% @icode.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :is_used %><br>
+    <%= f.check_box :is_used %>
+  </div>
+  <div class="field">
+    <%= f.label :used_user_id %><br>
+    <%= f.number_field :used_user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

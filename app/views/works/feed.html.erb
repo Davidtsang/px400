@@ -1,0 +1,96 @@
+<% provide(:title, "首页") %>
+
+<div class="topbar">
+  <div class="container-xl explore-top">
+    <ul class="list-inline">
+      <li><a href="<%= static_pages_home_path %>" class="">所有动态</a></li>
+      <li><a href="<%= feed_works_path %>" class="active">作品:</a></li>
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= sort_name @sort %>
+          <i class="fa fa-angle-down"></i>
+        </a>
+        <ul class="dropdown-menu centerDropdown">
+          <% if @sort != nil %>
+              <li role="presentation"><a href="<%=url_for(params.except(:sort)) %>">最新的</a></li>
+          <% end %>
+
+          <% if @sort !="views" %>
+              <li role="presentation"><a href="<%= url_for(params.merge(sort: "views")) %>">最多浏览的</a></li>
+          <% end %>
+
+          <% if @sort !="works_likes" %>
+              <li role="presentation"><a href="<%= url_for(params.merge(sort: "works_likes")) %>">最多人赞的</a></li>
+          <% end %>
+
+          <% if @sort !="comments" %>
+              <li role="presentation"><a href="<%= url_for(params.merge(sort: "comments")) %>">最多评论的</a></li>
+          <% end %>
+
+          <% if @sort !="favorites" %>
+              <li role="presentation"><a href="<%= url_for(params.merge(sort: "favorites")) %>">最多收藏的</a></li>
+          <% end %>
+
+          <% if @sort !="repost" %>
+              <li role="presentation"><a href="<%= url_for(params.merge(sort: "repost")) %>">最多Rework的</a></li>
+          <% end %>
+
+          <% if @sort !="thanks" %>
+              <li role="presentation"><a href="<%= url_for(params.merge(sort: "thanks")) %>">最多感谢的</a></li>
+          <% end %>
+        </ul>
+      </li>
+
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= @is_original == "true" ? "原创作品" : "所有作品" %>
+          <i class="fa fa-angle-down"></i>
+        </a>
+        <ul class="dropdown-menu centerDropdown">
+          <% if @is_original == "true" %>
+              <li role="presentation"><a href="<%= url_for(params.merge(is_original: false)) %>">所有作品</a></li>
+              <% else %>
+          <li role="presentation"><a href="<%= url_for(params.merge(is_original: true)) %>">原创作品</a></li>
+        <% end %>
+
+              </ul>
+      </li>
+
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="<%=url_for(params.except(:timescope)) %>" role="button" aria-haspopup="true" aria-expanded="false"><%= timescope_name @timescope %>
+          <i class="fa fa-angle-down"></i>
+        </a>
+        <ul class="dropdown-menu centerDropdown">
+          <% if @timescope != nil %>
+              <li role="presentation"><a href="<%=url_for(params.except(:timescope)) %>">在所有时间段</a></li>
+          <% end %>
+          <% if @timescope != "day" %>
+          <li role="presentation"><a href="<%= url_for(params.merge(:timescope => "day")) %>">在过去的一天</a></li>
+          <% end %>
+          <% if @timescope != "week" %>
+              <li role="presentation"><a href="<%= url_for(params.merge(:timescope => "week")) %>">在过去的一周</a></li>
+          <% end %>
+          <% if @timescope != "month" %>
+          <li role="presentation"><a href="<%= url_for(params.merge(:timescope => "month")) %>">在过去的一个月</a></li>
+          <% end %>
+          <% if @timescope != "year" %>
+              <li role="presentation"><a href="<%= url_for(params.merge(:timescope => "year")) %>">在过去的一年</a></li><% end %>
+        </ul>
+      </li>
+
+
+    </ul>
+
+  </div>
+</div>
+
+<% if @works.any? %>
+    <div class="container-xl">
+      <div class="row">
+        <%= render @works %>
+      </div>
+      <div class="row">
+        <%= will_paginate @works, :page_links => false, next_label: "<i class='fa fa-angle-right fa-2x'></i>", previous_label: "<i class='fa fa-angle-left fa-2x'></i>" %>
+      </div>
+
+    </div>
+<% end %>
+

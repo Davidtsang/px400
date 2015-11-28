@@ -17,6 +17,7 @@
 
 $(document).on "page:change", ->
 
+  $("a.my-tool-tip").tooltip()
   #work label
   $('#autoWorkTag').autocomplete
     serviceUrl: '/tags/suggest?type=Label'

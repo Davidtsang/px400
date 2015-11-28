@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DesignerSNS</title>
+  <title><%= yield(:title) %> - 400px.net</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -21,7 +21,9 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        <li><a id="new-work-link" class="btn btn-primary " href="<%= new_work_path %>"><i class="fa fa-pencil"></i> 添加你的新作
 
+        </a> </li>
         <li><%= link_to "主页", static_pages_home_path %></li>
         <li><%= link_to "设计师", designers_all_path %></li>
         <li><%= link_to "发现", explore_path %></li>
@@ -30,9 +32,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-            <li><a id="new-work-link" class="btn btn-primary " href="<%= new_work_path %>"><i class="fa fa-pencil"></i> 添加你的新作
 
-            </a> </li>
 
             <li class="dropdown">
               <a href="#" id="nav-user-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag current_user.avatar.url(:mini), :class => 'avatar' %></i><%=  pm = pm_count %> <%= current_user.name %>
@@ -65,18 +65,29 @@
             <li><%= link_to "注册", new_user_registration_path %> </li>
             <li><%= link_to "<i class='fa fa-user'></i> 登录".html_safe, new_user_session_path %></li>
         <% end %>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group form-group-sm">
+            <input type="text" class="form-control" placeholder="搜索作品">
+          </div>
 
+        </form>
       </ul>
     </div>
     <!--/.nav-collapse -->
   </div>
 </nav>
 
+<% if flash.any? %>
+<% content =
+    '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'.html_safe %>
 
+    <% flash.each do |name, msg| -%>
 
-<% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: name %>
+    <%= content_tag :div, content + msg, class: "site-notice #{name} alert-dismissible alert", role: "alert" %>
 <% end -%>
+
+<% end %>
+
 <%= yield %>
 
 

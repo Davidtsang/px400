@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @icode.code %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @icode.user_id %>
+</p>
+
+<p>
+  <strong>Is used:</strong>
+  <%= @icode.is_used %>
+</p>
+
+<p>
+  <strong>Used user:</strong>
+  <%= @icode.used_user_id %>
+</p>
+
+<%= link_to 'Edit', edit_icode_path(@icode) %> |
+<%= link_to 'Back', icodes_path %>

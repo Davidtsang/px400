@@ -14,6 +14,14 @@ class User < ActiveRecord::Base
   validates_attachment :avatar,
                        :content_type => {:content_type => ["image/jpeg", "image/gif", "image/png"]}, size: {in: 0..800.kilobytes}
 
+  #ivite code
+  attr_accessor :icode
+
+  validates_each :icode, :on => :create do |record, attr, value|
+    record.errors.add attr, "无效。请输入正确的邀请码。" unless
+        value && value == Icode.where(code: value).first.to_s
+  end
+
   has_many :works_likes
   has_many :thanks
   has_many :favorite_folders
@@ -23,6 +31,7 @@ class User < ActiveRecord::Base
   has_many :blacklists
 
   has_many :notifications
+  has_many :icodes
 
   has_many :timelines, dependent: :destroy
 
@@ -93,6 +102,41 @@ class User < ActiveRecord::Base
 
   def user_feed
     Timeline.includes(:work).where("user_id = :user_id", user_id: id).order('created_at DESC')
+  end
+
+  def work_feed_by_fliter(sort = nil,timescope = nil , is_original = false)
+    sort_order ="created_at DESC"
+    timescope_where =""
+    is_original_where =""
+
+    #sort
+    if sort && sort != ""
+        sort_order = "works.#{sort}_count DESC"
+    end
+
+    #time
+    if timescope
+      if timescope == "week"
+        time_start = 1.week.ago.to_s(:db)
+      elsif timescope =="day"
+        time_start = 1.day.ago.to_s(:db)
+      elsif timescope =="year"
+        time_start = 1.year.ago.to_s(:db)
+      elsif timescope == "month"
+        time_start = 1.month.ago.to_s(:db)
+      end
+
+      timescope_where = "works.created_at > '#{time_start}' "
+    end
+
+    #is original
+    if is_original == "true"
+         is_original_where = "works.is_original == 't' "
+    end
+    following_ids = "SELECT followed_id FROM relationships
+WHERE follower_id = :user_id"
+    Work.unscoped.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).where(timescope_where).where(is_original_where).order(sort_order)
+
   end
 
   def feed

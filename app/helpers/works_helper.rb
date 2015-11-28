@@ -17,4 +17,38 @@ module WorksHelper
 
   end
 
+  #<li role="presentation"><a href="<%= url_for(params.merge(sort:"views")) %>">最多浏览的</a></li>
+  def sort_name(sort)
+    name = "最新的"
+    if sort == "views"
+      name = "最多人浏览的"
+    elsif sort == "comments"
+      name = "最多人评论的"
+    elsif sort == "works_likes"
+      name = "最多人赞的"
+    elsif sort == "favorites"
+      name = "最多人收藏的"
+    elsif sort == "repost"
+      name = "最多人Rework的"
+    elsif sort == "thanks"
+      name = "最多人感谢的"
+    end
+    name
+  end
+
+  def timescope_name(timescope)
+    name ="在所有时间段"
+
+    if timescope == "day"
+      name = "在过去的一天"
+    elsif timescope == "week"
+      name = "在过去的一周"
+    elsif timescope == "month"
+      name = "在过去的一个月"
+    elsif timescope == "year"
+      name = "在过去的一年"
+    end
+
+    name
+  end
 end
