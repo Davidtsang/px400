@@ -18,4 +18,5 @@ class Work < ActiveRecord::Base
   has_many :timelines , dependent: :destroy
   has_many :works_tags
 
+  self.per_page = 60
 end

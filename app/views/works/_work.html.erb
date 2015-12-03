@@ -4,7 +4,13 @@
     <a class="work-item-image" href="<%= work_path(work) %>">
       <%= image_tag work.image.url(:small) %>
     </a>
+
+    <% if  work.is_original %>
+        <a class='my-tool-tip is_original pull-left' data-toggle="tooltip" data-placement="top" title="原创作品"> <i class="fa fa-pencil-square" ></i> </a>
+    <% end %>
     <ul class="list-inline">
+
+
       <li><i class="fa fa-thumbs-up"></i> <%= work.works_likes_count %></li>
       <li><i class="fa fa-commenting"></i> <%= work.comments_count %></li>
 

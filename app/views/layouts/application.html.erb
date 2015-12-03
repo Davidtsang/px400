@@ -21,9 +21,10 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a id="new-work-link" class="btn btn-primary " href="<%= new_work_path %>"><i class="fa fa-pencil"></i> 添加你的新作
+        <li>
+          <a id="new-work-link" class="btn btn-primary " href="<%= new_work_path %>"><i class="fa fa-pencil"></i> 添加你的新作
 
-        </a> </li>
+          </a></li>
         <li><%= link_to "主页", static_pages_home_path %></li>
         <li><%= link_to "设计师", designers_all_path %></li>
         <li><%= link_to "发现", explore_path %></li>
@@ -35,26 +36,26 @@
 
 
             <li class="dropdown">
-              <a href="#" id="nav-user-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag current_user.avatar.url(:mini), :class => 'avatar' %></i><%=  pm = pm_count %> <%= current_user.name %>
+              <a href="#" id="nav-user-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= image_tag current_user.avatar.url(:mini), :class => 'avatar' %></i><%= pm = pm_count %> <%= current_user.name %>
                 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li>
                   <a href="<%= "/designers/#{current_user.id}" %>"><i class="fa fa-home "></i> 我的主页</a>
-               </li>
+                </li>
                 <li>
                   <a href="<%= favorite_folders_path %>"><i class="fa fa-star "></i> 收藏夹 </a>
-                   </li>
+                </li>
                 <li>
-                  <a href="<%= messages_path %>" ><i class="fa fa-envelope"></i> 私信 <%=  pm %></a>
-                   </li>
+                  <a href="<%= messages_path %>"><i class="fa fa-envelope"></i> 私信 <%= pm %></a>
+                </li>
 
                 <li role="separator" class="divider"></li>
                 <li>
-                  <a href="<%=  edit_user_registration_path %>"><i class="fa fa-cog"></i> 会员设置 </a>
-                 </li>
+                  <a href="<%= edit_user_registration_path %>"><i class="fa fa-cog"></i> 会员设置 </a>
+                </li>
                 <li>
                   <a href="<%= destroy_user_session_path %>"><i class="fa fa-power-off"></i> 退出</a>
-                   </li>
+                </li>
 
 
               </ul>
@@ -65,12 +66,15 @@
             <li><%= link_to "注册", new_user_registration_path %> </li>
             <li><%= link_to "<i class='fa fa-user'></i> 登录".html_safe, new_user_session_path %></li>
         <% end %>
+        <!--
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group form-group-sm">
             <input type="text" class="form-control" placeholder="搜索作品">
           </div>
 
         </form>
+        -->
+
       </ul>
     </div>
     <!--/.nav-collapse -->
@@ -78,13 +82,13 @@
 </nav>
 
 <% if flash.any? %>
-<% content =
-    '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'.html_safe %>
+    <% content =
+               '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'.html_safe %>
 
     <% flash.each do |name, msg| -%>
 
-    <%= content_tag :div, content + msg, class: "site-notice #{name} alert-dismissible alert", role: "alert" %>
-<% end -%>
+        <%= content_tag :div, content + msg, class: "site-notice #{name} alert-dismissible alert", role: "alert" %>
+    <% end -%>
 
 <% end %>
 
@@ -95,29 +99,39 @@
 <footer>
 
   <div class="container-fluid">
-    <div class="pull-left">
-      <img src="<%= asset_path "logo-40pt-g.png" %>">
-      <h4>中国设计师与艺术家的展示交流空间</h4>
+    <div class="row">
+      <div class="col-md-6">
+        <img src="<%= asset_path "logo-40pt-g.png" %>">
+        <h4>中国设计师与艺术家的展示交流空间</h4>
 
-      <p>Copyright © 400px.net. 所以作品的版权归其作者所有.</p>
+        <p>Copyright © 400px.net. 所以作品的版权归其作者所有.</p>
+      </div>
+
+      <div class="col-md-6 links-etc">
+        <ul class="list-inline">
+
+          <li><%= mail_to "advise@400px.net", "商务合作" %></li>
+          <li><%= mail_to "b@400px.net", "商务合作" %></li>
+          <li><%= mail_to "webadmin@400px.net", "网站管理员" %></li>
+          <li><%= link_to '开发者Blog', "http://www.kejike.com/davidtsang" %></li>
+          <li><%= link_to '关于', static_pages_about_path %></li>
+        </ul>
+        <ul class="list-unstyled tiny-text">
+
+          <li><span>* 建议安装方正兰亭黑或冬青黑体获得更好的浏览效果</span></li>
+          <li><span>* 建议使用Goolge Chrome、Firefox或IE9.0以上版本浏览器浏览本网站</span></li>
+          <li class="footer-icon">
+            <i class="fa fa-weixin fa-2x"></i><i class="fa fa-weibo fa-2x"></i><i class="fa fa-arrow-circle-o-up fa-2x"></i>
+          </li>
+
+
+        </ul>
+      </div>
     </div>
-    <div class="pull-right">
-      <ul class="list-inline">
-        <li>400px使用指南</li>
-        <li>建议反馈</li>
-        <li>商务合作</li>
-        <li>网站管理员</li>
-        <li>开发者Blog</li>
-      </ul>
-      <ul class="list-unstyled">
-        <li><span>* 建议使用Goolge Chrome、Firefox或IE9.0以上版本浏览器浏览本网站</span></li>
-        <li><span>* 建议安装方正兰亭黑或冬青黑体获得更好的浏览效果</span></li>
-        <li><span>Powered by Ruby on Rais and Bootstrap</span></li>
-        <li><span>Version 0.1 beta</span></li>
-      </ul>
-    </div>
+
 
   </div>
+  <hr>
 
 </footer>
 </body>

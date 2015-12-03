@@ -71,6 +71,9 @@ class WorksController < ApplicationController
   end
 
   def show
+
+
+
     if params[:flash]=="like" && params[:timeline_user_id]
       @timeline_user = User.find(params[:timeline_user_id])
       @timeline_flash = "赞了这个帖子."
@@ -116,6 +119,12 @@ class WorksController < ApplicationController
     @parent_work = nil
     if @work.parent_work_id != nil
       @parent_work = Work.find(@work.parent_work_id)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+
     end
   end
 

@@ -24,6 +24,10 @@ $(document).on "page:change", ->
     onSelect: (suggestion) ->
 
 
+  #$('.feed_link').click ->
+
+    #$('#workModal').modal('show')
+
 
   #send ajax to pv count
 
@@ -127,6 +131,7 @@ $(document).on "page:change", ->
 
 
     return false
+
 
 
   #thank -1

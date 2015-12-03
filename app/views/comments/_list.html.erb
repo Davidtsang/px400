@@ -6,7 +6,7 @@
 
 
       <li id="comment_<%= comment.id %>" class="comment">
-        <h4><%= image_tag comment.user.avatar.url(:mini), class: "avatar" %> <%= comment.user.name %></h4>
+        <h5><%= image_tag comment.user.avatar.url(:mini), class: "avatar" %> <%= comment.user.name %></h5>
 
         <div class="comment-body">
           <%= comment.content %>

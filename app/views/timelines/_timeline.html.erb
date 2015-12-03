@@ -2,7 +2,7 @@
 
   <div id="timeline_<%= timeline.work_id %>" class="work-item-frame">
 
-    <a class="work-item-image" href="<%= work_path(timeline.work_id, flash: timeline.act, timeline_user_id: timeline.user_id) %>">
+    <a class="work-item-image feed_link" href="<%= work_path(timeline.work_id, flash: timeline.act, timeline_user_id: timeline.user_id) %>">
       <%= image_tag timeline.work.image.url(:small) %>
     </a>
     <% if timeline.work.is_original %>
@@ -16,7 +16,7 @@
       <li><i class="fa fa-dot-circle-o"></i> <%= timeline.work.views_count %></li>
     </ul>
     <div class="work-item-frame-info">
-      <a href="<%= work_path(timeline.work_id, flash: timeline.act, timeline_user_id: timeline.user_id) %>" class="fill-div">
+      <a href="<%= work_path(timeline.work_id, flash: timeline.act, timeline_user_id: timeline.user_id) %>" class="fill-div feed_link">
 
         <h5 class="title"><%= timeline.work.title %></h5>
         <span class="description"><%= truncate(timeline.work.desciption, length: 100) %></span><br>

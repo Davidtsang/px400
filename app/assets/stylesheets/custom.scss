@@ -96,7 +96,9 @@ ol{
   //border-bottom: solid 1px lighten($purple, 50%);
   //border-top: solid 1px lighten($purple, 50%);
 }
-
+.tiny-text{
+  font-size: 11px;
+}
 .center{
   //position: relative;
   margin-top: 30px;
@@ -150,7 +152,29 @@ body {
 .show-i {
   display: inline;
 }
+.modal-work {
+  /* new custom width */
+  width: 910px;
 
+
+}
+
+#workModal{
+  //width: 840px;
+
+  border-radius: 3px;
+  .modal-header{
+    border-bottom: 0px;
+  }
+  .modal-body{
+    padding: 30px 58px;
+  }
+  .modal-content{
+    background-color: $siteGrey;
+   padding: 10px 15px;
+
+  }
+}
 .badge {
 
   margin-top: -12px;
@@ -210,11 +234,7 @@ hr {
     color: $siteGreyMiddle;
   }
 }
-.repost-org-list{
-  li{
-    padding: 5px 0px;
-  }
-}
+
 
 .work-desc{
   font-size: 14px;
@@ -282,18 +302,35 @@ hr {
 
 
 }
+.users-more-domains{
+
+
+
+ .dropdown-menu{
+   padding: 10px;
+   left: -280px;
+   li{
+     font-size: 12px;
+     margin-bottom: 5px;
+
+   }
+ }
+}
 .more-domains{
   margin-top: -20px ;
 }
 .domain-list{
-  background-color: $siteGreyLight;
+  @extend .simple-shadow;
+  background-color: #ffffff;
   border-radius: 3px ;
   padding: 15px;
   margin-top: 15px ;
   margin-bottom: 30px;
   a{
     color: $siteGreyDark;
+    font-size: 12px;
   }
+  #border: 1px solid black;
 }
 .profile {
   margin-top: 30px;
@@ -451,16 +488,47 @@ hr {
     padding: 5px 10px !important;
     color: $siteGreyMiddle;
 }
-.more-works{
-  margin-top: 15px;
-  padding-top: 15px;
-  padding-left: 15px;
-  border-top: 1px solid $siteGreyLight;
-  img{
-    margin-top:20px;
-    margin-right: 20px;
+.image-frame-100{
+  background-color: #ffffff;
+  padding: 10px;
+  width: 122px;
+  height: 96px;
+  @extend .simple-shadow;
+}
+.underline-a{
+  text-decoration: underline;
+}
+
+.org-work-info{
+  .image-frame-100{
+    @extend .pull-left;
+    margin-right: 10px;
 
   }
+
+  .avatar{
+    @extend .pull-left;
+    margin-right: 10px;
+  }
+  padding-bottom: 15px;
+
+}
+.more-works{
+  margin-top: 10px;
+  padding-top: 10px;
+
+  border-top: 1px solid $siteGreyLight;
+
+  .image-frame{
+    @extend .image-frame-100;
+
+    @extend  .pull-left;
+
+
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
 }
 .comment-form{
   //background-color: lightyellow;
@@ -469,6 +537,9 @@ hr {
 }
 .timeline-flash{
   margin-bottom: 15px;
+  border-bottom: 1px solid $siteGreyLight;
+  padding-bottom: 10px;
+
 }
 .fa-2x-s {
   font-size: 18px;
@@ -506,7 +577,7 @@ hr {
       padding-left: 0px;
     }
   }
-  margin-top: 30px;
+  //margin-top: 30px;
   //background-color: gold;
 }
 
@@ -531,13 +602,19 @@ hr {
 
   }
 }
-
+.simple-shadow{
+  border-left: #E9E9E9 1px solid;
+  border-right: #E9E9E9 1px solid;
+  border-bottom: #DDD 1px solid;
+}
 .work-image {
   margin: 30px 0px;
   width: 460px;
   border-radius: 3px;
   padding: 30px;
   background-color: white;
+  @extend .simple-shadow;
+
 }
 
 .work-item-frame {
@@ -768,14 +845,26 @@ a.fill-div {
 
 //------footer
 footer {
+
+  a{
+    color: $siteGreyDark;
+  }
+  .footer-icon{
+    font-size: 12px;
+
+  }
+  i{
+    margin-top: 10px;
+    margin-left: 10px;
+  }
   margin-top: 60px;
   font-size: 12px;
   border-top: solid 1px $siteGreyLight;
   color: $siteGreyMiddle;
-  height: 160px;
+
   background-color: white;
-  padding: 25px ;
-  .pull-right{
+  padding: 25px 10px  ;
+  .links-etc{
     text-align: right;
   }
 }

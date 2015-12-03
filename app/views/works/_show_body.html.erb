@@ -1,0 +1,215 @@
+<div class="row">
+  <div class="col-md-12 work-header">
+    <div class="work-header-inner">
+
+      <% if @timeline_flash %>
+          <div class="timeline-flash">
+            <%= image_tag @timeline_user.avatar.url(:mini), class: "avatar" %> <%= @timeline_user.name %> <%= @timeline_flash %>
+          </div>
+
+      <% end %>
+
+      <div class="pull-left user-avatar"><%= image_tag @work.user.avatar.url(:medium), :class => 'avatar' %></div>
+      <div>
+        <div class="title"><h4><%= @work.title %></h4></div>
+        <div class="pub-info">
+          <ul class="list-inline">
+            <li><%= link_to @work.user.name, "/designers/#{@work.user.id}" %>
+              <% if @work.work_type=="re" %>
+                  转发自 <%= link_to @parent_work.title, work_path(@work.parent_work_id) %>
+              <% else %>
+                  发表
+              <% end %>
+            </li>
+            <li><%= @work.updated_at.localtime.to_date %> 更新</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 work-box">
+
+
+    <div class="work-image">
+      <%= image_tag @work.image.url(:sd) %>
+    </div>
+
+    <div class="work-desc">
+      <%= markdown @work.desciption %>
+    </div>
+    <% if @work.work_type=="re" %>
+        <hr>
+        <div class="org-work-info">
+        <h4>原作信息</h4>
+        <a href="<%= work_path(@parent_work) %>">
+          <div class="image-frame-100">
+          <%= image_tag @parent_work.image(:small) ,width: 100, height: 75 %></a>
+        </div>
+        <ul class="list-unstyled repost-org-list">
+
+          <li><h5><%= image_tag @parent_work.user.avatar.url(:mini), class: "avatar" %></h5> <b>原作者：</b><%= link_to @parent_work.user.name, "/designers/#{@parent_work.user.id}" %> @<%= @parent_work.updated_at.localtime.to_date %></li>
+
+
+          <li><a href="<%= work_path(@parent_work) %>" class="underline-a"> <%= @parent_work.title %></a></li>
+          <li> <%= @parent_work.desciption %></li>
+        </ul>
+        </div>
+    <% end %>
+
+    <div class="comments">
+
+      <!--//COMENTLIST-->
+      <% if @work.comments.any? %>
+
+          <div class="comments_header">
+            <h4><%= @work.comments.count %>个回应</h4>
+          </div>
+          <div id="commentsList">
+            <% @comments = @work.comments %>
+            <%= render "comments/list" %>
+          </div>
+      <% else %>
+          <div class="comments_header">
+            <div id="commentsList">
+              </div>
+          </div>
+      <% end %>
+      <div class="comment-form">
+        <%= form_for(Comment.new, remote: true, method: :post) do |f| %>
+            <div class="form-group">
+              <label><%= current_user.name %>, 你可以添加一条评论</label><em>（最长不超过1000个字符）</em>
+              <%= f.text_area :content, :class => "form-control", rows: 4 %>
+              <%= f.hidden_field :work_id, value: @work.id %>
+
+            </div>
+            <%= f.submit "添加评论", class: "btn btn-default" %>
+        <% end %>
+      </div>
+    </div>
+
+    <!--END TAG LIST-->
+    <% if current_user?(@work.user_id) %>
+        <div>
+          <h5><i class="fa fa-gear"></i> 作者控制台</h5>
+          <ul class="list-inline">
+            <li><a href="<%= edit_work_path(@work) %>"><i class="fa fa-edit "></i> 编辑</a></li>
+            <li><a href="<%= edit_tags_work_path(@work) %>"><i class="fa fa-tags "></i> 编辑标签</a></li>
+
+            <li>
+              <a href="<%= work_path(@work) %>" data-method="delete" data-confirm="你确定要删除这个作品？"><i class="fa fa-remove  "></i>
+                删除</a></li>
+            </li>
+          </ul>
+        </div>
+    <% end %>
+
+  </div>
+  <div class="col-md-4 work-sider">
+    <div class="act-box">
+      <div class="act-item" id="like_form">
+        <%= render "works/like_form" %> </div>
+      <div class="act-item">
+        <%= render "works/thank_form" %>
+        <span class="pull-right"><span id="thanks-count"><%= @work.thanks_count %></span> 人已感谢</span></div>
+      <div class="act-item"><i class="fa fa-dot-circle-o  fa-2x-s"></i><%= @work.views_count %> 次查看</div>
+      <div class="act-item">
+        <a id="favorite-act" href="<%= favorite_folders_path(work_id: @work.id) %>" data-remote="true"><i class="fa fa-star fa-2x-s"></i>
+          收藏</a> <span class="pull-right"><a href="<%= favorites_work_path(@work) %>"> <%= @work.favorites_count %>
+        个收藏</a> </span>
+      </div>
+
+      <!--//favorite dialog-->
+      <!-- Modal -->
+      <div class="modal fade" id="favoriteModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">添加到收藏夹</h4>
+            </div>
+            <div class="modal-body" id="favoriteListBox">
+
+            </div>
+            <div class="modal-footer">
+              <a href="<%= new_favorite_folder_path(work_id: @work.id) %>" class="pull-left" data-remote="true"> +
+                <span class="small">创建一个新收藏夹</span> </a>
+              <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--//end favorite -->
+      <div class="act-item">
+
+
+        <a id="repost-act" href="#"><i class="fa fa-refresh fa-2x-s"></i> 转发</a>
+        <span class="pull-right"><a href="<%= reworks_work_path %>"> <%= @work.repost_count %> 次转发</a></span>
+      </div>
+    </div>
+
+    <!--//favorite dialog-->
+    <!-- Modal -->
+    <div class="modal fade" id="repostModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">转发</h4>
+          </div>
+          <div class="modal-body">
+            <div id="repostFormBody">
+              <%= render "works/new_repost_form", work: current_user.works.new, work_id: @work.id %>
+            </div>
+            <div class="ref-info">
+              <h4>原作品信息</h4>
+              <ul class="list-unstyled repost-org-list">
+                <li> <%= image_tag @work.image.url(:small)  %></li>
+                <li> <%= image_tag @work.user.avatar.url(:mini), class: "avatar" %></li>
+                <li> <%= link_to @work.user.name, "designers/#{@work.user.id}" %></li>
+                <li><b>日期:</b> <%= @work.updated_at.localtime.to_date %></li>
+                <li><b>标题:</b> <%= @work.title %></li>
+                <li><b>描述:</b> <%= @work.desciption %></li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button form="repost_work_<%= @work.id %>" type="submit" class="btn btn-primary" id="repostSubimt">转发</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--//end favorite -->
+
+    <!--TAG LIST-->
+    <div class="work-tags">
+      <h5>标签</h5>
+      <% if @work.works_tags.any? %>
+          <% @work.works_tags.each do |users_tag| %>
+
+              <label class="tag">
+                <a href="/designers/<%= @work.user_id %>/tags/<%= users_tag.tag.id %>"> <%= users_tag.tag.name %></a></label>
+          <% end %>
+      <% else %>
+          <em>没有任何标签.</em>
+      <% end %>
+    </div>
+
+    <div class="more-works">
+      <h5>更多<%= @work.user.name %>的动态</h5>
+      <% @more_works.each do |mw| %>
+          <div class="image-frame">
+            <a href="<%= work_path(mw.work_id) %>">
+              <%= image_tag mw.work.image.url(:small), :width => 100, :height => 75 %>
+            </a>
+          </div>
+      <% end %>
+    </div>
+
+
+  </div>
+</div>
