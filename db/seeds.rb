@@ -60,11 +60,18 @@ fake_skills.each do |t|
   Skill.create(name: t)
 end
 
+icode =Icode.new
+icode.generate_code
+icode.save
+
 User.create!(name: "Example User",
              email: "123@kejike.com",
              location: "San Francisco, CA",
              password: "12345678",
+             user_role: "admin",
+             icode: icode.code,
              password_confirmation: "12345678")
+
 
 skills = Skill.all.to_ary
 
@@ -74,18 +81,25 @@ skills = Skill.all.to_ary
   password = "12345678"
   location= "#{Faker::Address.city}, #{Faker::Address.state}"
   domain_id = rand(50)
+
+  icode =Icode.new
+  icode.generate_code
+  icode.save
+
   user = User.create!(name: name,
-               email: email,
-               password: password,
-               domain_1_id:domain_id,
-               location: location,
-               password_confirmation: password)
+                      email: email,
+                      password: password,
+                      domain_1_id: domain_id,
+                      location: location,
+                      user_role: "artist",
+                      icode: icode.code,
+                      password_confirmation: password)
 
   #random a 1~5 skills
   skills_number = rand(5)
 
   while skills_number > 0
-    UsersTag.create(user_id: user.id , tag_id: skills[rand(skills.count)].id )
+    UsersTag.create(user_id: user.id, tag_id: skills[rand(skills.count)].id)
     skills_number -= 1
 
   end
@@ -95,22 +109,34 @@ users = User.order(:created_at).take(7)
 
 labels = Label.all.to_ary
 
+
 50.times do
 
   users.each do |user|
-    image  = File.open(Dir.glob(File.join(Rails.root, 'public/fake-image/', '*')).sample)
+    image = File.open(Dir.glob(File.join(Rails.root, 'public/fake-image/', '*')).sample)
     desciption = Faker::Lorem.sentence(7)
     title = Faker::Lorem.sentence(4)
     domain_id = rand(50)
     work =user.works.create!(desciption: desciption, image: image, title: title, domain_id: domain_id)
     #timeline
-    Timeline.create(user_id:user.id , work_id:work.id, act:"new")
+    Timeline.create(user_id: user.id, work_id: work.id, act: "new")
+    image.close
 
     #add 1~5 tags to work
     tags_number = rand(5)
 
     while tags_number > 0
-      WorksTag.create(work_id:work.id , tag_id:labels[rand(labels.count)].id )
+      tag_id = labels[rand(labels.count)].id
+
+      if WorksTag.where(work_id: work.id, tag_id: tag_id).any?
+        loop do
+          tag_id = labels[rand(labels.count)].id
+          break unless WorksTag.where(work_id: work.id, tag_id: tag_id).any?
+
+        end
+      end
+
+      WorksTag.create(work_id: work.id, tag_id: tag_id)
       tags_number -= 1
 
     end

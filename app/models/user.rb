@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   validates_each :icode, :on => :create do |record, attr, value|
     record.errors.add attr, "无效。请输入正确的邀请码。" unless
-        value && value == Icode.where(code: value).first.to_s
+        value && value == Icode.where(code: value).first.code
   end
 
   has_many :works_likes
