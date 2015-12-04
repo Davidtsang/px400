@@ -1,6 +1,6 @@
 class IcodesController < ApplicationController
   before_action :set_icode, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /icodes
   # GET /icodes.json
   def index

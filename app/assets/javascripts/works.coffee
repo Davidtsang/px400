@@ -45,6 +45,9 @@ $(document).on "page:change", ->
 
 
   #get path
+  ajaxErrorHandle =(jqXHR) ->
+    if jqXHR.status == 401
+      window.location.replace("/users/sign_in")
   #pathname = window.location.pathname
   $("#favorite-act").click ->
     #alert('ok')
@@ -66,7 +69,7 @@ $(document).on "page:change", ->
       dateType: 'json'
       data:{}
       error: (jqXHR, textStatus, errorThrown) ->
-        alert textStatus
+        ajaxErrorHandle(jqXHR)
       success: (data, textStatus, jqXHR) ->
         if data["success"] == true
           #alert 'ok!'
@@ -90,7 +93,7 @@ $(document).on "page:change", ->
       dateType: 'json'
       data:{}
       error: (jqXHR, textStatus, errorThrown) ->
-        alert textStatus
+        ajaxErrorHandle(jqXHR)
       success: (data, textStatus, jqXHR) ->
         if data["success"] == true
           #alert 'ok!'
@@ -113,7 +116,7 @@ $(document).on "page:change", ->
       dateType: 'json'
       data:{}
       error: (jqXHR, textStatus, errorThrown) ->
-        alert textStatus
+        ajaxErrorHandle(jqXHR)
       success: (data, textStatus, jqXHR) ->
         if data["success"] == true
           #alert 'ok!'
@@ -141,7 +144,7 @@ $(document).on "page:change", ->
       dateType: 'json'
       data:{}
       error: (jqXHR, textStatus, errorThrown) ->
-        alert textStatus
+        ajaxErrorHandle(jqXHR)
       success: (data, textStatus, jqXHR) ->
         if data["success"] == true
           #alert 'ok!'

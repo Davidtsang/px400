@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
 
-
+  before_action :authenticate_user!
   #create Lable
   def create_label
     tag = where_or_create_tag(Label, tags_params[:name])

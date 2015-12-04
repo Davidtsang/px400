@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:like ,:create]
+  before_action :authenticate_user!, only: [:like ,:create, :unlike , :remove]
 
   def index
     work_id = params[:work_id]

@@ -42,14 +42,16 @@
     <% if @work.work_type=="re" %>
         <hr>
         <div class="org-work-info">
-        <h4>原作信息</h4>
-        <a href="<%= work_path(@parent_work) %>">
-          <div class="image-frame-100">
-          <%= image_tag @parent_work.image(:small) ,width: 100, height: 75 %></a>
+          <h4>原作信息</h4>
+          <a href="<%= work_path(@parent_work) %>">
+            <div class="image-frame-100">
+            <%= image_tag @parent_work.image(:small), width: 100, height: 75 %></a>
         </div>
         <ul class="list-unstyled repost-org-list">
 
-          <li><h5><%= image_tag @parent_work.user.avatar.url(:mini), class: "avatar" %></h5> <b>原作者：</b><%= link_to @parent_work.user.name, "/designers/#{@parent_work.user.id}" %> @<%= @parent_work.updated_at.localtime.to_date %></li>
+          <li><h5><%= image_tag @parent_work.user.avatar.url(:mini), class: "avatar" %></h5>
+            <b>原作者：</b><%= link_to @parent_work.user.name, "/designers/#{@parent_work.user.id}" %>
+            @<%= @parent_work.updated_at.localtime.to_date %></li>
 
 
           <li><a href="<%= work_path(@parent_work) %>" class="underline-a"> <%= @parent_work.title %></a></li>
@@ -73,20 +75,23 @@
       <% else %>
           <div class="comments_header">
             <div id="commentsList">
-              </div>
+            </div>
           </div>
       <% end %>
-      <div class="comment-form">
-        <%= form_for(Comment.new, remote: true, method: :post) do |f| %>
-            <div class="form-group">
-              <label><%= current_user.name %>, 你可以添加一条评论</label><em>（最长不超过1000个字符）</em>
-              <%= f.text_area :content, :class => "form-control", rows: 4 %>
-              <%= f.hidden_field :work_id, value: @work.id %>
+      <% if current_user %>
+          <div class="comment-form">
+            <%= form_for(Comment.new, remote: true, method: :post) do |f| %>
+                <div class="form-group">
+                  <label><%= current_user.name %>, 你可以添加一条评论</label><em>（最长不超过1000个字符）</em>
+                  <%= f.text_area :content, :class => "form-control", rows: 4 %>
+                  <%= f.hidden_field :work_id, value: @work.id %>
 
-            </div>
-            <%= f.submit "添加评论", class: "btn btn-default" %>
-        <% end %>
-      </div>
+                </div>
+                <%= f.submit "添加评论", class: "btn btn-default" %>
+            <% end %>
+          </div>
+      <% end %>
+
     </div>
 
     <!--END TAG LIST-->
@@ -105,111 +110,113 @@
         </div>
     <% end %>
 
-  </div>
-  <div class="col-md-4 work-sider">
-    <div class="act-box">
-      <div class="act-item" id="like_form">
-        <%= render "works/like_form" %> </div>
-      <div class="act-item">
-        <%= render "works/thank_form" %>
-        <span class="pull-right"><span id="thanks-count"><%= @work.thanks_count %></span> 人已感谢</span></div>
-      <div class="act-item"><i class="fa fa-dot-circle-o  fa-2x-s"></i><%= @work.views_count %> 次查看</div>
-      <div class="act-item">
-        <a id="favorite-act" href="<%= favorite_folders_path(work_id: @work.id) %>" data-remote="true"><i class="fa fa-star fa-2x-s"></i>
-          收藏</a> <span class="pull-right"><a href="<%= favorites_work_path(@work) %>"> <%= @work.favorites_count %>
-        个收藏</a> </span>
-      </div>
-
-      <!--//favorite dialog-->
-      <!-- Modal -->
-      <div class="modal fade" id="favoriteModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-sm" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">添加到收藏夹</h4>
-            </div>
-            <div class="modal-body" id="favoriteListBox">
-
-            </div>
-            <div class="modal-footer">
-              <a href="<%= new_favorite_folder_path(work_id: @work.id) %>" class="pull-left" data-remote="true"> +
-                <span class="small">创建一个新收藏夹</span> </a>
-              <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--//end favorite -->
-      <div class="act-item">
-
-
-        <a id="repost-act" href="#"><i class="fa fa-refresh fa-2x-s"></i> 转发</a>
-        <span class="pull-right"><a href="<%= reworks_work_path %>"> <%= @work.repost_count %> 次转发</a></span>
-      </div>
+    </div>
+<div class="col-md-4 work-sider">
+  <div class="act-box">
+    <div class="act-item" id="like_form">
+      <%= render "works/like_form" %> </div>
+    <div class="act-item">
+      <%= render "works/thank_form" %>
+      <span class="pull-right"><span id="thanks-count"><%= @work.thanks_count %></span> 人已感谢</span></div>
+    <div class="act-item"><i class="fa fa-dot-circle-o  fa-2x-s"></i><%= @work.views_count %> 次查看</div>
+    <div class="act-item">
+      <a id="favorite-act" href="<%= favorite_folders_path(work_id: @work.id) %>" data-remote="true"><i class="fa fa-star fa-2x-s"></i>
+        收藏</a> <span class="pull-right"><a href="<%= favorites_work_path(@work) %>"> <%= @work.favorites_count %>
+      个收藏</a> </span>
     </div>
 
     <!--//favorite dialog-->
     <!-- Modal -->
-    <div class="modal fade" id="repostModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog " role="document">
+    <div class="modal fade" id="favoriteModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">转发</h4>
+            <h4 class="modal-title" id="myModalLabel">添加到收藏夹</h4>
           </div>
-          <div class="modal-body">
-            <div id="repostFormBody">
-              <%= render "works/new_repost_form", work: current_user.works.new, work_id: @work.id %>
-            </div>
-            <div class="ref-info">
-              <h4>原作品信息</h4>
-              <ul class="list-unstyled repost-org-list">
-                <li> <%= image_tag @work.image.url(:small)  %></li>
-                <li> <%= image_tag @work.user.avatar.url(:mini), class: "avatar" %></li>
-                <li> <%= link_to @work.user.name, "designers/#{@work.user.id}" %></li>
-                <li><b>日期:</b> <%= @work.updated_at.localtime.to_date %></li>
-                <li><b>标题:</b> <%= @work.title %></li>
-                <li><b>描述:</b> <%= @work.desciption %></li>
-              </ul>
-            </div>
+          <div class="modal-body" id="favoriteListBox">
+
           </div>
           <div class="modal-footer">
-            <button form="repost_work_<%= @work.id %>" type="submit" class="btn btn-primary" id="repostSubimt">转发</button>
+            <a href="<%= new_favorite_folder_path(work_id: @work.id) %>" class="pull-left" data-remote="true"> +
+              <span class="small">创建一个新收藏夹</span> </a>
+            <button type="button" class="btn btn-warning" data-dismiss="modal">关闭</button>
+
           </div>
         </div>
       </div>
     </div>
     <!--//end favorite -->
+    <div class="act-item">
 
-    <!--TAG LIST-->
-    <div class="work-tags">
-      <h5>标签</h5>
-      <% if @work.works_tags.any? %>
-          <% @work.works_tags.each do |users_tag| %>
 
-              <label class="tag">
-                <a href="/designers/<%= @work.user_id %>/tags/<%= users_tag.tag.id %>"> <%= users_tag.tag.name %></a></label>
-          <% end %>
-      <% else %>
-          <em>没有任何标签.</em>
-      <% end %>
+      <a id="repost-act" href="#"><i class="fa fa-refresh fa-2x-s"></i> 转发</a>
+      <span class="pull-right"><a href="<%= reworks_work_path %>"> <%= @work.repost_count %> 次转发</a></span>
     </div>
-
-    <div class="more-works">
-      <h5>更多<%= @work.user.name %>的动态</h5>
-      <% @more_works.each do |mw| %>
-          <div class="image-frame">
-            <a href="<%= work_path(mw.work_id) %>">
-              <%= image_tag mw.work.image.url(:small), :width => 100, :height => 75 %>
-            </a>
-          </div>
-      <% end %>
-    </div>
-
-
   </div>
+
+  <!--//favorite dialog-->
+  <% if current_user %>
+  <!-- Modal -->
+  <div class="modal fade" id="repostModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">转发</h4>
+        </div>
+        <div class="modal-body">
+          <div id="repostFormBody">
+            <%= render "works/new_repost_form", work: current_user.works.new, work_id: @work.id %>
+          </div>
+          <div class="ref-info">
+            <h4>原作品信息</h4>
+            <ul class="list-unstyled repost-org-list">
+              <li> <%= image_tag @work.image.url(:small) %></li>
+              <li> <%= image_tag @work.user.avatar.url(:mini), class: "avatar" %></li>
+              <li> <%= link_to @work.user.name, "designers/#{@work.user.id}" %></li>
+              <li><b>日期:</b> <%= @work.updated_at.localtime.to_date %></li>
+              <li><b>标题:</b> <%= @work.title %></li>
+              <li><b>描述:</b> <%= @work.desciption %></li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button form="repost_work_<%= @work.id %>" type="submit" class="btn btn-primary" id="repostSubimt">转发</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--//end favorite -->
+<% end %>
+
+  <!--TAG LIST-->
+  <div class="work-tags">
+    <h5>标签</h5>
+    <% if @work.works_tags.any? %>
+        <% @work.works_tags.each do |users_tag| %>
+
+            <label class="tag">
+              <a href="/designers/<%= @work.user_id %>/tags/<%= users_tag.tag.id %>"> <%= users_tag.tag.name %></a></label>
+        <% end %>
+    <% else %>
+        <em>没有任何标签.</em>
+    <% end %>
+  </div>
+
+  <div class="more-works">
+    <h5>更多<%= @work.user.name %>的动态</h5>
+    <% @more_works.each do |mw| %>
+        <div class="image-frame">
+          <a href="<%= work_path(mw.work_id) %>">
+            <%= image_tag mw.work.image.url(:small), :width => 100, :height => 75 %>
+          </a>
+        </div>
+    <% end %>
+  </div>
+
+
+</div>
 </div>

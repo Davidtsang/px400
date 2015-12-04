@@ -1,4 +1,5 @@
 class FavoriteFoldersController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @work_id = params[:work_id]

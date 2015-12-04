@@ -2,7 +2,7 @@ module ApplicationHelper
   def current_user?(user_id)
     result = false
 
-    if current_user.id == user_id
+    if current_user && current_user.id == user_id
       result = true
     end
     return result
