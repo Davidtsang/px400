@@ -19,4 +19,13 @@ class Work < ActiveRecord::Base
   has_many :works_tags
 
   self.per_page = 60
+
+  def self.count_user_total_likes(user_id)
+    sum(:works_likes_count, :conditions => {:user_id => user_id})
+  end
+
+  def self.count_user_total_thanks(user_id)
+    sum(:thanks_count, :conditions => {user_id: user_id})
+  end
+
 end

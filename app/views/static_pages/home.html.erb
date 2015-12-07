@@ -1,19 +1,43 @@
-<% provide(:title ,"首页") %>
-<div class="topbar">
-<div class="container-fix explore-top">
-  <div class="row ">
-  <div class="col-md-4 col-md-offset-4">
-    <ul class="list-inline">
-    <li><a href="<%= static_pages_home_path %>" class="active">所有动态</a> </li>
-    <li><a href="<%= feed_works_path %>">作品</a> </li>
-  </ul>
-  </div>
-  </div>
-</div>
-</div>
+<% provide(:title, "首页") %>
+<% unless user_signed_in? %>
+    <div class="container-fluid welcome">
+
+<span class="white-font">
+  秀出你的风采! </span><span>400px.net, 中国设计师与艺术家的展示交流空间。</span>
+      <a href="<%= about_icode_path %>" class="btn btn-sm btn-default">获得邀请</a>
+      <a href="<%= new_user_registration_path %>" class="btn btn-sm btn-primary">立即注册</a>
+    </div>
+
+<% else %>
+
+
+    <div class="topbar">
+      <!--//welcome guest  -->
+
+      <!--//end welcome guest-->
+      <div class="container-fix explore-top">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <ul class="list-inline">
+              <li><a href="<%= static_pages_home_path %>" class="active">所有动态</a></li>
+              <li><a href="<%= feed_works_path %>">作品</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
 
 <% if user_signed_in? %>
-     <%= render 'shared/feed' %>
+    <%= render 'shared/feed' %>
+<% else %>
+    <div class="container-xl">
+      <div class="row">
+        <%= render @works %>
+      </div>
+    </div>
+
 
 <% end %>
 

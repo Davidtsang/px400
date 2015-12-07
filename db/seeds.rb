@@ -60,11 +60,14 @@ fake_skills.each do |t|
   Skill.create(name: t)
 end
 
+#def def icode to user
+SiteConfig.create(name: "give new user some icode", the_key:"new_users_icode_num", the_value: "10" )
+
 icode =Icode.new
 icode.generate_code
 icode.save
 
-User.create!(name: "Example User",
+admin = User.create!(name: "Example User",
              email: "123@kejike.com",
              location: "San Francisco, CA",
              password: "12345678",
@@ -72,6 +75,14 @@ User.create!(name: "Example User",
              icode: icode.code,
              password_confirmation: "12345678")
 
+#give 10 icode to admin
+10.times do
+  icode =Icode.new
+  icode.generate_code
+  icode.user_id = admin.id
+  icode.save
+
+end
 
 skills = Skill.all.to_ary
 
@@ -94,6 +105,13 @@ skills = Skill.all.to_ary
                       user_role: "artist",
                       icode: icode.code,
                       password_confirmation: password)
+
+  10.times do
+    icode =Icode.new
+    icode.generate_code
+    icode.user_id = user.id
+    icode.save
+  end
 
   #random a 1~5 skills
   skills_number = rand(5)
@@ -150,3 +168,7 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+
+
+

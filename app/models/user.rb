@@ -4,9 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_create :update_icode, :giveme_icodes
 
   NICKNAME_REGEX = /\A[\u4e00-\u9fa5_a-zA-Z0-9]+\Z/
-
+  validates_presence_of :name
   validates :nickname, uniqueness: true, :allow_blank => true, format: {with: NICKNAME_REGEX, message: "只允许包含中文、英文字母、数字及下划线"}
 
   has_attached_file :avatar, :styles => {:large => "200x200#", :normal => "100x100#", :medium => "50x50#", :mini => "25x25#"}, :default_url => ":style/avatar_missing.png"
@@ -18,8 +19,9 @@ class User < ActiveRecord::Base
   attr_accessor :icode
 
   validates_each :icode, :on => :create do |record, attr, value|
+    icode  = Icode.where(code: value, is_used: false ).first
     record.errors.add attr, "无效。请输入正确的邀请码。" unless
-        value && value == Icode.where(code: value).first.code
+        value && icode && value == icode.code.to_s
   end
 
   has_many :works_likes
@@ -39,6 +41,8 @@ class User < ActiveRecord::Base
   has_many :recent_works, -> { order('created_at DESC').limit(3) }, class_name: "Work"
 
   has_many :users_tags
+
+  has_one :icode, foreign_key: "used_user_id"
 
   has_many :send_messages, class_name: "Message", foreign_key: "from_user_id", dependent: :destroy
 
@@ -65,6 +69,15 @@ class User < ActiveRecord::Base
     active_relationships.create(followed_id: other_user.id)
   end
 
+  def is_admin?
+
+    if user_role == "admin"
+       return true
+    else
+      return false
+    end
+
+  end
 
   def unfollow(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
@@ -144,4 +157,27 @@ WHERE follower_id = :user_id"
 WHERE follower_id = :user_id"
     Timeline.includes(:work).where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).order('created_at DESC')
   end
+
+  private
+
+  def update_icode
+    used_code =Icode.where(code: icode).first
+    used_code.used_user_id = id
+    used_code.is_used= true
+    used_code.save
+
+
+  end
+
+  def giveme_icodes
+    #get site settings
+    give_number = SiteConfig.new_users_icode_num.to_i
+    give_number.times do
+      icode =Icode.new
+      icode.generate_code
+      icode.user_id = id
+      icode.save
+    end
+  end
+
 end

@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
+  before_filter :configure_sign_up_params, only: [:create]
   before_filter :configure_account_update_params, only: [:update]
 
   def block_list
@@ -7,8 +7,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   end
 
+  def icodes
+    @user = current_user
+
+  end
+
   def profile
-      @user = current_user
+    @user = current_user
   end
 
   def update_profile
@@ -30,6 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     render :'devise/registrations/edit'
   end
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -67,25 +73,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.for(:sign_up) << [:icode, :name]
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.for(:account_update) << [:name,:nickname,:sex,:title,:company,:location]
+    devise_parameter_sanitizer.for(:account_update) << [:name, :nickname, :sex, :title, :company, :location]
   end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    super(resource)
+    profile_path
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
   def users_params
-    params.require(:user).permit([:title, :bio, :company, :sex, :location ,:website,:avatar,:domain_1_id, :domain_2_id])
+    params.require(:user).permit([:title, :bio, :company, :sex, :location, :website, :avatar, :domain_1_id, :domain_2_id])
   end
 end

@@ -74,7 +74,9 @@ h3{
   font-size: 16px;
 }
 
-
+h4{
+  font-size: 14px;
+}
 ol{
   padding: 0px;
 
@@ -83,7 +85,7 @@ ol{
   //@extend .alert;
   //@extend .alert-dismissible;
    text-align: center;
-  padding: 10px 25px;
+  padding: 5px 25px;
   margin-bottom: 0px;
   font-weight: bold;
   border-radius: 0px;
@@ -91,10 +93,9 @@ ol{
 }
 .notice{
   @extend .alert-info;
-  //color: $purple;
-  //#background-color: lighten($purple, 55%);
-  //border-bottom: solid 1px lighten($purple, 50%);
-  //border-top: solid 1px lighten($purple, 50%);
+}
+.alert{
+  @extend .alert-warning;
 }
 .tiny-text{
   font-size: 11px;
@@ -110,7 +111,21 @@ ol{
   border-bottom: 1px solid $siteGreyLight;
 
 }
-
+.white-font{
+  color: #ffffff !important;
+}
+.welcome{
+  text-align: center;
+  background-color: #444444;
+  color: $siteGreyLight;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  .btn{
+    margin-left: 5px;
+  }
+}
 .my-tool-tip + .tooltip > .tooltip-inner  {
   font-size: 11px !important;
   padding: 6px 8px!important;
@@ -142,8 +157,10 @@ body {
     padding-left: 25px;
     padding-right: 25px;
   }
-  border-bottom: $siteGreyDark 1px solid;
-
+  border-bottom: black 1px solid;
+  .active  a{
+    background-color: transparent !important;
+  }
 }
 .btn-primary{
   background-color:  $purple ;
@@ -500,6 +517,13 @@ hr {
 }
 
 .org-work-info{
+  @extend .clearfix;
+  padding: 10px;
+  border-radius: 3px;
+  h4{
+    margin-top: 0px;
+  }
+  background-color: $siteGrey;
   .image-frame-100{
     @extend .pull-left;
     margin-right: 10px;
@@ -510,7 +534,7 @@ hr {
     @extend .pull-left;
     margin-right: 10px;
   }
-  padding-bottom: 15px;
+
 
 }
 .more-works{
@@ -529,6 +553,21 @@ hr {
     margin-right: 15px;
   }
 
+}
+table.sign-up-table{
+  //vertical-align: middle;
+  label{
+    margin-bottom: 0px ;
+    margin-top: 8px;
+
+  }
+  tr td {
+   padding: 10px 0px;
+    vertical-align: top;
+  }
+}
+input[type=text], input[type=email], input[type=password]{
+ font-size: 18px;
 }
 .comment-form{
   //background-color: lightyellow;
@@ -561,7 +600,12 @@ hr {
     }
   }
 }
-
+.del{
+  text-decoration: line-through;
+}
+.work-header {
+  margin-top: 30px;
+}
 .work-header-inner {
   .user-avatar {
     padding-right: 15px;

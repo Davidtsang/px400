@@ -1,6 +1,7 @@
 class Icode < ActiveRecord::Base
   belongs_to :user
 
+  belongs_to :used_user , class_name: "User"
 
   validates :code, presence: true
 

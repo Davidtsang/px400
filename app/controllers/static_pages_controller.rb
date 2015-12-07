@@ -13,8 +13,14 @@ class StaticPagesController < ApplicationController
       else
         @feed_items = current_user.feed.paginate(page: params[:page])
       end
+    else
+      @works  = Work.order("works_likes_count DESC").limit(20)
 
     end
+  end
+
+  def about_icode
+
   end
 
   def about

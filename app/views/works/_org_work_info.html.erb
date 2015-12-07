@@ -1,0 +1,17 @@
+<div class="org-work-info">
+  <h4>原作信息</h4>
+  <a href="<%= work_path(work) %>">
+    <div class="image-frame-100">
+    <%= image_tag work.image(:small), width: 100, height: 75 %></a>
+</div>
+<ul class="list-unstyled repost-org-list">
+
+  <li><h5><%= image_tag work.user.avatar.url(:mini), class: "avatar" %></h5>
+    <b>原作者：</b><%= link_to work.user.name, "/designers/#{work.user.id}" %>
+    @<%= work.updated_at.localtime.to_date %></li>
+
+
+  <li><a href="<%= work_path(work) %>" class="underline-a"> <%= work.title %></a></li>
+  <li> <%= truncate(work.desciption,length: 100) %></li>
+</ul>
+</div>

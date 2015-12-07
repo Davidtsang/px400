@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :icodes
   get 'reports/index'
 
@@ -89,6 +90,7 @@ Rails.application.routes.draw do
 
   get 'static_pages/about'
 
+  get 'about_icode' => "static_pages#about_icode"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -107,6 +109,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "block_list" => "users/registrations#block_list"
     get "profile" => "users/registrations#profile"
+
+
+    get "users/:id/icodes" => "users/registrations#icodes", as: "users_icodes"
+
     put "update_profile" => "users/registrations#update_profile"
     put "update_avatar" => "users/registrations#update_avatar"
 

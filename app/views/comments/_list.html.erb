@@ -15,7 +15,7 @@
         </div>
         <p class="comment-meta">
           <%= time_ago_in_words comment.created_at %>之前
-          <% if current_user?(comment.user_id) || current_user?(comment.work.user_id) %>
+          <% if current_user?(comment.user_id) || current_user?(comment.work.user_id) || current_user.is_admin? %>
               <span class="sep">|</span>
               <a href="<%= remove_comment_path(comment) %>" data-remote="true" data-method="post">删除评论</a>
           <% end %>

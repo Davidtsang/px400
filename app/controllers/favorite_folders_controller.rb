@@ -1,5 +1,5 @@
 class FavoriteFoldersController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:show]
 
   def new
     @work_id = params[:work_id]
@@ -14,6 +14,8 @@ class FavoriteFoldersController < ApplicationController
   def create
     @work_id = params[:work_id]
     @favorite_folder = current_user.favorite_folders.create(favorite_folders_params)
+
+    #notify author
 
     respond_to do |format|
       format.js { redirect_to favorite_folders_path(work_id: @work_id), format: "js" }
@@ -80,7 +82,10 @@ class FavoriteFoldersController < ApplicationController
     id = params[:favorite_folder_id]
     @work_id = params[:work_id]
 
-    Favorite.create(work_id: @work_id, favorite_folder_id: id)
+    favorite = Favorite.create(work_id: @work_id, favorite_folder_id: id)
+    work = Work.find(@work_id)
+
+    FavoriteWorkNotify.create(subject_id: current_user.id, obj_id:favorite.id , user_id: work.user_id )
 
     respond_to do |format|
       format.js { redirect_to favorite_folders_path(work_id: @work_id), format: "js" }
@@ -94,6 +99,12 @@ class FavoriteFoldersController < ApplicationController
     @work_id = params[:work_id]
 
     f = Favorite.find(id)
+
+    #first del notify
+    notify = FavoriteWorkNotify.where(subject_id: current_user.id, obj_id: f.id).first
+    notify.destroy if notify
+
+
     f.destroy
 
 

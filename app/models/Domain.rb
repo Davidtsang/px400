@@ -1,6 +1,6 @@
 class Domain < Tag
 
-  HOT_DOMAINS =[12,2,45,19,23,6,11,26,27,30,47,39]
+  HOT_DOMAINS =[12,2,45,19,23,26,27,30,47,39,16,32]
 
   def self.hot_domains
 

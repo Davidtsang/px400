@@ -1,3 +1,4 @@
+<% provide(:title, "设计师") %>
 <div class="container-fix">
   <h1 class="center">设计师 / 艺术家
     <span class="domain-name">  <%= @domain_id && @domain_id.to_i != -1 ? "@" + Domain.find(@domain_id).name : "@All" %></span>

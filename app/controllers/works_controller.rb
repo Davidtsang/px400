@@ -211,6 +211,9 @@ class WorksController < ApplicationController
         #timeline evetn
         current_user.timelines.create(work_id: @repost.id, act: "re")
 
+        #notify author
+        RepostWorkNotify.create(subject_id: current_user.id , obj_id: @repost.id , user_id: @work.user_id)
+
         format.js
       else
         format.js { render 'works/new_repost' }
@@ -243,6 +246,10 @@ class WorksController < ApplicationController
     like = current_user.works_likes.where(work_id: params[:id]).first
     like.destroy
 
+    #destroy notify
+    notify = LikeWorkNotify.where(subject_id: current_user.id, obj_id: params[:id]).first
+    notify.destroy if notify
+
     respond_to do |format|
       #format.html { redirect_to designers_all_path }
       format.json { render :json => {success: true} }
@@ -254,6 +261,9 @@ class WorksController < ApplicationController
 
     current_user.thanks.create(work_id: params[:id])
 
+    #notify author
+    work = Work.find(params[:id])
+    ThanksWorkNotify.create(subject_id: current_user.id, obj_id: params[:id], user_id: work.user_id)
 
     respond_to do |format|
       #format.html { redirect_to designers_all_path }
@@ -265,6 +275,10 @@ class WorksController < ApplicationController
   def unthank
     thank = current_user.thanks.where(work_id: params[:id]).first
     thank.destroy
+
+    #destroy notify
+    notify = ThanksWorkNotify.where(subject_id: current_user.id, obj_id: params[:id]).first
+    notify.destroy if notify
 
     respond_to do |format|
       #format.html { redirect_to designers_all_path }

@@ -25,10 +25,11 @@
           <a id="new-work-link" class="btn btn-primary " href="<%= new_work_path %>"><i class="fa fa-pencil"></i> 添加你的新作
 
           </a></li>
-        <li><%= link_to "主页", static_pages_home_path %></li>
-        <li><%= link_to "设计师", designers_all_path %></li>
-        <li><%= link_to "发现", explore_path %></li>
-        <li><%= link_to "通知 #{uncheck_notify_count} ".html_safe, notifications_path %></li>
+
+         <%= nav_link "主页", static_pages_home_path  %>
+         <%= nav_link "设计师", designers_all_path %>
+         <%= nav_link "发现", explore_path %>
+         <%= nav_link "通知 #{uncheck_notify_count} ".html_safe, notifications_path %>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -87,7 +88,7 @@
 
     <% flash.each do |name, msg| -%>
 
-        <%= content_tag :div, content + msg, class: "site-notice #{name} alert-dismissible alert", role: "alert" %>
+        <%= content_tag :div, content + msg, class: "site-notice #{name} alert-dismissible", role: "alert" %>
     <% end -%>
 
 <% end %>
@@ -121,7 +122,8 @@
           <li><span>* 建议安装方正兰亭黑或冬青黑体获得更好的浏览效果</span></li>
           <li><span>* 建议使用Goolge Chrome、Firefox或IE9.0以上版本浏览器浏览本网站</span></li>
           <li class="footer-icon">
-            <i class="fa fa-weixin fa-2x"></i><i class="fa fa-weibo fa-2x"></i><i class="fa fa-arrow-circle-o-up fa-2x"></i>
+            <i class="fa fa-weixin fa-2x"></i><i class="fa fa-weibo fa-2x"></i>
+            <a href="#top"><i class="fa fa-arrow-circle-o-up fa-2x"></i></a>
           </li>
 
 

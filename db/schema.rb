@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204033114) do
+ActiveRecord::Schema.define(version: 20151204083849) do
 
   create_table "blacklists", force: :cascade do |t|
     t.integer  "user_id"
@@ -105,6 +105,14 @@ ActiveRecord::Schema.define(version: 20151204033114) do
     t.integer  "obj_id"
     t.integer  "break_rule"
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "site_configs", force: :cascade do |t|
+    t.string   "name"
+    t.string   "the_key"
+    t.string   "the_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

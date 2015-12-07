@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'redcarpet'
 
+gem 'rails_admin', '~> 0.7.0'
+
 gem 'jquery-turbolinks'
 gem 'jquery-cookie-rails'
 gem 'devise'

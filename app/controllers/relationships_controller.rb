@@ -3,6 +3,10 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find(params[:followed_id])
     current_user.follow(@user)
+
+    #notify user
+    FollowingNotify.create(subject_id: current_user.id, obj_id: @user.id  , user_id: @user.id)
+
     respond_to do |format|
       format.html { redirect_to designers_all_path }
       format.js
@@ -11,6 +15,11 @@ class RelationshipsController < ApplicationController
   def destroy
     @user = Relationship.find(params[:id]).followed
     current_user.unfollow(@user)
+
+    #un notify user
+    notify =FollowingNotify.where(subject_id: current_user.id, obj_id: @user.id).first
+    notify.destroy if notify
+
     respond_to do |format|
       format.html { redirect_to designers_all_path }
       format.js

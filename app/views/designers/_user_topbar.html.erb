@@ -4,6 +4,13 @@
     <ul class="list-inline pull-left">
       <li><%= render 'shared/stats' %></li>
       <li><i class="fa fa-tint"></i> <%= user.timelines.count %> 个动态</li>
+      <% if @total_likes %>
+      <li><i class="fa fa-thumbs-up"></i> <%= @total_likes %>个赞</li>
+      <% end %>
+      <% if @total_thanks %>
+          <li><i class="fa fa-heart"></i> <%= @total_thanks %>个感谢</li>
+      <% end %>
+
     </ul>
 
     <ul class="list-inline pull-right">

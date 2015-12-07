@@ -1,5 +1,5 @@
 <% @user ||= current_user %>
-<div class="stats">
+<li>
   <a href="<%= following_user_path(@user) %>">
     <i class="fa fa-eye"></i>
     关注了
@@ -8,10 +8,11 @@
     </strong>人
 
   </a>
+  </li>
+<li>
   <a href="<%= followers_user_path(@user) %>">
     <i class="fa fa-users"></i>
     <strong id="followers" class="stat">
       <%= @user.followers.count %></strong>
-     个粉丝
-  </a>
-</div>
+     个粉丝</a>
+</li>

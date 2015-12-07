@@ -1,0 +1,31 @@
+<div class="container-fix">
+  <h2>会员设置</h2>
+  <ul class="nav nav-tabs">
+
+    <li role="presentation" ><%= link_to '一般设置', profile_path %></li>
+    <li role="presentation"><a href="<%= edit_user_registration_path %>">名字/Email/密码</a></li>
+
+    <li><a href="<%= block_list_path %>">屏蔽列表</a></li>
+    <li class="active"><a href="<%= users_icodes_path(current_user) %>">邀请码</a></li>
+  </ul>
+
+  <div class="row profile">
+    <div class="col-md-7">
+
+    <% if @user.icodes.any? %>
+
+      <table class="table">
+        <tr><th>CODE</th><th>是否使用?</th><th>使用者</th></tr>
+        <% @user.icodes.each do |icode| %>
+         <tr><td><span  <%= "class=del" unless !icode.is_used %>> <%=  icode.code %></span></td><td><%= human_boolean icode.is_used  %></td><td>
+           <% if icode.used_user_id != nil  %>
+               <a href="/designers/<%= icode.used_user_id %>"><%= image_tag icode.used_user.avatar.url(:mini), class: "avatar" %> <%= icode.used_user.name  %></a>
+           <% end %>
+               </td></tr>
+        <% end %>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+
