@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 1
-  act: MyString
-  work_id: 1
-  note: MyString
-
-two:
-  user_id: 1
-  act: MyString
-  work_id: 1
-  note: MyString
+#one:
+#  user_id: 1
+#  act: MyString
+#  work_id: 1
+#  note: MyString
+#
+#two:
+#  user_id: 1
+#  act: MyString
+#  work_id: 1
+#  note: MyString

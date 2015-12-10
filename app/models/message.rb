@@ -8,5 +8,7 @@ class Message < ActiveRecord::Base
 
   validates :content, presence: true
 
+  validates_presence_of :to_user_id, :from_user_id
+
   scope :receive_default,  ->{where(status: 0)}
 end

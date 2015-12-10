@@ -1,5 +1,5 @@
 class DesignersController < ApplicationController
-  before_action :authenticate_user!, only: [:block_user, :unblock_user]
+  before_action :authenticate_user!, only: [:block_user, :unblock_user, :followers, :following]
 
   def all
     @domain_id = params[:domain_id]

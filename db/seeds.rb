@@ -102,7 +102,7 @@ skills = Skill.all.to_ary
                       password: password,
                       domain_1_id: domain_id,
                       location: location,
-                      user_role: "artist",
+                      user_role: 'artist',
                       icode: icode.code,
                       password_confirmation: password)
 
@@ -133,7 +133,7 @@ labels = Label.all.to_ary
   users.each do |user|
     image = File.open(Dir.glob(File.join(Rails.root, 'public/fake-image/', '*')).sample)
     desciption = Faker::Lorem.sentence(7)
-    title = Faker::Lorem.sentence(4)
+    title = Faker::Lorem.sentence(4)[0..80]
     domain_id = rand(50)
     work =user.works.create!(desciption: desciption, image: image, title: title, domain_id: domain_id)
     #timeline

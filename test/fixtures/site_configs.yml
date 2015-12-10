@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  the_key: MyString
-  the_value: MyString
+  name: "give new user some icode"
+  the_key: "new_users_icode_num"
+  the_value: "10"
 
-two:
-  name: MyString
-  the_key: MyString
-  the_value: MyString
+#two:
+#  name: MyString
+#  the_key: MyString
+#  the_value: MyString

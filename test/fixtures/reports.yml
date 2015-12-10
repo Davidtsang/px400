@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  type: 
-  obj_id: 1
-  break_rule: 1
-  user_id: 1
-
-two:
-  type: 
-  obj_id: 1
-  break_rule: 1
-  user_id: 1
+#one:
+#  type:
+#  obj_id: 1
+#  break_rule: 1
+#  user_id: 1
+#
+#two:
+#  type:
+#  obj_id: 1
+#  break_rule: 1
+#  user_id: 1

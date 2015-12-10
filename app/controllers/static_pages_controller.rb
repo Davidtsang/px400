@@ -16,6 +16,7 @@ class StaticPagesController < ApplicationController
     else
       @works  = Work.order("works_likes_count DESC").limit(20)
 
+
     end
   end
 

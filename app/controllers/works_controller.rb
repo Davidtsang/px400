@@ -37,7 +37,7 @@ class WorksController < ApplicationController
 
 
     @work =current_user.works.build
-    @works = current_user.work_feed_by_fliter(@sort, @timescope, @is_original).paginate(page: params[:page])
+    @works = current_user.work_feeds_by_fliter(@sort, @timescope, @is_original).paginate(page: params[:page])
 
 
   end
@@ -71,7 +71,6 @@ class WorksController < ApplicationController
   end
 
   def show
-
 
 
     if params[:flash]=="like" && params[:timeline_user_id]
@@ -212,7 +211,7 @@ class WorksController < ApplicationController
         current_user.timelines.create(work_id: @repost.id, act: "re")
 
         #notify author
-        RepostWorkNotify.create(subject_id: current_user.id , obj_id: @repost.id , user_id: @work.user_id)
+        RepostWorkNotify.create(subject_id: current_user.id, obj_id: @repost.id, user_id: @work.user_id)
 
         format.js
       else
@@ -300,65 +299,16 @@ class WorksController < ApplicationController
 
   end
 
-  def path_ip_can_add_count?(pathname, ip)
-    vs = VisitTrack.where(visit_path: pathname, ip: ip).first
-    is_can_add_count = false
-    if vs #yes, check data if > 6 h , is new visit
-      if vs.visit_time < (Time.now - 6.hours)
-        is_can_add_count = true
-      end
-    else # if no record?
-      is_can_add_count = true
-    end
-
-    is_can_add_count
-
-  end
-
-  def path_user_can_add_count?(pathname, user_id)
-    is_can_add_count = false
-    #2user visit this page?
-    vs = VisitTrack.where(visit_path: pathname, user_id: user_id).first
-
-
-    if vs #yes, check data if > 6 h , is new visit
-      if vs.visit_time < (Time.now - 6.hours)
-        is_can_add_count = true
-      end
-    else # if no record?
-      is_can_add_count = true
-    end
-
-    is_can_add_count
-  end
 
   def pv_count(work_id, ip, user_id)
-    #GET RECODRD
 
-    is_can_add_count = false
 
     pathname ="works/#{work_id}"
+    is_can_add_count = VisitTrack.effective_pv?(pathname, ip, user_id)
 
-    #1 if have user id ,this member visit
-    if user_id
-      is_can_add_count = path_user_can_add_count?(pathname, user_id)
-
-    else #not user_id , check ip
-      is_can_add_count =path_ip_can_add_count?(pathname, ip)
-
-    end
-
-    #renew vs
-
-
-    #work count +1
     if is_can_add_count
       work = Work.find(work_id)
       work.update(views_count: work.views_count+1)
-
-      #renew vs
-      VisitTrack.renew(pathname, ip, user_id)
-
     end
 
   end

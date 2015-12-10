@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  visit_path: MyString
-  visit_time: 2015-11-02 06:55:06
-  ip: MyString
-  user_id: 1
-  visit_count: 1
-
-two:
-  visit_path: MyString
-  visit_time: 2015-11-02 06:55:06
-  ip: MyString
-  user_id: 1
-  visit_count: 1
+#one:
+#  visit_path: MyString
+#  visit_time: 2015-11-02 06:55:06
+#  ip: MyString
+#  user_id: 1
+#  visit_count: 1
+#
+#two:
+#  visit_path: MyString
+#  visit_time: 2015-11-02 06:55:06
+#  ip: MyString
+#  user_id: 1
+#  visit_count: 1

@@ -1,66 +1,74 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+#    t.string   "title"
+#    t.string   "image"
+#    t.text     "desciption"
+#    t.integer  "user_id"
+#    t.integer  "views_count",        default: 0
+#    t.integer  "works_likes_count",  default: 0
+#    t.integer  "favorites_count",    default: 0
+#    t.integer  "shares_count",       default: 0
+#    t.datetime "created_at",                         null: false
+#    t.datetime "updated_at",                         null: false
+#    t.string   "image_file_name"
+#    t.string   "image_content_type"
+#    t.integer  "image_file_size"
+#    t.datetime "image_updated_at"
+#    t.integer  "thanks_count",       default: 0
+#    t.boolean  "is_original",        default: false
+#    t.string   "work_type",          default: "new"
+#    t.integer  "parent_work_id"
+#    t.integer  "repost_count",       default: 0
+#    t.integer  "domain_id"
+#    t.integer  "comments_count",     default: 0
+
+
 one:
   title: MyString
-  image: MyString
-  desciption: MyText
-  user_id: 1
-  views_count: 1
-  likes_count: 1
-  favorites_count: 1
-  shares_count: 1
-
-two:
-  title: MyString
-  image: MyString
-  desciption: MyText
-  user_id: 1
-  views_count: 1
-  likes_count: 1
-  favorites_count: 1
-  shares_count: 1
-
-orange:
-  title: MyString
-  image: MyString
+  image: '/Users/user/Documents/Projects/DesignerSNS/public/fake-image/animals_1x.png'
   desciption: "I just ate an orange!"
   user_id: 1
-  views_count: 1
-  likes_count: 1
-  favorites_count: 1
-  shares_count: 1
-  created_at: <%= 10.minutes.ago %>
+  views_count: 0
+  works_likes_count: 0
+  favorites_count: 0
+  thanks_count: 0
+  work_type: "new"
+  repost_count: 0
+  domain_id: 1
+  comments_count: 0
 
-tau_manifesto:
-  title: MyString
-  image: MyString
-  desciption: "Check out the @tauday site by @mhartl: http://tauday.com"
-  user_id: 1
-  views_count: 1
-  likes_count: 1
-  favorites_count: 1
-  shares_count: 1
-  created_at: <%= 3.years.ago %>
-
-cat_video:
-  title: MyString
-  image: MyString
-  desciption: "Sad cats are sad: http://youtu.be/PKffm2uI4dk"
-  user_id: 1
-  views_count: 1
-  likes_count: 1
-  favorites_count: 1
-  shares_count: 1
-  created_at: <%= 2.hours.ago %>
-
-most_recent:
-  title: MyString
-  image: MyString
-  desciption: "Writing a short test"
-  user_id: 1
-  views_count: 1
-  likes_count: 1
-  favorites_count: 1
-  shares_count: 1
-  created_at: <%= Time.zone.now %>
+  #created_at: <%= 10.minutes.ago %>
+#
+#tau_manifesto:
+#  title: MyString
+#  image: MyString
+#  desciption: "Check out the @tauday site by @mhartl: http://tauday.com"
+#  user_id: 1
+#  views_count: 1
+#  likes_count: 1
+#  favorites_count: 1
+#  shares_count: 1
+#  created_at: <%= 3.years.ago %>
+#
+#cat_video:
+#  title: MyString
+#  image: MyString
+#  desciption: "Sad cats are sad: http://youtu.be/PKffm2uI4dk"
+#  user_id: 1
+#  views_count: 1
+#  likes_count: 1
+#  favorites_count: 1
+#  shares_count: 1
+#  created_at: <%= 2.hours.ago %>
+#
+#most_recent:
+#  title: MyString
+#  image: MyString
+#  desciption: "Writing a short test"
+#  user_id: 1
+#  views_count: 1
+#  likes_count: 1
+#  favorites_count: 1
+#  shares_count: 1
+#  created_at: <%= Time.zone.now %>
 

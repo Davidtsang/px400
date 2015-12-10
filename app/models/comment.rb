@@ -4,6 +4,7 @@ class Comment < ActiveRecord::Base
 
   validates :content ,presence: true
 
-  has_many :comments_likes
+  has_many :comments_likes, dependent: :destroy
+
 
 end

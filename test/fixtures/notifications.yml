@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  subject_id: 1
-  type: 
-  user_id: 1
-  obj_id: 1
-  is_checked: false
-
-two:
-  subject_id: 1
-  type: 
-  user_id: 1
-  obj_id: 1
-  is_checked: false
+#one:
+#  subject_id: 1
+#  type:
+#  user_id: 1
+#  obj_id: 1
+#  is_checked: false
+#
+#two:
+#  subject_id: 1
+#  type:
+#  user_id: 1
+#  obj_id: 1
+#  is_checked: false

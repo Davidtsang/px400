@@ -67,14 +67,16 @@
             <li><%= link_to "注册", new_user_registration_path %> </li>
             <li><%= link_to "<i class='fa fa-user'></i> 登录".html_safe, new_user_session_path %></li>
         <% end %>
-        <!--
-        <form class="navbar-form navbar-left" role="search">
+
+        <form class="navbar-form navbar-left" role="search" action="https://www.baidu.com/s" id="site-search">
+
+
           <div class="form-group form-group-sm">
-            <input type="text" class="form-control" placeholder="搜索作品">
+            <input type="text" class="form-control" placeholder="搜索作品" name="wd">
           </div>
 
         </form>
-        -->
+
 
       </ul>
     </div>

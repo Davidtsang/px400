@@ -4,11 +4,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_create :update_icode, :giveme_icodes
+  after_create :update_icode, :giveme_icodes, :update_role
 
   NICKNAME_REGEX = /\A[\u4e00-\u9fa5_a-zA-Z0-9]+\Z/
-  validates_presence_of :name
-  validates :nickname, uniqueness: true, :allow_blank => true, format: {with: NICKNAME_REGEX, message: "只允许包含中文、英文字母、数字及下划线"}
+  validates :name, length: {maximum: 32, minimum: 2}, presence: true
+
+  #validates_presence_of :name
+  validates :nickname, uniqueness: true, :allow_blank => true, format: {with: NICKNAME_REGEX, message: "只允许包含中文、英文字母、数字及下划线"}, length: {maximum: 32, minimum: 2}
 
   has_attached_file :avatar, :styles => {:large => "200x200#", :normal => "100x100#", :medium => "50x50#", :mini => "25x25#"}, :default_url => ":style/avatar_missing.png"
 
@@ -24,29 +26,29 @@ class User < ActiveRecord::Base
         value && icode && value == icode.code.to_s
   end
 
-  has_many :works_likes
-  has_many :thanks
-  has_many :favorite_folders
-  has_many :comments
-  has_many :comments_likes
+  has_many :works_likes, dependent: :destroy
+  has_many :thanks, dependent: :destroy
+  has_many :favorite_folders, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :comments_likes, dependent: :destroy
 
-  has_many :blacklists
+  has_many :blacklists, dependent: :destroy
 
-  has_many :notifications
-  has_many :icodes
+  has_many :notifications, dependent: :destroy
+  has_many :icodes, dependent: :destroy
 
   has_many :timelines, dependent: :destroy
 
   has_many :works, dependent: :destroy
   has_many :recent_works, -> { order('created_at DESC').limit(3) }, class_name: "Work"
 
-  has_many :users_tags
+  has_many :users_tags, dependent: :destroy
 
   has_one :icode, foreign_key: "used_user_id"
 
   has_many :send_messages, class_name: "Message", foreign_key: "from_user_id", dependent: :destroy
 
-  has_many :receive_messages, ->{ receive_default},class_name: "Message", foreign_key: "to_user_id", dependent: :destroy
+  has_many :receive_messages, ->{ receive_default },class_name: "Message", foreign_key: "to_user_id", dependent: :destroy
 
   has_many :active_relationships, class_name: "Relationship",
            foreign_key: "follower_id",
@@ -66,7 +68,7 @@ class User < ActiveRecord::Base
   end
 
   def follow(other_user)
-    active_relationships.create(followed_id: other_user.id)
+    active_relationships.create(followed_id: other_user.id) unless other_user.id == id
   end
 
   def is_admin?
@@ -87,6 +89,8 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
+
+  #get all user by skill id
 
   def self.all_by_skill_id(skill_id)
     joins("JOIN users_tags ON users_tags.user_id = users.id").where("users_tags.tag_id = :skill_id  ", skill_id: skill_id)
@@ -117,7 +121,7 @@ class User < ActiveRecord::Base
     Timeline.includes(:work).where("user_id = :user_id", user_id: id).order('created_at DESC')
   end
 
-  def work_feed_by_fliter(sort = nil,timescope = nil , is_original = false)
+  def work_feeds_by_fliter(sort = nil,timescope = nil , is_original = false)
     sort_order ="created_at DESC"
     timescope_where =""
     is_original_where =""
@@ -144,7 +148,7 @@ class User < ActiveRecord::Base
 
     #is original
     if is_original == "true"
-         is_original_where = "works.is_original == 't' "
+         is_original_where = "works.is_original = 't' "
     end
     following_ids = "SELECT followed_id FROM relationships
 WHERE follower_id = :user_id"
@@ -158,14 +162,37 @@ WHERE follower_id = :user_id"
     Timeline.includes(:work).where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).order('created_at DESC')
   end
 
+  def count_total_likes
+    Work.sum(:works_likes_count, :conditions => {:user_id => id})
+  end
+
+  def count_total_thanks
+    Work.sum(:thanks_count, :conditions => {user_id: id})
+  end
+
   private
+
+  def update_role
+    if id == 1
+      self.user_role= "admin"
+
+    else
+      self.user_role= "artist"
+
+    end
+    #puts '----:)'
+    #puts self.user_role
+    self.save
+
+  end
 
   def update_icode
     used_code =Icode.where(code: icode).first
     used_code.used_user_id = id
     used_code.is_used= true
     used_code.save
-
+    #puts '----:)'
+    #puts used_code.is_used
 
   end
 
