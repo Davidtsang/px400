@@ -27,11 +27,14 @@
           </div>
 
           <div class="col-sm-7 works">
-            <% user.recent_works.each do |new_work| %>
-                <a href="<%= work_path new_work %>">
-                  <%= image_tag new_work.image.url(:small), width: 110, height: 85, class: "work-image-mini" %></a>
+            <% if current_user %>
+                <% user.recent_works.each do |new_work| %>
+                    <a href="<%= work_path new_work %>">
+                      <%= image_tag new_work.image.url(:small), width: 110, height: 85, class: "work-image-mini" %></a>
 
+                <% end %>
             <% end %>
+
           </div>
         </div>
       </li>

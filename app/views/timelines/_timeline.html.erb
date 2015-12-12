@@ -18,8 +18,8 @@
     <div class="work-item-frame-info">
       <a href="<%= work_path(timeline.work_id, flash: timeline.act, timeline_user_id: timeline.user_id) %>" class="fill-div feed_link">
 
-        <h5 class="title"><%= timeline.work.title %></h5>
-        <span class="description"><%= truncate(timeline.work.desciption, length: 100) %></span><br>
+        <h5 class="title"><%= truncate timeline.work.title, length: 50 %></h5>
+        <p class="description"><%= truncate(timeline.work.desciption, length: 100) %></p>
 <span class="timestamp">
 <%= time_ago_in_words(timeline.work.created_at) %>前
 </span>

@@ -3,6 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_account_update_params, only: [:update]
 
   def block_list
+    @user = current_user
     @blacklists = current_user.blacklists.all
 
   end

@@ -65,8 +65,11 @@ $purple:  #cd00cd;
 h1{
   //font-weight: normal;
   font-size: 24px;
-
+  a{
+    color: $siteGreyDark;
+  }
 }
+
 h2{
   font-size: 18px;
 }
@@ -165,6 +168,10 @@ body {
 .btn-primary{
   background-color:  $purple ;
   border-color: darken($purple, 5%);
+
+}
+a.btn-primary:hover{
+  background-color: lighten($purple, 10%) ;
 }
 .show-i {
   display: inline;
@@ -214,9 +221,7 @@ hr {
   border-bottom: solid 1px $siteGreyLight;
   border-top: solid 1px $siteGreyLight;
 }
-.description{
-  word-wrap: break-word;
-}
+
 .navbar-brand {
   padding-top: 15px;
 }
@@ -282,7 +287,7 @@ hr {
   }
 .meta{
   font-weight: normal;
-  font-size: 13px;
+  font-size: 12px;
   display: block;
   margin: 4px 0 0 0;
 }
@@ -421,8 +426,21 @@ hr {
   }
 
 }
+button.btn.btn-primary{
+  margin-bottom: 5px;
+  &:hover {
+    background-color: lighten($purple, 10%);
+    border-color: $purple;
+  }
 
+}
+.autocomplete-suggestions{
+  background-color: #ffffff;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 
+  padding: 10px;
+}
 .explore-top{
   font-size: 13px;
   font-weight: bold;
@@ -437,8 +455,8 @@ hr {
     }
   }
   .dropdown-toggle{
-    font-size: 12px;
-    font-weight: normal;
+
+
     color:  $siteGreyDark;
   }
   .dropdown-menu{
@@ -713,7 +731,15 @@ a.fill-div {
   max-height: 400px;
 }
 
+p.description{
+  word-wrap: break-word;
+  //color: red;
+  line-height: 1.6em !important;
+}
+
 .work-item-frame-info {
+
+  word-wrap: break-word;
   display: none;
   color: $siteGreyDark;
   position: absolute;
@@ -725,9 +751,16 @@ a.fill-div {
   height: 150px;
   background-color: white;
   opacity: 0.9;
-  span {
+  span ,p{
     font-size: 11px;
+
   }
+}
+
+#newSkillModal{
+
+    font-size: 12px;
+
 }
 //comments
 .sep{
@@ -777,12 +810,14 @@ a.fill-div {
 
 }
 .folder-box{
+  @extend .simple-shadow;
+
   a{
     &:hover{
       text-decoration: none;
     }
   }
-  margin: 15px;
+  margin: 14px;
   h3{
     font-size: 14px;
     margin: 10px 0px 0px 0px ;
@@ -811,7 +846,7 @@ a.fill-div {
   margin-top: 5px;
   display: block;
   font-size: 12px;
-  color: $siteGreyMiddle;
+  color: $siteGreyDark;
 }
 .comment-meta{
   font-size: 12px ;

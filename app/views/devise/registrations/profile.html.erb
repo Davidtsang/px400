@@ -115,13 +115,15 @@
       </div>
       <div class="modal-body">
         <p>正确的添加技能标签，可让更多人能轻松的了解你。请记住：</p>
-        <ol>
-          <li>如无必要，只需从现有标签库中选取适用你的标签即可（你的新标签可能够标新立异，但是他人却无法找到你）</li>
-          <li>标签描述要清晰准确</li>
+        <ol class="list-unstyled">
+          <li>1. 如无必要，只需从现有标签库中选取适用你的标签即可</li>
+          <li>2. 标签描述要清晰准确</li>
         </ol>
 
         <%= form_for(Tag.new, remote: true) do |f| %>
-            <%= f.text_field :name, id: "autoUserTag" %>
+            <div class="form-group">
+            <%= f.text_field :name, id: "autoUserTag" ,class: "form-control" %>
+            </div>
             <%= f.hidden_field :type, value: "Skill" %>
 
         <% end %>

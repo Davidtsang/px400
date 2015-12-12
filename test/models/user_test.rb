@@ -337,6 +337,17 @@ class UserTest < ActiveSupport::TestCase
     assert_not user2.blocked?(333)
   end
 
+  test "user block a uses should be unfollow" do
+    user2 = create_user_two
+    user3 = create_user_three
+    user3.follow(user2)
+
+    Blacklist.block_user(user2, user3)
+
+    assert_not user3.following?(user2)
+
+  end
+
   test "follow /unfollow /following? should be right behave" do
     user2 = create_user_two
     user3 = create_user_three

@@ -72,6 +72,8 @@ Rails.application.routes.draw do
       post "unthank" => "works#unthank"
 
       #ajax repost
+      get "new_repost" =>"works#new_repost"
+
       post "repost"
 
       get "edit_tags"

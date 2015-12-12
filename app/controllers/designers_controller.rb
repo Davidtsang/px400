@@ -36,7 +36,7 @@ class DesignersController < ApplicationController
 
     end
 
-    unless current_user && current_user.domain_1_id
+    if  current_user && !current_user.domain_1_id
       flash[:alert] =  "你没有设置你的第一领域！这导致一些功能无法使用。点击<a href='/profile' data-no-turbolink='true'>这里</a>去设置。".html_safe
     end
 
@@ -74,9 +74,12 @@ class DesignersController < ApplicationController
 
   def block_user
 
-    current_user.blacklists.create(block_user_id: params[:block_user_id])
+    #current_user.blacklists.create(block_user_id: params[:block_user_id])
 
     @user = User.find(params[:block_user_id])
+
+    Blacklist.block_user(current_user, @user)
+
     respond_to do |format|
 
       format.js

@@ -14,6 +14,8 @@
 #    alert visit_cookie
 #
 #$(document).ready(ready)
+$(document).on "ajax:error", (evt, xhr, status, error) ->
+    alert xhr.responseText
 
 $(document).on "page:change", ->
 
@@ -44,11 +46,15 @@ $(document).on "page:change", ->
     info.hide()
 
 
-
   #get path
-  ajaxErrorHandle =(jqXHR) ->
+  ajaxErrorHandle =(jqXHR, textStatus, errorThrown) ->
+
     if jqXHR.status == 401
       window.location.replace("/users/sign_in")
+    else if jqXHR.status == 405
+
+      alert jqXHR.responseText
+
   #pathname = window.location.pathname
   $("#favorite-act").click ->
     #alert('ok')
@@ -70,7 +76,7 @@ $(document).on "page:change", ->
       dateType: 'json'
       data:{}
       error: (jqXHR, textStatus, errorThrown) ->
-        ajaxErrorHandle(jqXHR)
+        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
       success: (data, textStatus, jqXHR) ->
         if data["success"] == true
           #alert 'ok!'
@@ -94,7 +100,7 @@ $(document).on "page:change", ->
       dateType: 'json'
       data:{}
       error: (jqXHR, textStatus, errorThrown) ->
-        ajaxErrorHandle(jqXHR)
+        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
       success: (data, textStatus, jqXHR) ->
         if data["success"] == true
           #alert 'ok!'
@@ -117,7 +123,7 @@ $(document).on "page:change", ->
       dateType: 'json'
       data:{}
       error: (jqXHR, textStatus, errorThrown) ->
-        ajaxErrorHandle(jqXHR)
+        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
       success: (data, textStatus, jqXHR) ->
         if data["success"] == true
           #alert 'ok!'
@@ -145,7 +151,7 @@ $(document).on "page:change", ->
       dateType: 'json'
       data:{}
       error: (jqXHR, textStatus, errorThrown) ->
-        ajaxErrorHandle(jqXHR)
+        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
       success: (data, textStatus, jqXHR) ->
         if data["success"] == true
           #alert 'ok!'

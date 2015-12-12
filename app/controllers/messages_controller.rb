@@ -37,7 +37,13 @@ class MessagesController < ApplicationController
 
     if @message.save
       respond_to do |format|
-        format.html
+
+        format.html{
+          flash[:notice] = "私信已成功发送"
+
+          redirect_to sent_messages_path
+
+        }
       end
 
     else

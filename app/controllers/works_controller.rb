@@ -1,9 +1,10 @@
 class WorksController < ApplicationController
-  before_action :set_work, only: [:edit, :update, :destroy]
+  before_action :set_work, only: [:edit, :update, :destroy, :thank, :like, :favorites, :reworks, :repost, :likes]
   before_action :current_user, only: :destroy
 
   before_filter :authenticate_user!, only: [:new, :like, :unlike, :edit, :create, :update, :thank]
 
+  before_action :auth_block_user! , only: [:thank, :like,  :repost]
 
   # GET /works
   # GET /works.json
@@ -12,19 +13,19 @@ class WorksController < ApplicationController
   end
 
   def likes
-    @work = Work.find(params[:id])
+
     @users = User.joins(:works_likes).where("works_likes.work_id =?", @work.id).paginate(page: params[:page])
 
   end
 
   def favorites
-    @work = Work.find(params[:id])
+
     @favorite_folders = FavoriteFolder.joins(:favorites).where("favorites.work_id =?", @work.id).paginate(page: params[:page])
 
   end
 
   def reworks
-    @work = Work.find(params[:id])
+
     @reworks = Work.where(:parent_work_id => @work.id).paginate(page: params[:page])
 
   end
@@ -110,8 +111,6 @@ class WorksController < ApplicationController
     #more work about this user
     @more_works = @work.user.user_feed_recent
 
-    #view count
-    #set cookie
     pv_count(params[:id], ip, current_user_id)
 
     #
@@ -190,10 +189,13 @@ class WorksController < ApplicationController
     end
   end
 
-
+  def new_repost
+    respond_to do |format|
+      format.js
+    end
+  end
   def repost
-    @work_id = params[:id]
-    @work = Work.find(@work_id)
+
 
     @repost = current_user.works.build(work_params)
 
@@ -229,13 +231,12 @@ class WorksController < ApplicationController
     #create time line
     current_user.timelines.create(work_id: params[:id], act: "like")
 
-    #notify author
-    work = Work.find(params[:id])
 
-    LikeWorkNotify.create(subject_id: current_user.id, obj_id: params[:id], user_id: work.user_id)
+
+    LikeWorkNotify.create(subject_id: current_user.id, obj_id: params[:id], user_id: @work.user_id)
 
     respond_to do |format|
-      #format.html { redirect_to designers_all_path }
+
       format.json { render :json => {success: true} }
     end
 
@@ -250,7 +251,7 @@ class WorksController < ApplicationController
     notify.destroy if notify
 
     respond_to do |format|
-      #format.html { redirect_to designers_all_path }
+
       format.json { render :json => {success: true} }
     end
 
@@ -258,14 +259,17 @@ class WorksController < ApplicationController
 
   def thank
 
+
+
+
     current_user.thanks.create(work_id: params[:id])
 
     #notify author
-    work = Work.find(params[:id])
-    ThanksWorkNotify.create(subject_id: current_user.id, obj_id: params[:id], user_id: work.user_id)
+
+    ThanksWorkNotify.create(subject_id: current_user.id, obj_id: params[:id], user_id: @work.user_id)
 
     respond_to do |format|
-      #format.html { redirect_to designers_all_path }
+
       format.json { render :json => {success: true} }
     end
 

@@ -19,7 +19,7 @@
     <div class="work-item-frame-info">
       <a href="<%= work_path(work) %>" class="fill-div">
 
-      <h5 class="title"><%= work.title %></h5>
+      <h5 class="title"><%= truncate work.title , length: 50  %></h5>
       <span class="description"><%= truncate(work.desciption, length: 100) %></span><br>
 <span class="timestamp">
 <%= time_ago_in_words(work.created_at) %>前
