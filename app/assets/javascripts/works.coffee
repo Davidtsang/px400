@@ -61,12 +61,6 @@ $(document).on "page:change", ->
     $('#favoriteModel').modal('show')
     #load user favorite folder
 
-
-  #repost
-  $("#repost-act").click ->
-    $('#repostModel').modal('show')
-
-
   #likes +1
   $("#likes-submit-link").click ->
     #$('#new_works_like').submit()

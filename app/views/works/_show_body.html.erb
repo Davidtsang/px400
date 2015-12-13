@@ -66,7 +66,7 @@
             </div>
           </div>
       <% end %>
-      <% if current_user %>
+      <% if current_user  && !@work.user.blocked?(current_user)%>
           <div class="comment-form">
             <%= form_for(Comment.new, remote: true, method: :post) do |f| %>
                 <div class="form-group">
@@ -104,12 +104,12 @@
       <div class="act-item" id="like_form">
         <%= render "works/like_form" %> </div>
       <div class="act-item">
-        <% if current_user %>
+        <% if signed_user_but_not_self? @work.user.id   %>
             <%= render "works/thank_form" %>
         <% end %>
 
-        <span <%= "class=pull-right" if current_user %>><span id="thanks-count">
-            <% unless current_user %>
+        <span <%= "class=pull-right" if signed_user_but_not_self?(@work.user.id) %>><span id="thanks-count">
+            <% unless signed_user_but_not_self? @work.user.id %>
             <i class="fa fa-heart  fa-2x-s"></i><% end %>
 
           <%= @work.thanks_count %></span> 人已感谢</span></div>
@@ -151,7 +151,7 @@
       <div class="act-item">
 
         <% if current_user %>
-            <a id="repost-act" href="#"><i class="fa fa-refresh fa-2x-s"></i> 转发</a>
+            <a  href="<%= new_repost_work_path @work  %>" data-remote="true"><i class="fa fa-refresh fa-2x-s"></i> 转发</a>
 
         <% end %>
 

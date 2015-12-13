@@ -5,17 +5,21 @@ class ApplicationController < ActionController::Base
 
   def auth_block_user!
 
+    if @work
+      user = @work.user
+    else
+      user = @user
+    end
 
-
-    if @work.user.blocked?(current_user.id)
+    if user.blocked?(current_user.id)
 
       respond_to do |format|
         format.js { render text: "由于用户设置，你无法进行此项操作", status: :method_not_allowed }
-
+        format.html{ render 'shared/_auth_block_user'}
         format.json {render text: "由于用户设置，你无法进行此项操作", status: :method_not_allowed }
 
       end
-      puts 'was block this user!:('
+
       return false
 
     end

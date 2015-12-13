@@ -1,14 +1,14 @@
 <% if current_user && @is_liked %>
     <%= render 'works/unlike_form' %>
 <% else %>
-<% if current_user %>
+<% if signed_user_but_not_self? @work.user.id %>
     <span id="submit-link-span"><a  id="likes-submit-link" href="<%= works_like_work_path %>"><i class="fa fa-thumbs-up fa-2x-s "></i> 赞？</a></span>
     <% end %>
 
-    <span <%= "class=pull-right" if current_user %>>
+    <span <%= "class=pull-right" if signed_user_but_not_self? @work.user.id %>>
 
       <a href="<%= likes_work_path(@work) %>">
-        <% unless current_user %>
+        <% unless signed_user_but_not_self? @work.user.id %>
             <i class="fa fa-thumbs-up fa-2x-s"></i>
         <% end %>
 

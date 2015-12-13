@@ -1,5 +1,8 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
+
+  before_action :this_auth_block_user , only: [:new]
+
   def index
     @messages = current_user.receive_messages.all
 
@@ -84,5 +87,12 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit([:to_user_id, :from_user_id, :content, :status ] )
+  end
+
+  def this_auth_block_user
+    @user = User.find params[:to_user_id]
+
+    auth_block_user!
+
   end
 end

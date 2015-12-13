@@ -20,7 +20,7 @@ class Work < ActiveRecord::Base
   has_many :timelines , dependent: :destroy
   has_many :works_tags , dependent: :destroy
 
-  self.per_page = 60
+
 
   def self.count_user_total_likes(user_id)
     sum(:works_likes_count, :conditions => {:user_id => user_id})

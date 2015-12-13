@@ -8,6 +8,15 @@ module ApplicationHelper
     end
   end
 
+  def signed_user_but_not_self?(user_id)
+
+    result  = false
+    if current_user &&  (current_user.id != user_id)
+       result = true
+    end
+    result
+  end
+
   def current_user?(user_id)
     result = false
 

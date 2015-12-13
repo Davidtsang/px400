@@ -1,7 +1,9 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
+  before_action :this_auth_block_user
+
   def create
-    @user = User.find(params[:followed_id])
+
     current_user.follow(@user)
 
     #notify user
@@ -12,6 +14,7 @@ class RelationshipsController < ApplicationController
       format.js
     end
   end
+
   def destroy
     @user = Relationship.find(params[:id]).followed
     current_user.unfollow(@user)
@@ -26,4 +29,12 @@ class RelationshipsController < ApplicationController
     end
   end
 
+  private
+
+  def this_auth_block_user
+
+    @user = User.find(params[:followed_id])
+    auth_block_user!
+
+  end
 end
