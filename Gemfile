@@ -49,7 +49,7 @@ gem "rails-i18n"
 # gem 'capistrano-rails', group: :development
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.18.4'
 end
 
 group :development, :test do
