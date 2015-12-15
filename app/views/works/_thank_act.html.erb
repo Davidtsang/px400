@@ -1,0 +1,10 @@
+<%  if signed_user_but_not_self?(@work.user.id) %>
+<a  id="thanks-submit-link" href="<%= thank_work_path %>" data-remote="true" data-method="post"><i class="fa fa-heart fa-2x-s"></i> 感谢</a>
+<% end %>
+
+<span <%= "class=pull-right" if signed_user_but_not_self?(@work.user.id) %>><span id="thanks-count">
+            <% unless signed_user_but_not_self? @work.user.id %>
+            <i class="fa fa-heart  fa-2x-s"></i>
+            <% end %>
+
+  <%= @work.thanks_count %></span> 人已感谢</span>

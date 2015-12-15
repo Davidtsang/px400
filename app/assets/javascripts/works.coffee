@@ -15,7 +15,9 @@
 #
 #$(document).ready(ready)
 $(document).on "ajax:error", (evt, xhr, status, error) ->
+
     alert xhr.responseText
+
 
 $(document).on "page:change", ->
 
@@ -41,9 +43,11 @@ $(document).on "page:change", ->
     info.show()
 
   $(".work-item-frame-info").mouseleave ->
-    #alert("ok")
+
     info = $(this).parent().children('.work-item-frame-info')
     info.hide()
+
+
 
 
   #get path
@@ -55,106 +59,106 @@ $(document).on "page:change", ->
 
       alert jqXHR.responseText
 
-  #pathname = window.location.pathname
-  $("#favorite-act").click ->
-    #alert('ok')
-    $('#favoriteModel').modal('show')
-    #load user favorite folder
+#  #pathname = window.location.pathname
+#  $("#favorite-act").click ->
+#    #alert('ok')
+#    $('#favoriteModel').modal('show')
+#    #load user favorite folder
 
   #likes +1
-  $("#likes-submit-link").click ->
-    #$('#new_works_like').submit()
-    #check user ablite
-    $.ajax $('#likes-submit-link').attr('href'),
-      type: 'POST'
-      dateType: 'json'
-      data:{}
-      error: (jqXHR, textStatus, errorThrown) ->
-        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
-      success: (data, textStatus, jqXHR) ->
-        if data["success"] == true
-          #alert 'ok!'
-          #change page status
-          #likes +1
-          currentValue = $("#work-likes-count").text()
-          newValue = +currentValue + 1
-          $("#work-likes-count").text(newValue)
+#  $("#likes-submit-link").click ->
+#    #$('#new_works_like').submit()
+#    #check user ablite
+#    $.ajax $('#likes-submit-link').attr('href'),
+#      type: 'POST'
+#      dateType: 'json'
+#      data:{}
+#      error: (jqXHR, textStatus, errorThrown) ->
+#        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
+#      success: (data, textStatus, jqXHR) ->
+#        if data["success"] == true
+#          #alert 'ok!'
+#          #change page status
+#          #likes +1
+#          currentValue = $("#work-likes-count").text()
+#          newValue = +currentValue + 1
+#          $("#work-likes-count").text(newValue)
+#
+#          #like to unlike
+#          $('#submit-link-span').text("已赞")
+#          $("<i></i>").addClass("fa fa-thumbs-up fa-2x-s").prependTo($('#submit-link-span'))
+#
+#
+#    return false
 
-          #like to unlike
-          $('#submit-link-span').text("已赞")
-          $("<i></i>").addClass("fa fa-thumbs-up fa-2x-s").prependTo($('#submit-link-span'))
+#  #like -1
+#  $("#unlikes_sumbit_link").click ->
+#    $.ajax $('#unlikes_sumbit_link').attr('href'),
+#      type: 'POST'
+#      dateType: 'json'
+#      data:{}
+#      error: (jqXHR, textStatus, errorThrown) ->
+#        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
+#      success: (data, textStatus, jqXHR) ->
+#        if data["success"] == true
+#          #alert 'ok!'
+#          #likes +1
+#          currentValue = $("#work-likes-count").text()
+#          newValue = +currentValue - 1
+#          $("#work-likes-count").text(newValue)
+#
+#          $('#submit-link-span').text("已取消")
+#          $("<i></i>").addClass("fa fa-thumbs-up fa-2x-s").prependTo($('#submit-link-span'))
+#    #user name file show ok
+#    return false
 
-
-    return false
-
-  #like -1
-  $("#unlikes_sumbit_link").click ->
-    $.ajax $('#unlikes_sumbit_link').attr('href'),
-      type: 'POST'
-      dateType: 'json'
-      data:{}
-      error: (jqXHR, textStatus, errorThrown) ->
-        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
-      success: (data, textStatus, jqXHR) ->
-        if data["success"] == true
-          #alert 'ok!'
-          #likes +1
-          currentValue = $("#work-likes-count").text()
-          newValue = +currentValue - 1
-          $("#work-likes-count").text(newValue)
-
-          $('#submit-link-span').text("已取消")
-          $("<i></i>").addClass("fa fa-thumbs-up fa-2x-s").prependTo($('#submit-link-span'))
-    #user name file show ok
-    return false
-
-    #thank +1
-  $("#thanks-submit-link").click ->
-    #$('#new_works_like').submit()
-    #check user ablite
-    $.ajax $('#thanks-submit-link').attr('href'),
-      type: 'POST'
-      dateType: 'json'
-      data:{}
-      error: (jqXHR, textStatus, errorThrown) ->
-        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
-      success: (data, textStatus, jqXHR) ->
-        if data["success"] == true
-          #alert 'ok!'
-          #change page status
-          #likes +1
-          currentValue = $("#thanks-count").text()
-          newValue = +currentValue + 1
-          $("#thanks-count").text(newValue)
-
-          #like to unlike
-          $('#thanks-link-span').text(" 已感谢")
-          $("<i></i>").addClass("fa fa-heart fa-2x-s").prependTo($('#thanks-link-span'))
-          #$('#thanks-link-span').text("已感谢")
-    #$('#likes_submit_link').attr('href',"#")
-
-
-    return false
+#    #thank +1
+#  $("#thanks-submit-link").click ->
+#    #$('#new_works_like').submit()
+#    #check user ablite
+#    $.ajax $('#thanks-submit-link').attr('href'),
+#      type: 'POST'
+#      dateType: 'json'
+#      data:{}
+#      error: (jqXHR, textStatus, errorThrown) ->
+#        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
+#      success: (data, textStatus, jqXHR) ->
+#        if data["success"] == true
+#          #alert 'ok!'
+#          #change page status
+#          #likes +1
+#          currentValue = $("#thanks-count").text()
+#          newValue = +currentValue + 1
+#          $("#thanks-count").text(newValue)
+#
+#          #like to unlike
+#          $('#thanks-link-span').text(" 已感谢")
+#          $("<i></i>").addClass("fa fa-heart fa-2x-s").prependTo($('#thanks-link-span'))
+#          #$('#thanks-link-span').text("已感谢")
+#    #$('#likes_submit_link').attr('href',"#")
+#
+#
+#    return false
 
 
 
-  #thank -1
-  $("#unthanks_sumbit_link").click ->
-    $.ajax $('#unthanks_sumbit_link').attr('href'),
-      type: 'POST'
-      dateType: 'json'
-      data:{}
-      error: (jqXHR, textStatus, errorThrown) ->
-        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
-      success: (data, textStatus, jqXHR) ->
-        if data["success"] == true
-          #alert 'ok!'
-          #likes +1
-          currentValue = $("#thanks-count").text()
-          newValue = +currentValue - 1
-          $("#thanks-count").text(newValue)
-
-          $('#thanks-link-span').text("已取消")
-          $("<i></i>").addClass("fa fa-heart fa-2x-s").prependTo($('#thanks-link-span'))
-    #user name file show ok
-    return false
+#  #thank -1
+#  $("#unthanks_sumbit_link").click ->
+#    $.ajax $('#unthanks_sumbit_link').attr('href'),
+#      type: 'POST'
+#      dateType: 'json'
+#      data:{}
+#      error: (jqXHR, textStatus, errorThrown) ->
+#        ajaxErrorHandle(jqXHR, textStatus, errorThrown)
+#      success: (data, textStatus, jqXHR) ->
+#        if data["success"] == true
+#          #alert 'ok!'
+#          #likes +1
+#          currentValue = $("#thanks-count").text()
+#          newValue = +currentValue - 1
+#          $("#thanks-count").text(newValue)
+#
+#          $('#thanks-link-span').text("已取消")
+#          $("<i></i>").addClass("fa fa-heart fa-2x-s").prependTo($('#thanks-link-span'))
+#    #user name file show ok
+#    return false

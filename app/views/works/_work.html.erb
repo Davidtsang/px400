@@ -17,7 +17,7 @@
       <li><i class="fa fa-eye"></i> <%= work.views_count %></li>
     </ul>
     <div class="work-item-frame-info">
-      <a href="<%= work_path(work) %>" class="fill-div">
+      <a href="<%= work_path(work) %>" class="fill-div" >
 
       <h5 class="title"><%= truncate work.title , length: 50  %></h5>
       <span class="description"><%= truncate(work.desciption, length: 100) %></span><br>

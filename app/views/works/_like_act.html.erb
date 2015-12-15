@@ -1,0 +1,13 @@
+<% if signed_user_but_not_self? @work.user.id %>
+    <span id="submit-link-span"><a data-remote="true" data-method="post" id="likes-submit-link" href="<%= works_like_work_path %>"><i class="fa fa-thumbs-up fa-2x-s "></i> 赞？</a></span>
+<% end %>
+
+<span <%= "class=pull-right" if signed_user_but_not_self? @work.user.id %>>
+
+      <a href="<%= likes_work_path(@work) %>">
+        <% unless signed_user_but_not_self? @work.user.id %>
+            <i class="fa fa-thumbs-up fa-2x-s"></i>
+        <% end %>
+
+        <span id="work-likes-count"><%= @work.works_likes_count %></span> 人已赞</a>
+    </span>

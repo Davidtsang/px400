@@ -38,9 +38,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @icode = params[:icode]
+    super
+  end
 
   # POST /resource
   # def create

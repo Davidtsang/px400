@@ -1,6 +1,6 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :this_auth_block_user
+  before_action :this_auth_block_user, only: [:create]
 
   def create
 
@@ -16,6 +16,8 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
+
+
     @user = Relationship.find(params[:id]).followed
     current_user.unfollow(@user)
 

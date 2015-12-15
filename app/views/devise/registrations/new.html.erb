@@ -1,3 +1,4 @@
+<% provide(:title, "注册账号") %>
 <div class="container-fix">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -44,7 +45,7 @@
 
             <tr>
               <td><label>邀请码</label></td>
-              <td> <%= f.text_field :icode, class: "form-control" %>
+              <td> <%= f.text_field :icode, value: resource.icode ||= @icode , class: "form-control" %>
                 <em>（本站采用邀请注册，请输入你的邀请码。 <a href="#">如何获得邀请码？</a>）</em></td>
             </tr>
 

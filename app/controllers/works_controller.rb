@@ -211,6 +211,7 @@ class WorksController < ApplicationController
     #@work.parent_work_id = params[:id]
     @repost.image = @work.image
 
+    @work_id = @repost.parent_work_id
 
     respond_to do |format|
       if @repost.save
@@ -241,9 +242,9 @@ class WorksController < ApplicationController
 
 
     LikeWorkNotify.create(subject_id: current_user.id, obj_id: params[:id], user_id: @work.user_id)
-
+    @work = Work.find( params[:id])
     respond_to do |format|
-
+      format.js
       format.json { render :json => {success: true} }
     end
 
@@ -257,8 +258,14 @@ class WorksController < ApplicationController
     notify = LikeWorkNotify.where(subject_id: current_user.id, obj_id: params[:id]).first
     notify.destroy if notify
 
-    respond_to do |format|
+    #destroy timeline
+    timeline = current_user.timelines.where(work_id: params[:id], act: "like").first
+    timeline.destroy if timeline
 
+    @work = Work.find( params[:id])
+
+    respond_to do |format|
+      format.js
       format.json { render :json => {success: true} }
     end
 
@@ -266,17 +273,14 @@ class WorksController < ApplicationController
 
   def thank
 
-
-
-
     current_user.thanks.create(work_id: params[:id])
 
     #notify author
-
+    @work = Work.find(params[:id])
     ThanksWorkNotify.create(subject_id: current_user.id, obj_id: params[:id], user_id: @work.user_id)
 
     respond_to do |format|
-
+      format.js
       format.json { render :json => {success: true} }
     end
 
@@ -285,13 +289,13 @@ class WorksController < ApplicationController
   def unthank
     thank = current_user.thanks.where(work_id: params[:id]).first
     thank.destroy
-
+    @work = Work.find(params[:id])
     #destroy notify
     notify = ThanksWorkNotify.where(subject_id: current_user.id, obj_id: params[:id]).first
     notify.destroy if notify
 
     respond_to do |format|
-      #format.html { redirect_to designers_all_path }
+      format.js
       format.json { render :json => {success: true} }
     end
 

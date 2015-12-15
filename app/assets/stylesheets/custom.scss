@@ -183,6 +183,9 @@ a.btn-primary:hover{
 
 }
 
+.modal-content{
+  //padding: 30px !important;
+}
 #workModal{
   //width: 840px;
 
@@ -191,7 +194,7 @@ a.btn-primary:hover{
     border-bottom: 0px;
   }
   .modal-body{
-    padding: 30px 58px;
+    padding: 0px 28px;
   }
   .modal-content{
     background-color: $siteGrey;
@@ -621,8 +624,8 @@ input[type=text], input[type=email], input[type=password]{
 .del{
   text-decoration: line-through;
 }
-.work-header {
-  margin-top: 30px;
+.work-wrap {
+  padding-top: 50px;
 }
 .work-header-inner {
   .user-avatar {
