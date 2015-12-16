@@ -17,8 +17,14 @@
           <ul class="list-inline">
             <li><%= link_to @work.user.name, "/designers/#{@work.user.id}" %>
               <% if @work.work_type=="re" %>
-                  转发自 <%= link_to @parent_work.title, work_path(@work.parent_work_id) %>
-              <% else %>
+
+                  转发自
+                  <% if @parent_work %>
+                  <%= link_to @parent_work.title, work_path(@work.parent_work_id) %>
+                  <% else %>
+                  [已删除]
+                  <% end %>
+                  <% else %>
                   发表
               <% end %>
             </li>

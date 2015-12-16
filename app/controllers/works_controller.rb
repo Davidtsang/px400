@@ -116,7 +116,7 @@ class WorksController < ApplicationController
     #
     @parent_work = nil
     if @work.parent_work_id != nil
-      @parent_work = Work.find(@work.parent_work_id)
+      @parent_work = Work.where(id: @work.parent_work_id).first
     end
 
     respond_to do |format|

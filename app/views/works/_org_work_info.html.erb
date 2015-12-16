@@ -1,5 +1,6 @@
 <div class="org-work-info">
   <h4>原作信息</h4>
+  <% if work %>
   <a href="<%= work_path(work) %>">
     <div class="image-frame-100">
     <%= image_tag work.image(:small), width: 100, height: 75 %></a>
@@ -14,4 +15,7 @@
   <li><a href="<%= work_path(work) %>" class="underline-a"> <%= work.title %></a></li>
   <li> <%= truncate(work.desciption,length: 100) %></li>
 </ul>
+      <% else %>
+  <p class="meta">[原作已删除]</p>
+      <% end %>
 </div>
