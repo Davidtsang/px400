@@ -83,7 +83,7 @@
     </div>
 
     <!--END TAG LIST-->
-    <% if current_user?(@work.user_id) || (current_user && current_user.is_admin?) %>
+    <% if current_user_or_admin?(@work.user_id) %>
         <div>
           <h5><i class="fa fa-gear"></i> 作者控制台</h5>
           <ul class="list-inline">

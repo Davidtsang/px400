@@ -26,6 +26,28 @@ module ApplicationHelper
     return result
   end
 
+
+  def current_user_or_admin?(user_id)
+    result = false
+
+    if current_user
+
+      if  current_user.id == user_id
+        result = true
+
+      elsif  current_user.user_role == 'admin'
+        result = true
+
+      end
+
+
+    end
+
+
+    result
+
+  end
+
   def uncheck_notify_count
     result = ""
     if current_user
