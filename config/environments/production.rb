@@ -78,7 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   #send email use mailgun
-  config.action_mailer.default_url_options = { :host => "mg.400px.net" }
+  config.action_mailer.default_url_options = { :host => "www.400px.net" }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -86,7 +86,7 @@ Rails.application.configure do
       :address => "smtp.mailgun.org",
       :port => 587,
       :domain => "mg.400px.net",
-      :user_name => "postmaster@mg.400px.netg",
+      :user_name => "postmaster@mg.400px.net",
       :password => "959aeb0f05a2e8ba8267336965ddec6d"
   }
 
