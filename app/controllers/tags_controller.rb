@@ -3,7 +3,8 @@ class TagsController < ApplicationController
   before_action :authenticate_user!
   #create Lable
   def create_label
-    tag = where_or_create_tag(Label, tags_params[:name])
+    tag_name = tags_params[:name].strip
+    tag = where_or_create_tag(Label, tag_name)
 
     WorksTag.create(work_id: params[:work_id] , tag_id: tag.id )
 
@@ -15,8 +16,8 @@ class TagsController < ApplicationController
 
   #create Skill
   def create
-
-    tag = where_or_create_tag(Skill, tags_params[:name])
+    tag_name = tags_params[:name].strip
+    tag = where_or_create_tag(Skill, tag_name)
 
     current_user.users_tags.create(tag_id: tag.id )
 
@@ -55,7 +56,8 @@ class TagsController < ApplicationController
   def suggest
 
     #query puts params
-    qstring = params[:query]
+    qstring = params[:query].strip
+
     if params[:type] == "Label"
       @tags = Label.search(qstring)
     else

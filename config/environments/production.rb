@@ -76,4 +76,16 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #send email use mailgun
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :authentication => :plain,
+      :address => "smtp.mailgun.org",
+      :port => 587,
+      :domain => "mg.400px.net",
+      :user_name => "postmaster@mg.400px.netg",
+      :password => "959aeb0f05a2e8ba8267336965ddec6d"
+  }
+
 end

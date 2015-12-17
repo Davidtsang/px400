@@ -46,7 +46,7 @@
             <tr>
               <td><label>邀请码</label></td>
               <td> <%= f.text_field :icode, value: resource.icode ||= @icode , class: "form-control" %>
-                <em>（本站采用邀请注册，请输入你的邀请码。 <a href="#">如何获得邀请码？</a>）</em></td>
+                <em>（本站采用邀请注册，请输入你的邀请码。 <a href="<%= about_icode_path %>">如何获得邀请码？</a>）</em></td>
             </tr>
 
           </table>
