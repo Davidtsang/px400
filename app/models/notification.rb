@@ -5,12 +5,19 @@ class Notification < ActiveRecord::Base
 
   def self.uncheck_notify_by_user_id(user_id)
 
-    where(user_id: user_id , is_checked: false)
+    where(user_id: user_id, is_checked: false)
 
   end
 
   def subject_id_to_s
+    user = User.where(id: subject_id).first
+    if user
+      return "<a href='/designers/#{user.id}'>#{user.name}</a>".html_safe
+    else
 
+      return  '[已删除]'
+
+    end
   end
 
   def type_to_s

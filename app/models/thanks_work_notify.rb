@@ -1,9 +1,6 @@
 class ThanksWorkNotify < Notification
 
-  def subject_id_to_s
-    user = User.find( subject_id)
-    "<a href='/designers/#{user.id}'>#{user.name}</a>".html_safe
-  end
+
 
   def type_to_s
     "感谢了你的作品"
