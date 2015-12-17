@@ -10,7 +10,7 @@ class RepostWorkNotify < Notification
     rework =Work.find(obj_id)
 
 
-    org_work =Work.where(rework.parent_work_id).first
+    org_work =Work.where(id: rework.parent_work_id).first
 
     if org_work
       return "<a href='/works/#{rework.id}'>#{org_work.title}</a>".html_safe
