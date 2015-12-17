@@ -1,4 +1,5 @@
 class Work < ActiveRecord::Base
+  after_destroy :destroy_notifys
   belongs_to :user
   validates :user_id, presence: true
   validates :image ,presence: true
@@ -30,4 +31,11 @@ class Work < ActiveRecord::Base
     sum(:thanks_count, :conditions => {user_id: user_id})
   end
 
+  private
+
+  def destroy_notifys
+    RepostWorkNotify.destroy_all(obj_id: id  )
+    LikeWorkNotify.destroy_all(obj_id: id  )
+    ThanksWorkNotify.destroy_all(obj_id: id  )
+  end
 end

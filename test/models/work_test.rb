@@ -132,4 +132,21 @@ class WorkTest < ActiveSupport::TestCase
 
   end
 
+  test "destroy work the all notify should destroy too" do
+    @work.save
+
+    #create notify
+    RepostWorkNotify.create!(subject_id: 1, obj_id: @work.id,user_id: 1 )
+    LikeWorkNotify.create!(subject_id: 1, obj_id: @work.id,user_id: 1 )
+    ThanksWorkNotify.create!(subject_id: 1, obj_id: @work.id ,user_id: 1)
+
+    #test
+    @work.destroy
+
+    assert_not RepostWorkNotify.where(subject_id: 1, obj_id: @work.id  ).first
+    assert_not LikeWorkNotify.where(subject_id: 1, obj_id: @work.id  ).first
+    assert_not ThanksWorkNotify.where(subject_id: 1, obj_id: @work.id ).first
+
+  end
+
 end

@@ -170,7 +170,7 @@ class WorksController < ApplicationController
   def update
     respond_to do |format|
       if @work.update(work_params)
-        format.html { redirect_to @work, notice: 'Work was successfully updated.' }
+        format.html { redirect_to @work, notice: '作品已经更新' }
         format.json { render :show, status: :ok, location: @work }
       else
         format.html { render :edit }
@@ -182,9 +182,13 @@ class WorksController < ApplicationController
   # DELETE /works/1
   # DELETE /works/1.json
   def destroy
+
     @work.destroy
+
+    #destroy all notify
+
     respond_to do |format|
-      format.html { redirect_to static_pages_home_path, notice: 'Work was successfully destroyed.' }
+      format.html { redirect_to static_pages_home_path, notice: '作品已经删除' }
       format.json { head :no_content }
     end
   end

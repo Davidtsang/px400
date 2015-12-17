@@ -17,6 +17,7 @@ class RepostWorkNotify < Notification
     else
       return '[已删除]'
     end
+
   end
 
 end
