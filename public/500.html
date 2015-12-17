@@ -3,12 +3,13 @@
 <head>
   <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="utf-8" />
   <style>
   body {
     background-color: #EFEFEF;
     color: #2E2F30;
     text-align: center;
-    font-family: arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft Yahei UI", "Microsoft Yahei", Arial, sans-serif;
     margin: 0;
   }
 
@@ -32,9 +33,10 @@
   }
 
   h1 {
-    font-size: 100%;
+    font-size: 24px;
     color: #730E15;
     line-height: 1.5em;
+    font-weight: bolder;
   }
 
   div.dialog > p {
@@ -50,6 +52,8 @@
     border-top-color: #DADADA;
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+      font-size:12px;
+
   }
   </style>
 </head>
@@ -58,9 +62,9 @@
   <!-- This file lives in public/500.html -->
   <div class="dialog">
     <div>
-      <h1>We're sorry, but something went wrong.</h1>
+      <h1>We're sorry, but something went wrong (500)</h1>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <p>我们非常抱歉，但是看来发生一些问题。服务器已经记录了本次错误信息。你也可以联系网络管理员报告这个问题: <a href="mailto:webmaster@400px.net" target="_top">webmaster@400px.net</a></p>
   </div>
 </body>
 </html>
