@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:notice] ="你已经成功更新了一般设置！"
     end
 
-    render :profile
+    redirect_to '/home'
 
   end
 
