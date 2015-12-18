@@ -44,7 +44,7 @@ class DesignersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    #@works = @user.works.paginate(page: params[:page])
+
     @total_likes = Work.count_user_total_likes @user.id
     @total_thanks = Work.count_user_total_thanks @user.id
 
