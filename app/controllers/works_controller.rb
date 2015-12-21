@@ -2,7 +2,7 @@ class WorksController < ApplicationController
   before_action :set_work, only: [:edit, :update, :destroy, :thank, :like, :favorites, :reworks, :repost,:new_repost, :likes ]
   before_action :current_user, only: :destroy
 
-  before_filter :authenticate_user!, only: [:new, :like, :unlike, :edit, :create, :update, :thank]
+  before_filter :authenticate_user!, only: [:new, :like, :unlike, :edit, :create, :update, :thank , :destroy]
 
   before_action :auth_block_user! , only: [:thank, :like,  :repost, :new_repost ]
 

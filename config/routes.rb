@@ -54,7 +54,7 @@ Rails.application.routes.draw do
 
   get "explore" => "works#explore"
 
-  resources :works do
+  resources :works ,except: :index do
 
     collection do
       get 'feed' => "works#feed"
