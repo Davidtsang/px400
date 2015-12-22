@@ -33,4 +33,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def only_admin
+
+    unless current_user_is_admin
+      respond_to do |format|
+
+        format.html { head 403 }
+      end
+
+      return false
+
+    end
+  end
+
 end

@@ -1,4 +1,7 @@
 class StaticPagesController < ApplicationController
+
+
+
   def home
 
   sort = params[:sort]
@@ -19,6 +22,7 @@ class StaticPagesController < ApplicationController
 
     end
   end
+
 
   def about_icode
 

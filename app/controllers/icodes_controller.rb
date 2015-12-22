@@ -1,6 +1,7 @@
 class IcodesController < ApplicationController
   before_action :set_icode, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :only_admin
+
   # GET /icodes
   # GET /icodes.json
   def index
@@ -15,6 +16,10 @@ class IcodesController < ApplicationController
   # GET /icodes/new
   def new
     @icode = Icode.new
+    @icode.code= Icode.generate_code
+    @icode.user_id = current_user.id
+
+
   end
 
   # GET /icodes/1/edit
@@ -59,6 +64,29 @@ class IcodesController < ApplicationController
       format.html { redirect_to icodes_url, notice: 'Icode was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def batch_gen
+
+  end
+
+  def batch_create
+
+    gen_number = params[:gen_number]
+    user_id = params[:user_id]
+
+    @icodes = []
+    gen_number.to_i.times do
+
+      icode = Icode.new
+      icode.code= Icode.generate_code
+      icode.user_id = user_id
+      icode.save
+      @icodes.append icode
+
+    end
+
+
   end
 
   private

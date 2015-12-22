@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resources :icodes
+  resources :icodes do
+    collection do
+      get "batch_gen" => "icodes#batch_gen"
+      post "batch_create" => "icodes#batch_create"
+    end
+
+  end
   get 'reports/index'
 
   post 'reports/create'
@@ -25,7 +31,7 @@ Rails.application.routes.draw do
   resources :messages do
     collection do
       get 'sent'
-      post 'disable_show/:id' =>"messages#disable_show"
+      post 'disable_show/:id' => "messages#disable_show"
       get "show_sent/:id" => "messages#show_sent"
     end
   end
@@ -54,7 +60,7 @@ Rails.application.routes.draw do
 
   get "explore" => "works#explore"
 
-  resources :works ,except: :index do
+  resources :works, except: :index do
 
     collection do
       get 'feed' => "works#feed"
@@ -72,7 +78,7 @@ Rails.application.routes.draw do
       post "unthank" => "works#unthank"
 
       #ajax repost
-      get "new_repost" =>"works#new_repost"
+      get "new_repost" => "works#new_repost"
 
       post "repost"
 
@@ -88,7 +94,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'home' =>"static_pages#home", as: "static_pages_home"
+  get 'home' => "static_pages#home", as: "static_pages_home"
 
   get 'static_pages/about'
 
