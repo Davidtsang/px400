@@ -575,6 +575,15 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 1,  user2.count_total_thanks
   end
 
+  test "defalut order should be created_at ASC" do
+    user2  = create_user_two
+    user3  = create_user_three
+
+    users  = User.where(id: [user2.id, user3.id])
+    assert_equal 2, users.count
+    assert_equal user2.id , users.first.id
+
+  end
   # test "associated work should be destroyed" do
   #   @user.save
   #   @user.works.create!(image: "/fake.jpg")
