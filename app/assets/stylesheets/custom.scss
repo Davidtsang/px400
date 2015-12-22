@@ -88,7 +88,7 @@ ol{
   //@extend .alert;
   //@extend .alert-dismissible;
    text-align: center;
-  padding: 5px 25px;
+  padding: 10px 25px;
   margin-bottom: 0px;
   font-weight: bold;
   border-radius: 0px;
@@ -929,6 +929,23 @@ p.description{
   }
 }
 
+#error_explanation{
+  h2{
+    margin: 0px;
+  }
+  background-color: lighten(red, 40%);
+  padding: 10px;
+  border: 1px solid lighten(red,30%);
+  border-radius: 3px;
+  color: red;
+  margin-bottom: 20px;
+
+}
+.field_with_errors{
+  @extend .form-group;
+  @extend .has-error;
+
+}
 //------footer
 footer {
 

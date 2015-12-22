@@ -18,12 +18,12 @@
             </tr>
 
             <tr>
-              <td width="20%"><%= f.label :email %></td>
-              <td><%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "youemail@example.com" %></td>
+              <td width="20%"><%= f.label :email, :class => "control-label" %></td>
+              <td><%= f.email_field :email, autofocus: true, class: "form-control" %></td>
             </tr>
 
             <tr>
-              <td><%= f.label :password, "密码" %></td>
+              <td><%= f.label :password, "密码", :class => "control-label" %></td>
 
               <td>
                 <% if @minimum_password_length %>
@@ -36,7 +36,7 @@
 
 
             <tr>
-              <td> <%= f.label :password_confirmation, "确认密码" %></td>
+              <td> <%= f.label :password_confirmation, "确认密码", :class => "control-label" %></td>
               <td> <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %></td>
             </tr>
 
@@ -44,7 +44,7 @@
 
 
             <tr>
-              <td><label>邀请码</label></td>
+              <td>  <%= f.label :icode, "邀请码", :class => "control-label" %> </td>
               <td> <%= f.text_field :icode, value: resource.icode ||= @icode , class: "form-control" %>
                 <em>（本站采用邀请注册，请输入你的邀请码。 <a href="<%= about_icode_path %>">如何获得邀请码？</a>）</em></td>
             </tr>

@@ -210,7 +210,9 @@ zh-CN:
       user:
         icode: "邀请码"
       # will translate User attribute "login" as "Handle"
-
+        password: "密码"
+        name: "姓名"
+        password_confirmation: "确认密码"
 
   will_paginate:
     previous_label: "&#8592; 上一页"
