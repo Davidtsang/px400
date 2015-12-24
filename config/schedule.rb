@@ -1,3 +1,4 @@
+env :PATH, ENV['PATH']
 # Use this file to easily define all of your cron jobs.
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
@@ -15,7 +16,7 @@ set :output, "log/cron_log.log"
 # end
 #
 
-every 1.day , :at => '7:50 pm' do
+every 1.day , :at => '7:56 pm' do
   rake "send_daily_notice_email"
   #runner "User.send_daily_notice_email" , :output => 'cron.log'
 end
