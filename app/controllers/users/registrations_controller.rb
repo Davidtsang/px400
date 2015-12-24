@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_sign_up_params, only: [:create]
   before_filter :configure_account_update_params, only: [:update]
+  after_action :send_welcome_mail , only: [:create]
 
   def block_list
     @user = current_user
@@ -72,8 +73,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+   protected
 
+  def send_welcome_mail
+    UserMailer.welcome_email(resource).deliver_now
+  end
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.for(:sign_up) << [:icode, :name]

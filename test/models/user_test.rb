@@ -39,6 +39,11 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "icode have space should be auto remove" do
+    @user.icode = @user.icode + " "
+    assert @user.valid?
+  end
+
   test "icode is used should not valid" do
     icode2 = icodes(:two)
     user = User.new(name: "Example User2", email: "user2@test.com",

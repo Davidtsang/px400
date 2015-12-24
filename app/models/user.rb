@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   attr_accessor :icode
 
   validates_each :icode, :on => :create do |record, attr, value|
+    value = value.strip if value
     icode  = Icode.where(code: value, is_used: false ).first
     record.errors.add attr, "无效。请输入正确的邀请码。" unless
         value && icode && value == icode.code.to_s
@@ -189,12 +190,17 @@ WHERE follower_id = :user_id"
   end
 
   def update_icode
-    used_code =Icode.where(code: icode).first
-    used_code.used_user_id = id
-    used_code.is_used= true
-    used_code.save
-    #puts '----:)'
-    #puts used_code.is_used
+
+    if self.icode
+      self.icode = self.icode.strip
+
+      used_code =Icode.where(code: icode).first
+      used_code.used_user_id = id
+      used_code.is_used= true
+      used_code.save
+      #puts '----:)'
+      #puts used_code.is_used
+    end
 
   end
 

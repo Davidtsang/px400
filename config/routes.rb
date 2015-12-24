@@ -114,10 +114,11 @@ Rails.application.routes.draw do
   get "/designers/:id/tags/:tag_id" => "designers#show_tag"
 
   get "designers" => "designers#all"
+
   devise_scope :user do
 
     get '/sign_up' => "users/registrations#new"
-
+    get '/sign_in' => "devise/sessions#new"
     get "block_list" => "users/registrations#block_list"
     get "profile" => "users/registrations#profile"
 
