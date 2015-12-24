@@ -122,6 +122,7 @@ Rails.application.routes.draw do
     get "block_list" => "users/registrations#block_list"
     get "profile" => "users/registrations#profile"
 
+    get "notice_settings" => "users/registrations#notice_settings"
 
     get "users/:id/icodes" => "users/registrations#icodes", as: "users_icodes"
 

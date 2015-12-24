@@ -14,6 +14,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   end
 
+  def notice_settings
+    @user = current_user
+  end
+
   def profile
     @user = current_user
   end
@@ -22,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @user = User.find(current_user.id)
     if @user.update(users_params)
-      flash[:notice] ="你已经成功更新了一般设置！"
+      flash[:notice] ="你已经成功更新了一般设置"
     end
 
     redirect_to '/home'
@@ -32,7 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_avatar
     @user = User.find(current_user.id)
     if @user.update(users_params)
-      flash[:notice] ="你已经成功更新了头像！"
+      flash[:notice] ="你已经成功更新了头像"
     end
 
     render :'devise/registrations/edit'
@@ -99,6 +103,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   def users_params
-    params.require(:user).permit([:title, :bio, :company, :sex, :location, :website, :avatar, :domain_1_id, :domain_2_id])
+    params.require(:user).permit([:title, :bio, :company, :sex, :location, :website, :avatar, :domain_1_id, :domain_2_id, :is_allow_notice_mail])
   end
 end

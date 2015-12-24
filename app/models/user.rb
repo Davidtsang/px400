@@ -173,6 +173,25 @@ WHERE follower_id = :user_id"
     Work.sum(:thanks_count, :conditions => {user_id: id})
   end
 
+  def self.send_daily_notice_email
+
+    @users = User.where(:is_allow_notice_mail => true)
+
+    @users.each do |user|
+      new_notice_count = Notification.where(:user_id => user.id , :is_checked => false).count
+      new_pm_count = Message.where(:to_user_id => user.id, :is_read => false).count
+
+
+      if new_notice_count > 0 || new_pm_count > 0
+
+
+          UserMailer.daily_notice_email(user, new_notice_count, new_pm_count).deliver_now
+
+      end
+
+    end
+  end
+
   private
 
   def update_role
