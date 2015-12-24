@@ -15,7 +15,7 @@ set :output, "log/cron_log.log"
 # end
 #
 
-every 1.day , :at => '4:00 am' do
+every 1.day , :at => '3:45 am' do
   rake "send_daily_notice_email"
   #runner "User.send_daily_notice_email" , :output => 'cron.log'
 end
