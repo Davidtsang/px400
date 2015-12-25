@@ -31,7 +31,7 @@
           <% end %>
 
           <% if @sort !="repost" %>
-              <li role="presentation"><a href="<%= url_for(params.merge(sort: "repost")) %>">最多Rework的</a></li>
+              <li role="presentation"><a href="<%= url_for(params.merge(sort: "repost")) %>">最多转发的</a></li>
           <% end %>
 
           <% if @sort !="thanks" %>
