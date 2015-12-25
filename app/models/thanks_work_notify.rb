@@ -13,4 +13,8 @@ class ThanksWorkNotify < Notification
     "<a href='/works/#{work.id}'>#{work.title}</a>".html_safe
   end
 
+  def icon
+    '<i class="fa fa-heart"></i>'.html_safe
+  end
+
 end

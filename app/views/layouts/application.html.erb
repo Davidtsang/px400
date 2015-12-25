@@ -40,7 +40,9 @@
          <%= nav_link "主页", static_pages_home_path  %>
          <%= nav_link "设计师", designers_all_path %>
          <%= nav_link "发现", explore_path %>
-         <%= nav_link "通知 #{uncheck_notify_count} ".html_safe, notifications_path %>
+        <li class="<%= current_page?(notifications_path) ? 'active' : '' %>">
+        <a href="#" rel="nav-notice"  ><%="通知 #{uncheck_notify_count}".html_safe %></a></li>
+
 
       </ul>
       <ul class="nav navbar-nav navbar-right">

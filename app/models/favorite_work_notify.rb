@@ -17,4 +17,9 @@ class FavoriteWorkNotify < Notification
     "<a href='/favorite_folders/#{folder.id}'>#{work.title}</a>".html_safe
   end
 
+  def icon
+    
+    '<i class="fa fa-star"></i>'.html_safe
+    
+  end
 end

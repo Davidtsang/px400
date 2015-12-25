@@ -16,4 +16,8 @@ class LikeWorkNotify < Notification
     "<a href='/works/#{work.id}'>#{work.title}</a>".html_safe
   end
 
+  def icon
+    '<i class="fa fa-thumbs-up"></i>'.html_safe
+  end
+
 end

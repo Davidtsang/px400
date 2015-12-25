@@ -525,10 +525,10 @@ button.btn.btn-primary{
     margin-top: 10px;
     margin-right: 10px;
     background-color: $siteGreyDark;
-    //font-weight: bold;
+    font-weight: bold;
     border-color: darken($siteGreyDark, 5%);
     padding: 5px 10px !important;
-    color: $siteGreyMiddle;
+
 }
 .image-frame-100{
   background-color: #ffffff;
@@ -921,14 +921,44 @@ p.description{
 // notificcations
 .notificcations {
   li {
-    border-top: 1px solid $siteGreyLight;
+    border-bottom: 1px solid $siteGreyLight;
     padding: 10px;
   }
   .unchecked {
-    background-color: lightyellow;
+    background-color: lighten(lightskyblue, 20%);
   }
 }
+.webui-popover-title{
+  color: $siteGreyMiddle;
+}
+.nav-notice{
+  h4{
+    font-family: "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft Yahei UI", "Microsoft Yahei", Arial, sans-serif;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: $siteGreyDark;
+  }
+  .popover-content {
 
+    padding: 0px;
+    overflow-y: scroll;
+    width: 320px;
+    height: 350px;
+  }
+  .popover-footer{
+    @extend .clearfix;
+    //background-color: $siteGrey;
+    padding: 8px 14px;
+  }
+  .all-notice{
+    color: $siteGreyDark;
+    @extend .pull-right;
+
+  }
+  max-width: none;
+  border-radius: 3px;
+  top: 42px !important;
+}
 #error_explanation{
   h2{
     margin: 0px;

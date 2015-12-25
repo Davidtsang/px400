@@ -13,4 +13,7 @@ class FollowingNotify < Notification
     ""
   end
 
+  def icon
+    '<i class="fa fa-user"></i>'.html_safe
+  end
 end

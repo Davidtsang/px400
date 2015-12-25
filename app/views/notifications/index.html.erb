@@ -10,12 +10,9 @@
           <ul class="notificcations list-unstyled">
             <% @notifications.each do |notify| %>
 
-                <li <%= notify.is_checked ? "" : "class='unchecked' ".html_safe %>> <span class="pubtime"><%= time_ago_in_words notify.created_at.localtime %>之前</span> <%= notify.subject_id_to_s %>  <%= notify.type_to_s %> <%= notify.obj_id_to_s %>
+                <li <%= notify.is_checked ? "" : "class='unchecked' ".html_safe %>>
 
-                  <% if notify.is_checked == false %>
-                  <span class="pull-right"><a data-method="post" data-remote="true" href="<%= mark_checked_notification_path(notify.id) %>"><i class="fa fa-check "></i>
-                    已阅</a> </span></li>
-                  <% end %>
+                  <%= notify.icon %> <span class="pubtime"><%= time_ago_in_words notify.created_at.localtime %>之前</span> <%= notify.subject_id_to_s %>  <%= notify.type_to_s %> <%= notify.obj_id_to_s %>
 
             <% end %>
 

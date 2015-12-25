@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   post 'reports/create'
 
-
+  get 'remote_notice_data' => "notifications#remote_notice_data"
   resources :comments do
     member do
       post "like"

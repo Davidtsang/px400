@@ -1,10 +1,15 @@
 module ApplicationHelper
 
-  def nav_link(link_text, link_path)
+
+  def nav_link(link_text, link_path, remote = "false",id ="")
     class_name = current_page?(link_path) ? 'active' : ''
 
     content_tag(:li, :class => class_name) do
-      link_to link_text, link_path
+      if remote == "false"
+        link_to link_text, link_path
+      else
+        link_to link_text, link_path, remote: true, id: id
+      end
     end
   end
 

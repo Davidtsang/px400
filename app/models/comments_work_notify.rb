@@ -17,4 +17,7 @@ class CommentsWorkNotify < Notification
     "<a href='/works/#{work.id}#comment_#{comment.id}'>#{work.title}</a>".html_safe
   end
 
+  def icon
+    '<i class="fa fa-commenting"></i>'.html_safe
+  end
 end

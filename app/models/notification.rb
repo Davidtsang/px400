@@ -1,6 +1,7 @@
 class Notification < ActiveRecord::Base
   belongs_to :user
 
+  default_scope {order('created_at DESC')}
   validates_presence_of :user_id
 
   def self.uncheck_notify_by_user_id(user_id)
@@ -21,6 +22,10 @@ class Notification < ActiveRecord::Base
   end
 
   def type_to_s
+  end
+
+  def icon
+    ""
   end
 
   def obj_id_to_s

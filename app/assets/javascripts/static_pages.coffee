@@ -11,10 +11,34 @@ $(document).on "page:change", ->
     v = $('input[name="wd"]').val()
     $('input[name="wd"]').val(v + " site:400px.net")
 
+  $('[rel=nav-notice]').click ->
+    return false
+
+  $('[rel=nav-notice]').popover(
+    trigger: 'click'
+    placement: 'bottom'
+    html: 'true'
+    title: '<h4><i class="fa fa-bell"></i> 你最近的新通知</h4>'
+    content: ->
+      $.ajax(
+        url: '/remote_notice_data'
+        dataType: 'html'
+        async: false).responseText
 
 
+    template: '<div class="popover nav-notice" role="nav-notice"  ><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div><div class="popover-footer"><a class="all-notice" href="/notifications">查看全部 »</a></div></div>').on 'shown', ->
+      #hide any visible comment-popover
+      $('[rel=nav-notice]').not(this).popover 'hide'
+      $this = $(this)
+      return
 
 
-#  $('a[href=\'#top\']').click ->
-#    $('html, body').animate { scrollTop: 0 }, 'slow'
-#    false
+  $('body').on 'click', (e) ->
+    $('[rel=nav-notice]').each ->
+      #the 'is' for buttons that trigger popups
+      #the 'has' for icons within a button that triggers a popup
+      #alert 'kkk'
+      if !$(this).is(e.target) and $(this).has(e.target).length == 0 and $('.popover').has(e.target).length == 0
+        $(this).popover 'hide'
+      return
+    return

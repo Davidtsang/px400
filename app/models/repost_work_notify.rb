@@ -20,4 +20,7 @@ class RepostWorkNotify < Notification
 
   end
 
+  def icon
+    '<i class="fa fa-refresh"></i>'.html_safe
+  end
 end
