@@ -24,9 +24,11 @@
       <%= render @reworks %>
     </ol>
 
-    <div class="pagination">
-      <%= will_paginate @reworks, :page_links => false, next_label: "<i class='fa fa-angle-right fa-2x'></i>", previous_label: "<i class='fa fa-angle-left fa-2x'></i>" %>
-    </div>
+
 
   </div>
+  <div class="row row-centered">
+    <%= will_paginate @reworks, :page_links => false, next_label: "<i class='fa fa-angle-right fa-2x'></i>", previous_label: "<i class='fa fa-angle-left fa-2x'></i>" %>
+  </div>
+
 </div>

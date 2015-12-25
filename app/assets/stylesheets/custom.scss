@@ -53,7 +53,9 @@ $siteGreyMiddle: lighten(black, 65%);
 $siteGreyLight: lighten(black, 85%);
 $siteGreyDark: lighten(black, 35%);
 $purple:  #cd00cd;
-
+.row-centered {
+  text-align:center;
+}
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   color: #fff;
   background-color:$purple;
