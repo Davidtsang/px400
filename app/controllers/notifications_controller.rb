@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
+
   def index
 
     @notifications   = Notification.where(user_id: current_user.id).paginate(page: params[:page])
@@ -20,6 +21,7 @@ class NotificationsController < ApplicationController
     Notification.where(id: @notifications.map(&:id)).update_all(is_checked: true)
     render layout: false
   end
+
   #ajax check notify
   def mark_checked
 

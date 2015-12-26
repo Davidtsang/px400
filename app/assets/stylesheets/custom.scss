@@ -932,6 +932,9 @@ p.description{
   li {
     border-bottom: 1px solid $siteGreyLight;
     padding: 10px;
+    .fa{
+      color: $siteGreyMiddle;
+    }
   }
   .unchecked {
     background-color: lighten(lightskyblue, 20%);

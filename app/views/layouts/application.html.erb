@@ -5,7 +5,7 @@
   <meta name="force-rendering" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
- <title><%= yield(:title) %> - 400px.net</title>
+  <title><%= yield(:title) %> - 400px.net</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -37,11 +37,13 @@
 
           </a></li>
 
-         <%= nav_link "主页", static_pages_home_path  %>
-         <%= nav_link "设计师", designers_all_path %>
-         <%= nav_link "发现", explore_path %>
-        <li class="<%= current_page?(notifications_path) ? 'active' : '' %>">
-        <a href="#" rel="nav-notice"  ><%="通知 #{uncheck_notify_count}".html_safe %></a></li>
+        <%= nav_link "主页", static_pages_home_path %>
+        <%= nav_link "设计师", designers_all_path %>
+        <%= nav_link "发现", explore_path %>
+        <% if user_signed_in? %>
+            <li class="<%= current_page?(notifications_path) ? 'active' : '' %>">
+              <a href="#" rel="nav-notice"><%= "通知 #{uncheck_notify_count}".html_safe %></a></li>
+        <% end %>
 
 
       </ul>
@@ -153,7 +155,9 @@
 
 </footer>
 
-<p class="alert"><i class="fa fa-info-circle "></i> 本站目前处于小范围内部测试阶段。系统更新或停机将较为频繁。预计2015年1月15号之后正式公测。如果你是一名设计师或艺术家，希望参与本站建设，你可尝试申请邀请码。请发送Email到：<%= mail_to 'icode@mg.400px.net', 'icode@mg.400px.net' %> 。如果你有其它建议，请发送至 <%= mail_to 'advise@mg.400px.net', 'advise@mg.400px.net' %></p>
+<p class="alert"><i class="fa fa-info-circle "></i>
+  本站目前处于小范围内部测试阶段。系统更新或停机将较为频繁。预计2015年1月15号之后正式公测。如果你是一名设计师或艺术家，希望参与本站建设，你可尝试申请邀请码。请发送Email到：<%= mail_to 'icode@mg.400px.net', 'icode@mg.400px.net' %>
+  。如果你有其它建议，请发送至 <%= mail_to 'advise@mg.400px.net', 'advise@mg.400px.net' %></p>
 </body>
 
 
