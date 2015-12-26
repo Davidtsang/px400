@@ -18,20 +18,28 @@ $(document).on "page:change", ->
     trigger: 'click'
     placement: 'bottom'
     html: 'true'
-    title: '<h4><i class="fa fa-bell"></i> 你最近的新通知</h4>'
+    title: '<h4><i class="fa fa-bell"></i> 你最近的通知</h4>'
     content: ->
-      $.ajax(
-        url: '/remote_notice_data'
-        dataType: 'html'
-        async: false).responseText
+      return notice_pop_content()
 
 
-    template: '<div class="popover nav-notice" role="nav-notice"  ><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div><div class="popover-footer"><a class="all-notice" href="/notifications">查看全部 »</a></div></div>').on 'shown', ->
+    template: '<div class="popover nav-notice" role="nav-notice"  ><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content" id="notice_pop_content"></div><div class="popover-footer"><a class="all-notice" href="/notifications">查看全部 »</a></div></div>').on 'shown', ->
       #hide any visible comment-popover
       $('[rel=nav-notice]').not(this).popover 'hide'
       $this = $(this)
       return
 
+  notice_pop_content = ->
+    $.ajax(
+      url: '/remote_notice_data'
+      dataType: 'html'
+      async: true
+      success: (response) ->
+        #alert(response)
+        $('#notice_pop_content').html response)
+
+
+    return '<p class="xy-center"><i class="fa fa-cog fa-spin"></i> 正在读取...</p>'
 
   $('body').on 'click', (e) ->
     $('[rel=nav-notice]').each ->

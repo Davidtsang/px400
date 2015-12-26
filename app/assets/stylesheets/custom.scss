@@ -44,6 +44,13 @@ $font-size-base: 13px;
   @extend .container;
   width: 960px;
 }
+.xy-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
 * {
   font-family: "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft Yahei UI", "Microsoft Yahei", Arial, sans-serif;
 }
@@ -943,9 +950,13 @@ p.description{
   .popover-content {
 
     padding: 0px;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 320px;
     height: 350px;
+    .xy-center{
+      color: $siteGreyMiddle;
+      font-size: 12px;
+    }
   }
   .popover-footer{
     @extend .clearfix;

@@ -15,6 +15,7 @@ class NotificationsController < ApplicationController
   end
 
   def remote_notice_data
+
     @notifications   = Notification.where(user_id: current_user.id).limit(32)
     Notification.where(id: @notifications.map(&:id)).update_all(is_checked: true)
     render layout: false
