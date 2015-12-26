@@ -783,6 +783,10 @@ p.description{
   padding: 0 5px;
 }
 .comments{
+  h5{
+    font-weight: normal;
+  }
+  line-height: 200%;
   li{
     border-bottom: 1px solid $siteGreyLight;
   }
@@ -797,6 +801,11 @@ p.description{
   a{
     color: $siteGreyDark;
   }
+}
+.reply-form{
+  @extend .clearfix;
+  margin-bottom: 10px;
+  padding-left: 30px;
 }
 .edit-title
 {
@@ -864,12 +873,28 @@ p.description{
   font-size: 12px;
   color: $siteGreyDark;
 }
+.comment{
+  .avatar{
+    margin-right: 5px;
+  }
+}
+.comment-tools{
+  visibility: hidden;
+}
 .comment-meta{
   font-size: 12px ;
+  color: $siteGreyDark;
 }
+p.comment-meta{
+
+    margin-bottom: 7px;
+
+}
+
 .comment-body{
   //@extend .clearfix;
   //background-color: lightyellow;
+  margin-bottom: 8px;
 }
 .domain-name{
   color: $siteGreyMiddle;

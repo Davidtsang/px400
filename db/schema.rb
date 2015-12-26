@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224143538) do
+ActiveRecord::Schema.define(version: 20151226074216) do
 
   create_table "blacklists", force: :cascade do |t|
     t.integer  "user_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20151224143538) do
     t.integer  "likes_count", default: 0
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "parent_id"
   end
 
   create_table "comments_likes", force: :cascade do |t|

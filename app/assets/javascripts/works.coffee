@@ -18,6 +18,11 @@ $(document).on "ajax:error", (evt, xhr, status, error) ->
 
     alert xhr.responseText
 
+$(document).on 'mouseover', 'li.comment',  ->
+  $(this).find("span.comment-tools").css('visibility', 'visible')
+
+$(document).on 'mouseleave', 'li.comment',  ->
+  $(this).find("span.comment-tools").css('visibility', 'hidden')
 
 $(document).on "page:change", ->
 
@@ -48,7 +53,14 @@ $(document).on "page:change", ->
     info.hide()
 
 
+  #hover li.comment show act bar
+#  $("li.comment").hover  ->
+#    #alert 'ok'
+#    $(this).find("span.comment-tools").css('visibility', 'visible')
 
+#  $("li.comment").mouseleave  ->
+#      #alert 'ok'
+#    $(this).find("span.comment-tools").css('visibility', 'hidden')
 
   #get path
   ajaxErrorHandle =(jqXHR, textStatus, errorThrown) ->
