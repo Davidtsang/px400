@@ -589,6 +589,35 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user2.id , users.first.id
 
   end
+
+  test "title should be max 140 length" do
+
+    @user.title = "t" *141
+
+    assert_not @user.valid?
+
+  end
+
+  test "location should be max 80 length" do
+    @user.location= 'l' * 81
+
+    assert_not @user.valid?
+
+  end
+
+  test "url should be max 250 length" do
+    @user.website = 's' * 251
+
+    assert_not @user.valid?
+
+  end
+
+  test "company should be max 80 length" do
+    @user.company= 'c' *81
+
+    assert_not @user.valid?
+
+  end
   # test "associated work should be destroyed" do
   #   @user.save
   #   @user.works.create!(image: "/fake.jpg")

@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
 
   NICKNAME_REGEX = /\A[\u4e00-\u9fa5_a-zA-Z0-9]+\Z/
   validates :name, length: {maximum: 32, minimum: 2}, presence: true
+  validates :title, length: {maximum: 140}
+  validates :location, length: {maximum: 80}
+  validates :website, length: {maximum: 250}
+  validates :company, length: {maximum: 80}
 
   #validates_presence_of :name
   validates :nickname, uniqueness: true, :allow_blank => true, format: {with: NICKNAME_REGEX, message: "只允许包含中文、英文字母、数字及下划线"}, length: {maximum: 32, minimum: 2}

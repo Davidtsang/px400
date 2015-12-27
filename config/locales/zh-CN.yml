@@ -213,6 +213,8 @@ zh-CN:
         password: "密码"
         name: "姓名"
         password_confirmation: "确认密码"
+        current_password: "当前密码"
+        nickname: "昵称"
 
   will_paginate:
     previous_label: "&#8592; 上一页"
