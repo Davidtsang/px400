@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_create :update_icode, :giveme_icodes, :update_role
+  after_create :update_icode, :giveme_icodes, :update_role, :welcome_pm
 
   NICKNAME_REGEX = /\A[\u4e00-\u9fa5_a-zA-Z0-9]+\Z/
   validates :name, length: {maximum: 32, minimum: 2}, presence: true
@@ -193,6 +193,28 @@ WHERE follower_id = :user_id"
   end
 
   private
+
+  def welcome_pm
+
+    content = <<-eos
+
+    你好，#{name} !\n
+    我是400px.net CTO兼联合创始人David。 我代表400px.net及我个人名义，非常欢迎你应邀加入400px.net设计师社交网络。\n
+    400px.net是中国设计师与艺术家展示作品与交流的平台。你可以在这里展示自己的才华，认识新的朋友，发现创作的灵感。未来我们还将加入职业介绍、人才招聘、作品交易等栏目。打造一个为设计师与艺术家服务的、有品位的垂直社交网络。\n
+    目前我们网站还出于公测阶段，难免会有这样那样的不足和缺陷，网络可能也不是非常稳定，希望你能将使用中发现的问题和BUG反馈给我们，我们会及时修正及改进。我们非常欢迎你对我们网站的建设多多提意见。你可以直接发邮件到我的个人邮箱: i.david.tsang@qq.com 。\n
+    另外，希望你能多多发表你自己的作品，将你的才华展示给大家。并不仅限与完整的作品，400px.net设计的目的就是让你能展示每天的心得和进步，例如仅仅是一个小的图标、图形、效果、字体，都可以在400px.net上美观的展示出来。\n
+    作为第一批入驻的艺术家，我们赠送给你10个邀请码，你可以邀请自己的设计师朋友来加入。你可以在 ：会员设置 - 邀请码 选项页面里面看到这些邀请码。你有什么需求，请及时联系我们。\n
+    再次感谢你的加入和支持。让我们一起共同进步！\n
+-------------------------\n
+    你诚挚的David\n
+    400px.net CTO\n
+
+    eos
+
+    Message.create(from_user_id:2 , :to_user_id => id , content: content, :is_read => false)
+
+
+  end
 
   def update_role
     if id == 1
