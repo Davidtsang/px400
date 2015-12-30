@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
   end
 
   def sent
-    @messages = current_user.send_messages.all
+    @messages = current_user.send_messages.all.order('created_at DESC')
 
   end
 
