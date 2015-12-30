@@ -10,5 +10,5 @@ class Message < ActiveRecord::Base
 
   validates_presence_of :to_user_id, :from_user_id
 
-  scope :receive_default,  ->{where(status: 0)}
+  scope :receive_default,  ->{where(status: 0).order('created_at DESC')}
 end
