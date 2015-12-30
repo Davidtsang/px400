@@ -19,7 +19,7 @@
               <td>
                 你发送了一条私信给
                 <%= image_tag message.to_user.avatar.url(:mini), class: 'avatar' %>
-                <%= link_to message.to_user.name, "/designers/#{message.from_user.id }" %></td>
+                <%= link_to message.to_user.name, "/designers/#{message.to_user.id }" %></td>
               <td>
                 <%= link_to '查看', "/messages/show_sent/#{message.id}"  %></td>
 
