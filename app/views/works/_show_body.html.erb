@@ -28,6 +28,10 @@
                   发表
               <% end %>
             </li>
+            <% if  @work.is_original %>
+               <li><i class="fa fa-pencil-square" ></i> 原创作品</li>
+            <% end %>
+
             <li><%= @work.updated_at.localtime.to_date %> 更新</li>
           </ul>
         </div>
