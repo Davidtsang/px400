@@ -56,7 +56,7 @@ class WorksController < ApplicationController
       #2.have domain no tag
     elsif @domain_id && !@tag_id
       @works =Work.where(domain_id: params[:domain_id]).paginate(page: params[:page])
-      @tags = Label.joins(:works_tags).where("works_tags.work_id IN (?)", @works.map(&:id)).order("items_count DESC")
+      @tags = Label.joins(:works_tags).where("works_tags.work_id IN (?)", @works.map(&:id)).order("items_count DESC").limit(100)
 
       #3.no domain have tag
     elsif !@domain_id && @tag_id
@@ -66,7 +66,7 @@ class WorksController < ApplicationController
       #4.no domain no tag
     else
       @works = Work.paginate(page: params[:page])
-      @tags = Label.all.order("items_count DESC")
+      @tags = Label.all.order("items_count DESC").limit(100)
     end
 
   end
