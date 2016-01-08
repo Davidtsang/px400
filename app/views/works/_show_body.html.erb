@@ -40,13 +40,16 @@
   </div>
 </div>
 <div class="row">
+  <div class="row">
+    <div class="col-md-12" id="work-image-800">
+
+    </div>
+  </div>
   <div class="col-md-8 work-box">
 
-
-    <div class="work-image">
-      <%= image_tag @work.image.url(:sd) %>
+    <div  id="work-image">
+    <%= render 'works/sd_image' %>
     </div>
-
     <div class="work-desc">
       <%= markdown @work.desciption %>
     </div>
@@ -110,123 +113,6 @@
 
   </div>
   <div class="col-md-4 work-sider">
-    <div class="act-box">
-      <div class="act-item" id="like_form">
-        <%= render "works/like_form" %> </div>
-
-      <!--THANKS-->
-      <div class="act-item" id="thanks_item">
-
-            <%= render "works/thank_form" %>
-
-      </div>
-
-      <div class="act-item"><i class="fa fa-dot-circle-o  fa-2x-s"></i> <%= @work.views_count %> 次查看</div>
-
-        <!--favorate-->
-      <div class="act-item">
-        <% if current_user %>
-            <a id="favorite-act" href="<%= favorite_folders_path(work_id: @work.id) %>" data-remote="true"><i class="fa fa-star fa-2x-s"></i>
-              收藏</a>
-        <% end %>
-        <span <%= "class=pull-right" if current_user %>><a href="<%= favorites_work_path(@work) %>">
-          <% unless current_user %>
-              <i class="fa fa-star fa-2x-s"></i>
-              <% end %><%= @work.favorites_count %> 个收藏</a> </span>
-      </div>
-
-      <!--//favorite dialog-->
-      <!-- Modal -->
-      <div class="modal fade" id="favoriteModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-sm" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">添加到收藏夹</h4>
-            </div>
-            <div class="modal-body" id="favoriteListBox">
-
-            </div>
-            <div class="modal-footer">
-              <a href="<%= new_favorite_folder_path(work_id: @work.id) %>" class="pull-left" data-remote="true"> +
-                <span class="small">创建一个新收藏夹</span> </a>
-              <button type="button" class="btn btn-warning" data-dismiss="modal" href="#favoriteModel">关闭</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--//end favorite -->
-      <div class="act-item">
-
-        <% if current_user %>
-            <a href="<%= new_repost_work_path @work %>" data-remote="true"><i class="fa fa-refresh fa-2x-s"></i> 转发</a>
-
-        <% end %>
-
-
-        <span <%= "class=pull-right" if current_user %>>
-          <% unless current_user %>
-              <i class="fa fa-refresh fa-2x-s"></i>
-              <% end %>
-
-          <a href="<%= reworks_work_path %>"> <%= @work.repost_count %> 次转发</a></span>
-      </div>
+    <%=  render 'works/sidebar' %>
     </div>
-
-    <!--//favorite dialog-->
-    <% if current_user %>
-        <!-- Modal -->
-        <div class="modal fade" id="repostModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog " role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel">转发</h3>
-              </div>
-              <div class="modal-body">
-                <div id="repostFormBody">
-                  <%= render "works/new_repost_form", work: current_user.works.new, work_id: @work.id %>
-                </div>
-
-                <%= render "works/org_work_info", work: @work %>
-              </div>
-              <div class="modal-footer">
-                <button form="repost_work_<%= @work.id %>" type="submit" class="btn btn-primary" id="repostSubimt">转发</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--//end favorite -->
-    <% end %>
-
-    <!--TAG LIST-->
-    <div class="work-tags">
-      <h5>标签</h5>
-      <% if @work.works_tags.any? %>
-          <% @work.works_tags.each do |users_tag| %>
-
-              <label class="tag">
-                <a href="/designers/<%= @work.user_id %>/tags/<%= users_tag.tag.id %>"> <%= users_tag.tag.name %></a></label>
-          <% end %>
-      <% else %>
-          <em>没有任何标签.</em>
-      <% end %>
-    </div>
-
-    <div class="more-works">
-      <h5><a href="/designers/<%= @work.user_id %>">更多<%= @work.user.name %>的动态</a></h5>
-      <% @more_works.each do |mw| %>
-          <div class="image-frame">
-            <a href="<%= work_path(mw.work_id) %>">
-              <%= image_tag mw.work.image.url(:small), :width => 100, :height => 75 %>
-            </a>
-          </div>
-      <% end %>
-    </div>
-
-
-  </div>
 </div>

@@ -90,7 +90,8 @@ Rails.application.routes.draw do
 
       get "reworks" => "works#reworks"
 
-
+      get 'hd_image' => "works#hd_image"
+      get 'sd_image' => "works#sd_image"
     end
   end
 

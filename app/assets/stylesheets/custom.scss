@@ -196,16 +196,17 @@ a.btn-primary:hover{
   //padding: 30px !important;
 }
 #workModal{
-  //width: 840px;
+  //max-width: 840px;
 
   border-radius: 3px;
   .modal-header{
     border-bottom: 0px;
   }
   .modal-body{
-    padding: 0px 28px;
+    padding: 0px 30px 30px 30px;
   }
   .modal-content{
+    width: 922px;
     background-color: $siteGrey;
    padding: 10px 15px;
 
@@ -625,6 +626,7 @@ input[type=text], input[type=email], input[type=password]{
   .act-item {
     font-size: 13px;
     border-bottom: solid 1px $siteGreyLight;
+
     i {
       width: 23px;
     }
@@ -637,6 +639,13 @@ input[type=text], input[type=email], input[type=password]{
 .del{
   text-decoration: line-through;
 }
+.zoom-in{
+  cursor: zoom-in;
+}
+.zoom-out{
+  cursor: zoom-out;
+}
+
 .work-wrap {
   padding-top: 50px;
 }
@@ -694,7 +703,11 @@ input[type=text], input[type=email], input[type=password]{
   @extend .simple-shadow;
 
 }
+.work-image-800{
+  @extend .work-image;
+  width: 860px;
 
+}
 .work-item-frame {
 
   color: $siteGreyMiddle;
