@@ -238,7 +238,12 @@ hr {
   border-bottom: solid 1px $siteGreyLight;
   border-top: solid 1px $siteGreyLight;
 }
+.big-close{
+  @extend .pull-right;
+  margin-right: 10px;
+  margin-top: 20px;
 
+}
 .navbar-brand {
   padding-top: 15px;
 }
