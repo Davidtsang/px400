@@ -3,12 +3,12 @@
   <div class="user-header ">
     <ul class="list-inline pull-left">
       <li><%= render 'shared/stats' , user: user %></li>
-      <li><i class="fa fa-tint"></i> <%= user.timelines.count %> 个动态</li>
+      <li><i class="fa fa-pencil"></i> <%= user.works.count %> 个作品</li>
       <% if @total_likes %>
-      <li><i class="fa fa-thumbs-up"></i> <%= @total_likes %>个赞</li>
+      <li><i class="fa fa-thumbs-up"></i> <%= @total_likes %> 个赞</li>
       <% end %>
       <% if @total_thanks %>
-          <li><i class="fa fa-heart"></i> <%= @total_thanks %>个感谢</li>
+          <li><i class="fa fa-heart"></i> <%= @total_thanks %> 个感谢</li>
       <% end %>
 
     </ul>

@@ -48,7 +48,7 @@ class DesignersController < ApplicationController
     @total_likes = Work.count_user_total_likes @user.id
     @total_thanks = Work.count_user_total_thanks @user.id
 
-    @feed_items = @user.user_feed.paginate(page: params[:page])
+    @works = @user.works.paginate(page: params[:page])
   end
 
   def show_tag
