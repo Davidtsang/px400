@@ -34,6 +34,13 @@ $(document).on "page:change", ->
     onSelect: (suggestion) ->
 
 
+  $("#new_attachment").on "submit", ->
+
+    if !$("#attachment_media").val()
+      alert("你还没有选择要上传的文件！")
+      return false
+
+
   #$('.feed_link').click ->
 
     #$('#workModal').modal('show')

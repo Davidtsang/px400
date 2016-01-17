@@ -36,6 +36,10 @@ module WorksHelper
     name
   end
 
+  def can_show_image?(image_type)
+    %w(image/jpeg image/png image/gif).include?(image_type)
+  end
+
   def timescope_name(timescope)
     name ="在所有时间段"
 

@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151226074216) do
+ActiveRecord::Schema.define(version: 20160116135719) do
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "media"
+    t.string   "name"
+    t.integer  "work_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "media_file_name"
+    t.string   "media_content_type"
+    t.integer  "media_file_size"
+    t.datetime "media_updated_at"
+  end
 
   create_table "blacklists", force: :cascade do |t|
     t.integer  "user_id"
@@ -230,6 +242,7 @@ ActiveRecord::Schema.define(version: 20151226074216) do
     t.integer  "repost_count",       default: 0
     t.integer  "domain_id"
     t.integer  "comments_count",     default: 0
+    t.boolean  "is_show_org",        default: false
   end
 
   add_index "works", ["user_id", "created_at"], name: "index_works_on_user_id_and_created_at"

@@ -1,6 +1,8 @@
 module ApplicationHelper
 
-
+  def content_type_is_image?(content_type)
+    !(content_type =~ /^image.*/).nil?
+  end
   def nav_link(link_text, link_path, remote = "false",id ="")
     class_name = current_page?(link_path) ? 'active' : ''
 

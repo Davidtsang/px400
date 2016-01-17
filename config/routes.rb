@@ -64,6 +64,7 @@ Rails.application.routes.draw do
 
     collection do
       get 'feed' => "works#feed"
+      post 'del_attachment/:id' => "works#del_attachment"
     end
 
     member do
@@ -81,6 +82,9 @@ Rails.application.routes.draw do
       get "new_repost" => "works#new_repost"
 
       post "repost"
+
+      post "edit_attachment" =>"works#edit_attachment"
+      get "show_attachment" =>"works#show_attachment"
 
       get "edit_tags"
 

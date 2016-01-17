@@ -740,8 +740,17 @@ input[type=text], input[type=email], input[type=password]{
   }
 
 }
-//comments
+.attachments{
+  img{ margin-right: 20px; margin-top: 20px}
+  p{margin-top: 10px;
+  margin-bottom: 0px;
 
+  }
+}
+//comments
+.grey-font{
+  color: $siteGreyMiddle;
+}
 .timestamp {
   position: absolute;
   bottom: 0px;

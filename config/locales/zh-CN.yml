@@ -215,6 +215,10 @@ zh-CN:
         password_confirmation: "确认密码"
         current_password: "当前密码"
         nickname: "昵称"
+      attachment:
+        media: "附件"
+        media_content_type: "附件类型"
+        media_file_size: "附件File size"
 
   will_paginate:
     previous_label: "&#8592; 上一页"

@@ -49,7 +49,11 @@
 
     <div  id="work-image">
     <%= render 'works/sd_image' %>
+
     </div>
+
+
+
     <div class="work-desc">
       <%= markdown @work.desciption %>
     </div>
@@ -102,7 +106,7 @@
           <ul class="list-inline">
             <li><a href="<%= edit_work_path(@work) %>"><i class="fa fa-edit "></i> 编辑</a></li>
             <li><a href="<%= edit_tags_work_path(@work) %>"><i class="fa fa-tags "></i> 编辑标签</a></li>
-
+            <li><a href="<%= show_attachment_work_path(@work) %>"><i class="fa fa-paperclip "></i> 编辑附件</a></li>
             <li>
               <a href="<%= work_path(@work) %>" data-method="delete" data-confirm="你确定要删除这个作品？"><i class="fa fa-remove  "></i>
                 删除</a></li>

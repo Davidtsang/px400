@@ -1,4 +1,8 @@
 class Work < ActiveRecord::Base
+  ATTACHMENT_LIMIT = 2
+
+
+
   after_destroy :destroy_notifys
   belongs_to :user
   validates :user_id, presence: true
@@ -20,7 +24,11 @@ class Work < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :timelines , dependent: :destroy
   has_many :works_tags , dependent: :destroy
+  has_many :attachments, dependent: :destroy
 
+  validates_each :attachments do |work, attr, value|
+    work.errors.add attr, "too much attachments for work" if work.attachments.size > ATTACHMENT_LIMIT
+  end
 
 
   def self.count_user_total_likes(user_id)
