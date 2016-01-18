@@ -11,10 +11,10 @@
       <li><h1><%= @user.name %></h1></li>
       <li><h2><%= @user.title %></h2></li>
       <li><i class="fa fa-map-marker"></i> <%= @user.location %> </li>
-      <% if @user.company.strip != ""%>
+      <% if @user.company  != ""%>
           <li><%= @user.company %> </li>
       <% end %>
-      <% if @user.website.strip != "" %>
+      <% if @user.website  != "" %>
           <li>网站: <%= @user.website %> </li>
       <% end %>
 
