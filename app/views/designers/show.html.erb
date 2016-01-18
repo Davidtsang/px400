@@ -10,11 +10,11 @@
       <li><%= image_tag @user.avatar.url(:normal), class: "avatar", width: 80, height: 80 %></li>
       <li><h1><%= @user.name %></h1></li>
       <li><h2><%= @user.title %></h2></li>
-      <li><%= @user.location %> </li>
-      <% if @user.company != ""%>
+      <li><i class="fa fa-map-marker"></i> <%= @user.location %> </li>
+      <% if @user.company.strip != ""%>
           <li><%= @user.company %> </li>
       <% end %>
-      <% if @user.website != "" %>
+      <% if @user.website.strip != "" %>
           <li>网站: <%= @user.website %> </li>
       <% end %>
 
