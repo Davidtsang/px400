@@ -7,10 +7,17 @@
 
   <div class="col-md-10 col-md-offset-1 designer-info">
     <ul class="list-unstyled">
-      <li><%= image_tag @user.avatar.url(:normal), class: "avatar" ,width: 80, height: 80 %></li>
-      <li> <h1><%= @user.name %></h1></li>
-      <li> <h2><%=@user.title %></h2></li>
+      <li><%= image_tag @user.avatar.url(:normal), class: "avatar", width: 80, height: 80 %></li>
+      <li><h1><%= @user.name %></h1></li>
+      <li><h2><%= @user.title %></h2></li>
       <li><%= @user.location %> </li>
+      <% if @user.company != ""%>
+          <li><%= @user.company %> </li>
+      <% end %>
+      <% if @user.website != "" %>
+          <li>网站: <%= @user.website %> </li>
+      <% end %>
+
       <li>
         <% @user.users_tags.each do |ut| %>
             <label class="tag"><%= ut.tag.name %></label>
@@ -25,7 +32,7 @@
 <hr>
 <div class="container-xl">
   <div class="row">
-  <%= render @works %>
+    <%= render @works %>
   </div>
 
   <div class="row row-centered">
