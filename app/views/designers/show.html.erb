@@ -10,6 +10,10 @@
       <li><%= image_tag @user.avatar.url(:normal), class: "avatar", width: 80, height: 80 %></li>
       <li><h1><%= @user.name %></h1></li>
       <li><h2><%= @user.title %></h2></li>
+      <% if @user.bio  != ""%>
+          <li><%= simple_format @user.bio %> </li>
+      <% end %>
+
       <li><i class="fa fa-map-marker"></i> <%= @user.location %> </li>
       <% if @user.company  != ""%>
           <li><%= @user.company %> </li>
