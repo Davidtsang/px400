@@ -90,4 +90,7 @@ Rails.application.configure do
       :password => "959aeb0f05a2e8ba8267336965ddec6d"
   }
 
+  #PAPER CLIP
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+
 end
