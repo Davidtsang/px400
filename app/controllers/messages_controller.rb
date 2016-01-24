@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   before_action :this_auth_block_user , only: [:new]
 
   def index
-    @messages = current_user.receive_messages.all
+    @messages = current_user.receive_messages.all.paginate(page: params[:page])
 
   end
 
