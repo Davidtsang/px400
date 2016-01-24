@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
   end
 
   def sent
-    @messages = current_user.send_messages.all.order('created_at DESC')
+    @messages = current_user.send_messages.all.order('created_at DESC').paginate(page: params[:page])
 
   end
 
