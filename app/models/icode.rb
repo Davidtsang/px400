@@ -5,6 +5,8 @@ class Icode < ActiveRecord::Base
 
   validates :code, presence: true
 
+
+
   def generate_code
     self.code  = Icode.generate_code
   end

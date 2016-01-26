@@ -544,6 +544,11 @@ button.btn.btn-primary{
     border-color: darken($siteGreyDark, 5%);
     padding: 5px 10px !important;
 
+    color: $siteGreyLight !important;
+
+    &:hover{
+      color: #ffffff !important;
+    }
 }
 .image-frame-100{
   background-color: #ffffff;
