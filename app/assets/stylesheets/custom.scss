@@ -660,6 +660,7 @@ input[type=text], input[type=email], input[type=password]{
 .home-center-ads {
   margin: 0 auto;
   width: 802px;
+  padding-top: 20px;
 }
 .work-wrap {
   padding-top: 50px;
@@ -841,9 +842,6 @@ p.description{
   a{
     color: $siteGreyDark;
   }
-}
-.taobao-ads{
-  margin-top: 20px;
 }
 
 .reply-form{
