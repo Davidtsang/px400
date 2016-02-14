@@ -1,10 +1,10 @@
 $font-size-base: 13px;
+$navbar-inverse-link-active-bg: #222;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-
 
 .container-xl{
   @extend .container;
@@ -163,6 +163,7 @@ body {
   padding-top: 54px;
   background-color: $siteGrey;
 }
+
 .site-nav{
   .container-fluid{
     padding-top: 3px;
@@ -212,6 +213,7 @@ a.btn-primary:hover{
 
   }
 }
+.navbar-nav > li > .dropdown-menu { background-color: #222; }
 .badge {
 
   margin-top: -12px;
