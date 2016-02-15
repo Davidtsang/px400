@@ -8,7 +8,13 @@
 
       <h1>为作品添加标签</h1>
 
+      <div >
 
+
+        <%= image_tag @work.image.url(:small), :class => "work-item-frame" %>
+
+      </div>
+      <hr>
       <label><i class="fa fa-tags "> </i> 标签</label> <em>（恰当的标签可以让你的作品更容易被他人检索到）</em>
 
       <div id="workTagsList">

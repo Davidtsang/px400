@@ -4,9 +4,17 @@
 
   <div class="row">
     <div class="col-md-6 new-work">
+      <div >
+
+
+          <%= image_tag @work.image.url(:small), :class => "work-item-frame" %>
+
+      </div>
 
       <h1>编辑附件</h1>
-<p>如何你不需要添加附件。可以点击<a href="<%= edit_tags_work_path(@work) %>">完成附件添加, 下一步</a>进行作品标签编辑。</p>
+
+      <p>你的作品已上传，你可以再增加2个附件。如你不需要添加附件。可以点击<a href="<%= edit_tags_work_path(@work) %>">完成附件添加, 下一步</a>进行作品标签编辑。</p>
+
       <p>每个作品允许添加2个附件。每个附件最大尺寸不超过5MB。支持下列格式：
       <ul>
         <li>图片格式: jpg/jpeg, png, gif, psd</li>
@@ -20,13 +28,18 @@
       <% if @work.attachments.any? %>
           <h4>已有附件：</h4>
           <table class="table">
-            <tr><th>文件名</th><th>预览</th><th width="75px">大小</th><th width="50px">操作</th></tr>
+            <tr>
+              <th>文件名</th>
+              <th>预览</th>
+              <th width="75px">大小</th>
+              <th width="50px">操作</th>
+            </tr>
             <% @work.attachments.each do |attachment| %>
                 <tr>
                   <td><%= attachment.name %></td>
                   <td>
                     <% if content_type_is_image? attachment.media_content_type %>
-                    <%= image_tag attachment.media.url(:thumb) %>
+                        <%= image_tag attachment.media.url(:thumb) %>
 
                     <% end %>
                   </td>
@@ -36,11 +49,11 @@
             <% end %>
           </table>
       <% end %>
-<% if @work.attachments.count < Work::ATTACHMENT_LIMIT %>
-      <%= form_for Attachment.new, url: edit_attachment_work_path(@work), html: {multipart: true} do |form| %>
+      <% if @work.attachments.count < Work::ATTACHMENT_LIMIT %>
+          <%= form_for Attachment.new, url: edit_attachment_work_path(@work), html: {multipart: true} do |form| %>
               <% if @attachment && @attachment.errors.any? %>
                   <div id="error_explanation">
-                    <h2><%= @attachment.errors.count%>个错误导致不能添加这个附件：</h2>
+                    <h2><%= @attachment.errors.count %>个错误导致不能添加这个附件：</h2>
 
                     <ul>
                       <% @attachment.errors.full_messages.each do |message| %>
@@ -50,18 +63,18 @@
                   </div>
               <% end %>
 
-          <div class="form-group">
-            <%= form.file_field :media %>
-          </div>
-          <button type="submit" class="btn btn-success">上传附件</button>
+              <div class="form-group">
+                <%= form.file_field :media %>
+              </div>
+              <button type="submit" class="btn btn-success">上传附件</button>
+          <% end %>
       <% end %>
-<% end %>
 
       <hr>
       <a class="btn btn-default" href="<%= work_path(@work) %>">回到作品页面</a>
       <a class="btn btn-warning" href="<%= edit_tags_work_path(@work) %>">完成附件添加, 下一步</a>
 
-          </div>
+    </div>
 
   </div>
 </div>
