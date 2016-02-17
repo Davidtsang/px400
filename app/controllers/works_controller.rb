@@ -1,5 +1,6 @@
 class WorksController < ApplicationController
-  before_action :set_work, only: [:edit, :update, :destroy, :thank, :like, :favorites, :reworks, :repost, :new_repost, :likes]
+  before_action :set_work, only: [:edit, :update, :destroy, :thank, :like, :favorites, :reworks, :repost, :new_repost, :likes, :attachment]
+
   before_action :current_user, only: [:destroy, :edit_attachment,:show_attachment,:del_attachment]
 
   before_filter :authenticate_user!, only: [:new, :like, :unlike, :edit, :create, :update, :thank, :destroy]
@@ -161,6 +162,10 @@ class WorksController < ApplicationController
 
   # GET /works/1/edit
   def edit
+  end
+
+  def attachment
+    @attachment = Attachment.find(params[:aid])
   end
 
   def del_attachment

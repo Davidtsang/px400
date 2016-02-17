@@ -34,6 +34,7 @@ gem 'font-awesome-sass'
 gem 'rest-client', '~> 1.8'
 #file upload
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+#gem 'fastimage'
 
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'

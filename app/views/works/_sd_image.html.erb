@@ -8,7 +8,7 @@
         <% @work.attachments.each do |attachment| %>
 
             <% if can_show_image?(attachment.media_content_type) %>
-                <a href="<%= attachment.media.url(:original) %>"><%= image_tag attachment.media.url(:thumb) %></a>
+                <a href="<%= "/works/#{@work.id}/attachment/#{attachment.id}" %>" data-remote="true"><%= image_tag attachment.media.url(:thumb) %></a>
                 <% elsif attachment.media_content_type =="image/vnd.adobe.photoshop" %>
                 <p>
                   <%= image_tag attachment.media.url(:thumb) %><br>

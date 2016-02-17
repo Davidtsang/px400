@@ -352,6 +352,69 @@ hr {
 .work-taobao-ads{
   margin-top: 10px ;
 }
+
+//attachment modal -view
+#attachmentsModal{
+  a{
+    color: $siteGreyLight;
+  }
+  &.modal{
+    background-color: lighten(black, 20%);
+    opacity: 0.95;
+  }
+  font-size: 12px;
+  .modal-header{
+    color: $siteGreyMiddle;
+    border-bottom: 1px solid $siteGreyDark;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .modal-dialog {
+    overflow:auto;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .modal-content {
+    background-color: transparent;
+    height: 100%;
+    border-radius: 0;
+    //opacity:0.99;
+    //filter:alpha(opacity=99);
+    box-shadow: none;
+  }
+  .modal-body{
+    text-align: center;
+    img{
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+      max-width: 100%;
+    }
+  }
+
+  .attachment-logo{
+    float: left;
+    clear: none;
+    width: 100px;
+    border-right: 1px solid #595959;
+    //margin-bottom: 10px;
+    height: 40px;
+
+  }
+  .attachement-info{
+    //@extend .pull-left;
+    //float: left;
+    margin-left: 110px;
+    width: 400px;
+  }
+  .attachment-close{
+    width: 25%;
+    @extend .pull-right;
+  }
+
+}
+
 .users-more-domains{
 
 
@@ -666,6 +729,7 @@ input[type=text], input[type=email], input[type=password]{
   width: 802px;
   padding-top: 20px;
 }
+
 .work-wrap {
   padding-top: 50px;
 }

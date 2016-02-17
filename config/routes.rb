@@ -86,6 +86,9 @@ Rails.application.routes.draw do
       post "edit_attachment" =>"works#edit_attachment"
       get "show_attachment" =>"works#show_attachment"
 
+      #show attachment
+      get 'attachment/:aid' => "works#attachment"
+
       get "edit_tags"
 
       get "likes" => "works#likes"

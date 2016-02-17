@@ -106,7 +106,7 @@
 
     <% flash.each do |name, msg| -%>
 
-        <%= content_tag :div, content + msg, class: "alert site-notice #{name} alert-dismissible", role: "alert", data: { no_turbolink: true }%>
+        <%= content_tag :div, content + msg, class: "alert site-notice #{name} alert-dismissible", role: "alert", data: {no_turbolink: true} %>
     <% end -%>
 
 <% end %>
@@ -116,7 +116,7 @@
 
 <div class="row">
   <div class="home-center-ads">
-  <a data-type="3" data-tmpl="800x90" data-tmplid="195" data-rd="2" data-style="2" data-border="1" href="#"></a></div>
+    <a data-type="3" data-tmpl="800x90" data-tmplid="195" data-rd="2" data-style="2" data-border="1" href="#"></a></div>
 </div>
 
 <footer>
@@ -157,39 +157,51 @@
 
   </div>
   <hr>
-<center>©2016 四百像素网 所有作品的版权归其作者所有. <a href="http://www.miitbeian.gov.cn">皖ICP备16001175号</a></center>
+  <center>©2016 四百像素网 所有作品的版权归其作者所有. <a href="http://www.miitbeian.gov.cn">皖ICP备16001175号</a></center>
 
 </footer>
 
+<!-- Attachments Modal -->
+<div class="modal modal-blue" id="attachmentsModal" tabindex="-1" role="dialog" aria-labelledby="attachmentsModalLabel">
+
+
+  <div class="modal-dialog modal-attachments" role="document">
+    <div class="modal-content" id="attachmentsContent">
+
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
-    (function(win,doc){
+    (function (win, doc) {
         var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0];
         if (!win.alimamatk_show) {
             s.charset = "gbk";
             s.async = true;
             s.src = "http://a.alimama.cn/tkapi.js";
             h.insertBefore(s, h.firstChild);
-        };
+        }
+        ;
         var o = {
-            pid: "mm_111828115_12674834_48360534",/*推广单元ID，用于区分不同的推广渠道*/
-            appkey: "23309289",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
-            unid: "",/*自定义统计字段*/
+            pid: "mm_111828115_12674834_48360534", /*推广单元ID，用于区分不同的推广渠道*/
+            appkey: "23309289", /*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/
+            unid: "", /*自定义统计字段*/
             type: "click" /* click 组件的入口标志 （使用click组件必设）*/
         };
         win.alimamatk_onload = win.alimamatk_onload || [];
         win.alimamatk_onload.push(o);
-    })(window,document);
+    })(window, document);
 </script>
 
 
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?86ae2bfd64920e1d886f5e05d5a20d7c";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?86ae2bfd64920e1d886f5e05d5a20d7c";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
 
 </body>
