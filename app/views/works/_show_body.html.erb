@@ -5,7 +5,7 @@
 
       <% if @timeline_flash %>
           <div class="timeline-flash">
-            <%= image_tag @timeline_user.avatar.url(:mini), class: "avatar" %> <%= @timeline_user.name %> <%= @timeline_flash %>
+            <%= image_tag @timeline_user.avatar.url(:mini), class: "avatar" %> <a href="/designers/<%=@timeline_user.id %>"><%= @timeline_user.name %></a> <%= @timeline_flash %>
           </div>
 
       <% end %>

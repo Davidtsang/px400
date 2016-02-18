@@ -130,7 +130,7 @@ class WorksController < ApplicationController
     end
 
     #more work about this user
-    @more_works = @work.user.user_feed_recent
+    @more_works = @work.user.user_work_recent
 
     pv_count(params[:id], ip, current_user_id)
 

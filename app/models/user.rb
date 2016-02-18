@@ -124,6 +124,10 @@ class User < ActiveRecord::Base
     Timeline.includes(:work).where("user_id = :user_id", user_id: id).order('created_at DESC').limit(limit)
   end
 
+  def user_work_recent(limit = 4)
+    Work.where(user_id: id).limit(limit)
+  end
+
   def user_feed
     Timeline.includes(:work).where("user_id = :user_id", user_id: id).order('created_at DESC')
   end
