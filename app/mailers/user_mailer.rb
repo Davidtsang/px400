@@ -5,8 +5,8 @@ class UserMailer < ApplicationMailer
   def welcome_email(user)
 
     @user = user
-    @url = "https://www.400px.net/sign_in"
-    mail(to: @user.email, subject: "欢迎加入400px.net --- 中国设计师与艺术家的社交平台")
+    @url = "http://www.400px.cn/sign_in"
+    mail(to: @user.email, subject: "欢迎加入400px.cn --- 中国设计师与艺术家的社交平台")
   end
 
   def daily_notice_email(user, new_notice_count, new_pm_count)
