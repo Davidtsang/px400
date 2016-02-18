@@ -1,4 +1,4 @@
-$font-size-base: 13px;
+$font-size-base: 12px;
 $navbar-inverse-link-active-bg: #222;
 
 @import "bootstrap-sprockets";
@@ -102,6 +102,10 @@ ol{
   font-weight: bold;
   border-radius: 0px;
 
+}
+.new-work-a{
+  font-size: 12px;
+  font-weight: normal !important;
 }
 .notice{
   @extend .alert-info;
