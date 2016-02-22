@@ -9,7 +9,7 @@ class Work < ActiveRecord::Base
   validates :image ,presence: true
   validates :title ,presence: true, length: {minimum: 1, maximum: 80 }
 
-  validates :desciption, length: {maximum: 1000}
+  validates :desciption, length: {maximum: 2000}
 
   default_scope -> { order(created_at: :desc) }
 
