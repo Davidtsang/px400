@@ -1,5 +1,5 @@
 class Work < ActiveRecord::Base
-  ATTACHMENT_LIMIT = 2
+  ATTACHMENT_LIMIT = 3
 
 
 
