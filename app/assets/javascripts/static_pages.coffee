@@ -9,7 +9,7 @@ $(document).on "page:change", ->
     #input = $(this).find('input[name=wd]')
     #v = $input.val + 'site:400px.net'
     v = $('input[name="wd"]').val()
-    $('input[name="wd"]').val(v + " site:400px.net")
+    $('input[name="wd"]').val(v + " site:400px.cn")
 
   $('[rel=nav-notice]').click ->
     return false
