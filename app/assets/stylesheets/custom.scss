@@ -775,7 +775,11 @@ input[type=text], input[type=email], input[type=password]{
     font-size: 16px;
   }
 }
-
+.sidebox{
+  padding: 0px 10px;
+  //background-color: $siteGreyLight;
+  margin-bottom: 20px;
+}
 .work-sider {
   width: 300px !important;
   //background-color: yellow;
