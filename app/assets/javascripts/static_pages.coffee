@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "page:change", ->
+  $("#amazon-book-link").click ->
+    $("#amazon-book-list").toggleClass("hide")
+    return false
+
   $('input[name="wd"]').val("")
 
   $('#site-search').submit ->
