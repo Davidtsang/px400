@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
   #get all user by skill id
 
   def self.all_by_skill_id(skill_id)
-    joins("JOIN users_tags ON users_tags.user_id = users.id").where("users_tags.tag_id = :skill_id  ", skill_id: skill_id)
+    joins("JOIN users_tags ON users_tags.user_id = users.id").where("users_tags.tag_id = :skill_id", skill_id: skill_id)
   end
 
   def self.all_by_domain_id_and_skill_id(domain_id ,skill_id=nil)
@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
       unless skill_id
         where("(domain_1_id = :domain_id OR domain_2_id = :domain_id)",domain_id: domain_id)
       else
-        joins("JOIN users_tags ON users_tags.user_id = users.id").where("users_tags.tag_id = :skill_id AND (users.domain_1_id = :domain_id OR users.domain_2_id = :domain_id) ", skill_id: skill_id, domain_id: domain_id)
+        select("DISTINCT(user_tags.id), users.*").joins("JOIN users_tags ON users_tags.user_id = users.id").where("users_tags.tag_id = :skill_id AND (users.domain_1_id = :domain_id OR users.domain_2_id = :domain_id) ", skill_id: skill_id, domain_id: domain_id)
       end
 
   end
@@ -207,7 +207,7 @@ WHERE follower_id = :user_id"
     content = <<-eos
 
     你好，#{name} !\n
-    我是400px.cn CTO兼联合创始人David。 我代表400px及我个人名义，热烈欢迎你应邀加入400px.net设计师社交网络。\n
+    我是400px.cn CTO兼联合创始人David。 我代表400px及我个人名义，热烈欢迎你应邀加入400px设计师社交网络。\n
     400px.cn是中国设计师与艺术家展示作品与交流的平台。你可以在这里展示自己的才华，认识新的朋友，发现创作的灵感。未来我们还将加入职业介绍、人才招聘、作品交易等栏目。打造一个为设计师与艺术家服务的、有品位的垂直社交网络。\n
     目前我们网站还出于公测阶段，难免会有这样那样的不足和缺陷，网络可能也不是非常稳定，希望你能将使用中发现的问题和BUG反馈给我们，我们会及时修正及改进。我们非常欢迎你对我们网站的建设多多提意见。你可以直接发邮件到我的个人邮箱: i.david.tsang@qq.com 。\n
     另外，希望你能多多发表你自己的作品，将你的才华展示给大家。并不仅限完整的作品，400px.cn设计的目的就是让你能展示每天的心得和进步，例如仅仅是一个小的图标、图形、效果、字体，都可以在400px.cn上美观的展示出来。\n
