@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
       unless skill_id
         where("(domain_1_id = :domain_id OR domain_2_id = :domain_id)",domain_id: domain_id)
       else
-        select("DISTINCT(user_tags.id), users.*").joins("JOIN users_tags ON users_tags.user_id = users.id").where("users_tags.tag_id = :skill_id AND (users.domain_1_id = :domain_id OR users.domain_2_id = :domain_id) ", skill_id: skill_id, domain_id: domain_id)
+        joins("JOIN users_tags ON users_tags.user_id = users.id").where("users_tags.tag_id = :skill_id AND (users.domain_1_id = :domain_id OR users.domain_2_id = :domain_id) ", skill_id: skill_id, domain_id: domain_id)
       end
 
   end
