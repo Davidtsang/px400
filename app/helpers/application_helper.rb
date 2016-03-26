@@ -34,6 +34,7 @@ module ApplicationHelper
   end
 
 
+
   def current_user_or_admin?(user_id)
     result = false
 

@@ -9,7 +9,7 @@
       <ul class="list-unstyled">
         <li><h4><%= image_tag @message.from_user.avatar.url(:medium), class: "avatar" %>
           <a href="/designers/<%= @message.from_user.id %>"><%= @message.from_user.name %></a>
-          <span class="meta"> <%= time_ago_in_words @message.updated_at.localtime %>之前</span>
+          <span class="meta"> <%= time_ago_in_words @message.created_at.localtime %>之前</span>
         </h4></li>
         <li>
           <div class="message-content"><%= simple_format @message.content %></div>

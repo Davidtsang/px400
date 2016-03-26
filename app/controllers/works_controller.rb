@@ -184,12 +184,13 @@ class WorksController < ApplicationController
   def show_attachment
 
 
-    @work = current_user.works.find(params[:id])
+    @work = Work.find(params[:id])
     render :edit_attachment
   end
 
   def edit_attachment
-    @work = current_user.works.find(params[:id])
+
+    @work = Work.find(params[:id])
 
     @attachment = @work.attachments.new(attachment_params)
     @attachment.name = params[:attachment][:media].original_filename
