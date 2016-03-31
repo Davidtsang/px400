@@ -16,7 +16,7 @@ class Work < ActiveRecord::Base
   has_attached_file :image, :styles => {:original=> "800x600#",:sd=>"400x300#", :small => "200x150#"}
 
   validates_attachment :image,
-                       :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] },size: { in: 0..5000.kilobytes }
+                       :content_type => { :content_type => ["image/jpeg", "image/png"] },size: { in: 0..5000.kilobytes }
 
   has_many :works_likes, dependent: :destroy
   has_many :thanks, dependent: :destroy
