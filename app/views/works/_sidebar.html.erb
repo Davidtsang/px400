@@ -41,33 +41,6 @@
   </div>
 </div>
 
-<!--//favorite dialog-->
-<% if current_user %>
-    <!-- Modal -->
-    <div class="modal fade" id="repostModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog " role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span></button>
-            <h3 class="modal-title" id="myModalLabel">转发</h3>
-          </div>
-          <div class="modal-body">
-            <div id="repostFormBody">
-              <%= render "works/new_repost_form", work: current_user.works.new, work_id: @work.id %>
-            </div>
-
-            <%= render "works/org_work_info", work: @work %>
-          </div>
-          <div class="modal-footer">
-            <button form="repost_work_<%= @work.id %>" type="submit" class="btn btn-primary" id="repostSubimt">转发</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--//end favorite -->
-<% end %>
-
 <!--TAG LIST-->
 <div class="work-tags">
   <h5>标签</h5>

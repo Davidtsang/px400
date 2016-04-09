@@ -24,6 +24,16 @@ $(document).on 'mouseover', 'li.comment',  ->
 $(document).on 'mouseleave', 'li.comment',  ->
   $(this).find("span.comment-tools").css('visibility', 'hidden')
 
+#$('#repostModel').on 'hidden.bs.modal'
+$(document).on 'hidden.bs.modal', '#repostModel',  ->
+  #alert 're modal hide!'
+  $(this).remove()
+
+$(document).on 'hidden.bs.modal', '#favoriteModel',  ->
+    #alert 're modal hide!'
+  $(this).remove()
+
+
 $(document).on "page:change", ->
 
 
