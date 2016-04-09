@@ -2,13 +2,13 @@
 
   <% if @favorite_folders.any? %>
 
-      </li>
+
       <% @favorite_folders.each do |f| %>
-          <% if @favorites[f.id]  %>
-              <% fid =@favorites[f.id].id %>
+          <% if f.is_favorite_work?(@work_id)  %>
+
               <li role="presentation" class="active">
 
-                <a data-remote="true" data-method="post" href="<%=  delete_favorite_path(fid, work_id: @work_id)%>"><i class="fa fa-folder"></i>
+                <a data-remote="true" data-method="post" href="<%=  delete_favorite_path(f, work_id: @work_id)%>"><i class="fa fa-folder"></i>
                   <%= f.name %>
                   <i class="fa fa-minus-square  pull-right"></i> </a>
 

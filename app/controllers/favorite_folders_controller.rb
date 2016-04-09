@@ -22,7 +22,8 @@ class FavoriteFoldersController < ApplicationController
     #notify author
 
     respond_to do |format|
-      format.js { redirect_to favorite_folders_path(work_id: @work_id), format: "js" }
+      @favorite_folders = current_user.favorite_folders.all
+      format.js
     end
 
   end
@@ -32,17 +33,7 @@ class FavoriteFoldersController < ApplicationController
     @work_id = params[:work_id]
 
     @favorite_folders = current_user.favorite_folders.all
-    #check
-    ff_ids = @favorite_folders.map(&:id)
-    @favorites ={}
 
-    favorites = Favorite.where(work_id: @work_id, favorite_folder_id: ff_ids)
-
-    if favorites
-      favorites.each do |f|
-        @favorites[f.favorite_folder_id]= f
-      end
-    end
 
     respond_to do |format|
       format.html
@@ -94,7 +85,8 @@ class FavoriteFoldersController < ApplicationController
     FavoriteWorkNotify.create(subject_id: current_user.id, obj_id: favorite.id, user_id: work.user_id)
 
     respond_to do |format|
-      format.js { redirect_to favorite_folders_path(work_id: @work_id), format: "js" }
+      @favorite_folders = current_user.favorite_folders.all
+      format.js
     end
 
   end
@@ -104,18 +96,16 @@ class FavoriteFoldersController < ApplicationController
     id = params[:id]
     @work_id = params[:work_id]
 
-    f = Favorite.find(id)
+    favorite = Favorite.where(favorite_folder_id: id, work_id: @work_id).first
 
     #first del notify
-    notify = FavoriteWorkNotify.where(subject_id: current_user.id, obj_id: f.id).first
-    notify.destroy if notify
+    FavoriteWorkNotify.where(subject_id: current_user.id, obj_id: favorite.id).destroy_all
 
-
-    f.destroy
-
+    favorite.destroy
 
     respond_to do |format|
-      format.js { redirect_to favorite_folders_path(work_id: @work_id), format: "js" }
+      @favorite_folders = current_user.favorite_folders.all
+      format.js
     end
 
   end

@@ -52,7 +52,7 @@ $navbar-inverse-link-active-bg: #222;
 }
 
 * {
-  font-family: "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft Yahei UI", "Microsoft Yahei", Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica,  "Microsoft Yahei UI", "Lantinghei SC","Microsoft Yahei", Arial, sans-serif;
 }
 
 $siteGrey: lighten(black, 95%);
@@ -1019,7 +1019,9 @@ p.comment-meta{
     margin-bottom: 7px;
 
 }
-
+.modal-content{
+  border-radius: 4px;
+}
 .comment-body{
   //@extend .clearfix;
   //background-color: lightyellow;

@@ -11,4 +11,14 @@ class FavoriteFolder < ActiveRecord::Base
 
   end
 
+  def is_favorite_work?(work_id)
+    result = false
+    favorite  = Favorite.where(work_id: work_id, favorite_folder_id: id).first
+    if favorite
+      result = true
+    end
+
+    result
+  end
+
 end

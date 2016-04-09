@@ -5,4 +5,5 @@ class Favorite < ActiveRecord::Base
 
   validates_uniqueness_of :work_id, :scope => :favorite_folder_id
 
+
 end

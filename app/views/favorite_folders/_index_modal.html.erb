@@ -1,0 +1,23 @@
+<!--//favorite dialog-->
+<!-- Modal -->
+<div class="modal fade" id="favoriteModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加到收藏夹</h4>
+      </div>
+      <div class="modal-body" id="favoriteListBox">
+<%= render('favorite_folders/favorite_folders') %>
+      </div>
+      <div class="modal-footer">
+        <a href="<%= new_favorite_folder_path(work_id: @work_id) %>" class="pull-left" data-remote="true"> +
+          <span class="small">创建一个新收藏夹</span> </a>
+        <button type="button" class="btn btn-warning" data-dismiss="modal" href="#favoriteModel">关闭</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--//end favorite -->
