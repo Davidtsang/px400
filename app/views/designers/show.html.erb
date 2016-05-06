@@ -19,7 +19,7 @@
           <li><%= @user.company %> </li>
       <% end %>
       <% if @user.website  != "" %>
-          <li>网站: <%= @user.website %> </li>
+          <li>  <%= link_to '<i class="fa fa-external-link" aria-hidden="true"></i> 网站'.html_safe ,@user.website, title: @user.website  %> </li>
       <% end %>
 
       <li>

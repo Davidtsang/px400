@@ -1476,3 +1476,12 @@ footer {
   margin-bottom: $gapMiddle;
   border-radius: $border-radius-base;
 }
+
+.users-count{
+  margin-top: $gapLarge;
+  text-align: center;
+  a{
+    color: $gray50;
+    text-decoration: underline;
+  }
+}
