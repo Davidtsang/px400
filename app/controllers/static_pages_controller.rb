@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
 
 
-
+  layout "base", only: [:about, :about_icode]
   def home
 
   sort = params[:sort]

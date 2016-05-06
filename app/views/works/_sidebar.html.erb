@@ -43,7 +43,7 @@
 
 <!--TAG LIST-->
 <div class="work-tags">
-  <h5>标签</h5>
+  <h4>标签</h4>
   <% if @work.works_tags.any? %>
       <% @work.works_tags.each do |users_tag| %>
 
@@ -78,7 +78,7 @@
 
 </div>
 <div class="more-works">
-  <h5><a href="/designers/<%= @work.user_id %>">更多<%= @work.user.name %>的作品</a></h5>
+  <h4><a href="/designers/<%= @work.user_id %>">更多<%= @work.user.name %>的作品</a></h4>
   <% @more_works.each do |mw| %>
       <div class="image-frame">
         <a href="<%= work_path(mw.id) %>">

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+  <title><%= yield(:title) %> - 400px.cn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <meta name="baidu_union_verify" content="5c6b263615aa42a951fe2c60c3cbe907">
+</head>
+<body data-no-turbolink="true">
+
+
+<%= yield %>
+
+
+
+
+
+   <hr>
+<a href="/" class="gray-font">
+  <center>©2016 四百像素网 400px.cn</center></a>
+
+
+
+</body>
+
+
+</html>

@@ -1,13 +1,47 @@
-<div class="container">
+<% provide :title ,"编辑作品" %>
+
+<div class="container-fix">
 
 
-  <div class="row">
-    <div class="col-md-6 new-work">
+  <div class="row page-main">
+    <h1 class="title">编辑作品</h1>
+    <div class="col-md-8 new-work">
 
-      <h1>编辑作品</h1>
+
 
       <%= render 'form' %>
 
     </div>
+
+
+    <div class="col-md-4">
+      <div class="blue-sidebox ">
+        <h4>关于上传图片比例</h4>
+
+        <p>
+          请保持上传图片的比例接近4：3。如果你的比例与4：3比例相差太大，则最终图片会以中心为基点进行4：3比例自动剪裁。如果实际显示效果与你需要的相差太大。请事先手动裁剪一下。
+        </p>
+
+
+        <h4>如何完整显示你的作品？</h4>
+
+        <p>
+          如果你想完整显示你的作品，可以在下一步添加附件里，把你的作品作为附件添加即可。
+        </p>
+
+
+        <h4>如何上传GIF动画格式？</h4>
+
+        <p>
+          GIF动画请在下一步附件里添加，可直接显示。
+        </p>
+      </div>
+
+    </div>
+
   </div>
+
+
+
+
 </div>

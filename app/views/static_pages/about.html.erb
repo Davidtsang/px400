@@ -1,13 +1,21 @@
 <% provide(:title, "关于") %>
+
 <div class="container-fix">
   <div class="row">
-    <h1>关于400px - 四百像素网</h1>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="title-logo">
+        <a href="/">
+          <%= image_tag 'logo-160pt.png', class: "logo" %></a>
+        <p class="site-desc">中国设计师与艺术家的展示交流空间</p>
+      </div>
 
+    <h1 class="title">关于四百像素网</h1>
+<div class="login-box">
     <p>中国设计师与艺术家交流的空间。</p>
 
     <p>网站管理员联系方式 :
       <%= mail_to 'webmaster@mg.400px.net', 'webmaster@mg.400px.net' %>
     </p>
-
+    </div>
   </div>
-</div>
+</div></div>

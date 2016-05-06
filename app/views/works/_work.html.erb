@@ -8,18 +8,18 @@
     <% if  work.is_original %>
         <a class='my-tool-tip is_original pull-left' data-toggle="tooltip" data-placement="top" title="原创作品"> <i class="fa fa-pencil-square" ></i> </a>
     <% end %>
-    <ul class="list-inline">
+    <ul class="list-inline ">
 
 
-      <li><i class="fa fa-thumbs-up"></i> <%= work.works_likes_count %></li>
-      <li><i class="fa fa-commenting"></i> <%= work.comments_count %></li>
+      <li><i class="fa fa-thumbs-up"></i> <span class="info"><%= work.works_likes_count %></span></li>
+      <li><i class="fa fa-commenting"></i> <span class="info"><%= work.comments_count %></span></li>
 
-      <li><i class="fa fa-eye"></i> <%= work.views_count %></li>
+      <li><i class="fa fa-dot-circle-o"></i> <span class="info"><%= work.views_count %></span></li>
     </ul>
     <div class="work-item-frame-info">
       <a href="<%= work_path(work) %>" class="fill-div" >
 
-      <h5 class="title"><%= truncate work.title , length: 50  %></h5>
+      <h5 class="work-title"><%= truncate work.title , length: 50  %></h5>
       <span class="description"><%= truncate(work.desciption, length: 100) %></span><br>
 <span class="timestamp">
 <%= time_ago_in_words(work.created_at) %>前

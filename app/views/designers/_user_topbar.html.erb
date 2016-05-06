@@ -17,7 +17,7 @@
 
           <li><%= render 'designers/follow_form', user: user %></li>
 
-          <li><a class="btn btn-default" href="<%= new_message_path(to_user_id: user.id) %>"><i class="fa fa-envelope"></i> 私信</a></li>
+          <li><a class="btn btn-success" href="<%= new_message_path(to_user_id: user.id) %>"><i class="fa fa-envelope"></i> 私信</a></li>
 
           <li> <%= render 'designers/blacklist_form', user: user %></li>
 

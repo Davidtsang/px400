@@ -4,7 +4,7 @@
 
   <div class="attachments">
     <% if @work.attachments.count > 0 %>
-        <h4 class="grey-font"><i class="fa fa-paperclip fa-2x"></i> <%= @work.attachments.count %>个附件</h4>
+        <h4 class="gray-font"><i class="fa fa-paperclip fa-2x"></i> <%= @work.attachments.count %>个附件</h4>
         <% @work.attachments.each do |attachment| %>
 
             <% if can_show_image?(attachment.media_content_type) %>

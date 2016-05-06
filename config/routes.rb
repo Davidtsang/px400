@@ -111,8 +111,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   devise_for :users, controllers: {
-                       registrations: 'users/registrations'
-
+                       registrations: 'users/registrations',
+                       sessions: 'users/sessions',
+                       passwords: 'users/passwords'
                    } do
 
   end
@@ -126,7 +127,7 @@ Rails.application.routes.draw do
   devise_scope :user do
 
     get '/sign_up' => "users/registrations#new"
-    get '/sign_in' => "devise/sessions#new"
+    get '/sign_in' => "users/sessions#new"
     get "block_list" => "users/registrations#block_list"
     get "profile" => "users/registrations#profile"
 

@@ -3,6 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_account_update_params, only: [:update]
   after_action :send_welcome_mail , only: [:create]
 
+  layout 'base', :only => [:new, :create]
   def block_list
     @user = current_user
     @blacklists = current_user.blacklists.all

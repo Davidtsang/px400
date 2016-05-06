@@ -7,7 +7,7 @@
               <%= image_tag user.avatar.url(:normal), :class => "avatar", width: 80, height: 80 %>
 
               <span><%= link_to user.name, "/designers/#{user.id}" %></span>
-              <span class="meta"><%= user.location %></span>
+              <span class="meta city"><%= user.location %></span>
   <span class="meta">
     <%= user.users_tags.map { |ut| ut.tag.name }.join(", ") %>
 
@@ -16,11 +16,13 @@
 
             <div class="member-acts">
               <%= render 'designers/follow_form', user: user %>
+              <div class="follow-form">
+                <a class="btn btn-success" href="<%= new_message_path(to_user_id: user.id) %>"><i class="fa fa-envelope"></i></a></div>
               <ul class="list-unstyled list-inline">
 
-                <li><span class="meta"><%= user.followers.count %></span><span class="meta-name">粉丝</span>
+                <li><span class="meta tiny-num"><%= user.followers.count %></span><span class="meta-name">粉丝</span>
                 </li>
-                <li><span class="meta"><%= user.works.count %></span>
+                <li><span class="meta tiny-num"><%= user.works.count %></span>
                   <span class="meta-name">作品</span></li>
               </ul>
             </div>

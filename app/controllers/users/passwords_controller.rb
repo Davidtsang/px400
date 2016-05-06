@@ -1,4 +1,6 @@
 class Users::PasswordsController < Devise::PasswordsController
+  layout 'base'
+
   # GET /resource/password/new
   # def new
   #   super

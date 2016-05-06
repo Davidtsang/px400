@@ -9,17 +9,17 @@
         <a class='my-tool-tip is_original pull-left' data-toggle="tooltip" data-placement="top" title="原创作品"> <i class="fa fa-pencil-square" ></i> </a>
     <% end %>
 
-        <ul class="list-inline">
-      <li><i class="fa fa-thumbs-up"></i> <%= timeline.work.works_likes_count %></li>
-      <li><i class="fa fa-commenting"></i> <%= timeline.work.comments_count %></li>
+        <ul class="list-inline work-info">
+      <li><i class="fa fa-thumbs-up"></i> <span class="info"><%= timeline.work.works_likes_count %></span></li>
+      <li><i class="fa fa-commenting"></i> <span class="info"><%= timeline.work.comments_count %></span></li>
 
-      <li><i class="fa fa-dot-circle-o"></i> <%= timeline.work.views_count %></li>
+      <li><i class="fa fa-dot-circle-o"></i> <span class="info"><%= timeline.work.views_count %></span></li>
     </ul>
     <div class="work-item-frame-info">
       <a href="<%= work_path(timeline.work_id, flash: timeline.act, timeline_user_id: timeline.user_id) %>" class="fill-div feed_link" data-remote="true">
 
-        <h5 class="title"><%= truncate timeline.work.title, length: 50 %></h5>
-        <p class="description"><%= truncate(timeline.work.desciption, length: 100) %></p>
+        <h5 class="work-title"><%= truncate timeline.work.title, length: 50 %></h5>
+        <p class="description"><%= truncate(timeline.work.desciption, length: 80) %></p>
 <span class="timestamp">
 <%= time_ago_in_words(timeline.work.created_at) %>前
 </span>
@@ -34,9 +34,9 @@
     <% if timeline.act == "like" %>
         <i class="fa fa-heart"></i>
     <% elsif timeline.act == "re" %>
-        <i class="fa fa-refresh"></i>
+        <i class="fa fa-retweet"></i>
     <% else %>
-        发表了新作品
+
     <% end %>
   </div>
 </div>
