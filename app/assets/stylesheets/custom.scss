@@ -246,13 +246,21 @@ a.is_original {
 .btn-xs {
   padding: 3px 6px;
 }
-
-.btn-default {
-  background-color: rgba(0, 0, 0, 0.156863);
-  color: $btnColor;
+.form-btn{
+  color:  #ffffff;
+  background-color: #999;
   &:hover {
-    color: $btnColor;
-    background-color: rgba(0, 0, 0, 0.156863);
+    color: #ffffff;
+    background-color: darken( #999, 10%)  ;
+
+  }
+}
+.btn-default {
+  background-color: $elmBgGray;
+  color:$elmGrayColor;
+  &:hover {
+    color: $elmGrayColor;
+    background-color: $elmBgGray;
   }
 }
 
@@ -261,6 +269,7 @@ em {
 }
 
 body {
+  @extend .smoothing;
   padding-top: 54px;
   background-color: $siteGrey;
   color: $fontColor;
@@ -1395,6 +1404,7 @@ p.comment-meta {
 
 //------footer
 footer {
+  -webkit-font-smoothing:  subpixel-antialiased !important;
   line-height: 150%;
   @extend .no-smoothing;
   a {
