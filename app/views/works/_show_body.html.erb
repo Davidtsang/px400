@@ -12,7 +12,7 @@
 
       <div class="pull-left user-avatar"><%= image_tag @work.user.avatar.url(:medium), :class => 'avatar' %></div>
       <div>
-        <div class="title"><h1><a href="<%= work_path(@work) %>"> <%= @work.title %></a></h1></div>
+         <h1 class="title"><a href="<%= work_path(@work) %>"> <%= @work.title %></a></h1>
         <div class="pub-info">
           <ul class="list-inline">
             <li><%= link_to @work.user.name, "/designers/#{@work.user.id}" %>
@@ -87,7 +87,7 @@
           <div class="comment-form">
             <%= form_for(Comment.new, remote: true, method: :post) do |f| %>
                 <div class="form-group">
-                  <label><%= current_user.name %>, 你可以添加一条评论</label><em>（最长不超过1000个字符）</em>
+                  <label><%= current_user.name %>, 你可以添加一条评论</label><i>（最长不超过1000个字符）</i>
                   <%= f.text_area :content, :class => "form-control", rows: 4 %>
                   <%= f.hidden_field :work_id, value: @work.id %>
 

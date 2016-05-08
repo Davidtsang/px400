@@ -91,7 +91,7 @@ $grayLine: rgb(238, 238, 238);
 }
 
 * {
-  @extend .smoothing;
+
   //-webkit-font-smoothing: subpixel-antialiased;
   font-family: "Helvetica Neue", Helvetica, "Microsoft Yahei UI", "Microsoft Yahei", "Lantinghei SC", Arial, sans-serif;
 }
@@ -352,7 +352,7 @@ hr {
 }
 
 .work-tags {
-  padding:  15px 0px;
+  padding:  15px;
 }
 
 .work-innter {
@@ -439,7 +439,7 @@ hr {
 }
 
 .user-card {
-  @extend .no-smoothing;
+
   color: $gray40;
   h2 {
     font-weight: bold;
@@ -455,6 +455,8 @@ hr {
 
   }
   .city{
+
+    padding-top: 4px;
     font-size: 13px !important;
   }
   .meta {
@@ -462,6 +464,15 @@ hr {
     font-size: 12px;
     display: block;
     margin: 4px 0 0 0;
+
+  }
+  .meta-tags{
+    @extend .no-smoothing;
+    font-weight: normal;
+    font-size: 12px;
+    display: block;
+    margin: 4px 0 0 0;
+    line-height: 150%;
   }
   padding-top: $gap;
   padding-bottom: $gap;
@@ -499,7 +510,7 @@ hr {
 }
 
 .work-taobao-ads {
-
+  padding-left: $gapMiddle;
   margin-top: 10px;
   a {
     text-decoration: underline;
@@ -586,7 +597,7 @@ hr {
 }
 
 .domain-list {
-  @extend .no-smoothing;
+
   @extend .simple-shadow;
   background-color: #ffffff;
   border-radius: 4px;
@@ -886,8 +897,8 @@ input[type=text], input[type=email], input[type=password] {
 }
 
 .act-box {
-  color: lighten(black, 60%);
-  //margin-top: 80px;
+  color: $gray50;
+
   padding: 15px;
   .act-item {
     font-size: 13px;
@@ -941,10 +952,15 @@ input[type=text], input[type=email], input[type=password] {
   }
   .title {
     //background-color: greenyellow;
+    margin-top: $gapLarge;
+    margin-bottom: $gapSmall;
   }
   .pub-info {
     font-size: 13px;
-    color: $gray40;
+    a {
+      font-weight: bold;
+    }
+      color: $gray50;
     //background-color: gold;
     li {
       padding-left: 0px;
@@ -973,7 +989,7 @@ input[type=text], input[type=email], input[type=password] {
   width: 300px !important;
   //background-color: yellow;
   a {
-    color: $siteGreyDark;
+    color: $gray50;
   }
   a:hover {
     color: darken($siteGreyDark, 75%);
@@ -1404,9 +1420,9 @@ p.comment-meta {
 
 //------footer
 footer {
-  -webkit-font-smoothing:  subpixel-antialiased !important;
+
   line-height: 150%;
-  @extend .no-smoothing;
+
   a {
     color: $gray50;
   }
